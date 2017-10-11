@@ -1,0 +1,14 @@
+/* Copyright (C) 2001-2004  All Rights Reserved.  */
+
+#ifndef _PAL_MPLS_TN_STATS_DEF
+#define _PAL_MPLS_TN_STATS_DEF
+
+#ifdef HAVE_MPLS_FWD
+
+void pal_mpls_tunnel_stats_update (void *);
+
+void pal_mpls_tunnel_entry_stats (pal_tunnel_entry_stats_t *, char *, int);
+
+#endif /* HAVE_MPLS_FWD */
+
+#endif /* _PAL_MPLS_TN_STATS_DEF */

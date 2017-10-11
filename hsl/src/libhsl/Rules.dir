@@ -1,0 +1,248 @@
+#------------------------------------------------------------------------------
+#
+# This file specifies the product name and the section name
+#
+# It is used by the generic section makefile to figure out what to expect.
+#
+# This file is where the make process edits need to be
+#
+
+#
+# Directory product name and directory name
+#
+# Note that DIR_ADDS includes all sources in any directories listed.
+# DIR_ADDD only makes sure the directory is available in the output space.
+#
+DIR_PROD=PacOS
+DIR_NAME=libhsl
+DIR_OFFS=
+DIR_MODE=lib
+DIR_ADDS=
+DIR_ADDD=
+
+#
+# Adjust so it is relative path to the product top directory
+#
+SRC_DIR=..
+TOP_DIR=../..
+
+#
+# Additional compilation flags for this module
+#
+#MODULE_CFLAGS=
+MODULE_CFLAGS+= -I$(SRC_DIR)/$(DIR_NAME)
+MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl
+MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/common
+MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/L2
+MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/ipmc
+MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/MPLS
+MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/L3
+
+#
+# Additional targets specified in here which should be made with this module
+#
+DIR_ALLP=
+DIR_DEPP=
+DIR_FDEP=
+DIR_CLNP=
+
+#
+# This allows additional objects (such as provided by vendor) to be
+# linked with the module directly.
+#
+OBJ_ADDS=
+
+ifeq ($(ENABLE_BROADCOM),yes)
+  ADD_HARDWARE=yes
+  HARDWARE_NAME=broadcom
+  MODULE_CFLAGS+=-I$(BROADCOM_SDK)/include
+  MODULE_CFLAGS+=-I$(BROADCOM_SDK)/src
+  MODULE_CFLAGS+=-DINCLUDE_L3 -DBCM_ESW_SUPPORT -DBCM_RPC_SUPPORT
+endif
+
+
+#
+# If building for Linux, the build mode is out(loadable module)
+#
+ifeq ($(ADD_HARDWARE),yes)
+ifeq ($(BLD_NAME),linux)
+ifeq ($(KERNEL_OUT),$(empty))
+KERNEL_OUT=$(KERNEL_SOURCE)
+endif
+
+ifeq ($(ENABLE_USER_HSL),no)
+
+MODULE_CFLAGS += -include $(KERNEL_OUT)/include/linux/version.h -include $(KERNEL_OUT)/include/linux/autoconf.h
+MODULE_CFLAGS += -I$(KERNEL_OUT)/include
+MODULE_CFLAGS += -I$(KERNEL_SOURCE)/include
+MODULE_CFLAGS += -I$(KERNEL_SOURCE)/arch/powerpc/include
+MODULE_CFLAGS += -I$(KERNEL_SOURCE)/arch/powerpc
+MODULE_CFLAGS += -I$(KERNEL_SOURCE)/include/asm-powerpc
+
+endif
+
+
+ifeq ($(ENABLE_USER_HSL),yes)
+ MODULE_CFLAGS += -O2 -fomit-frame-pointer -fno-strict-aliasing -Wall  -pipe -DEXPORT_SYMTAB
+else
+     ifeq ($(KERNEL_VERSION),2_6)
+  MODULE_CFLAGS += -D__KERNEL__ -DLINUX -DMODULE -O2 -fomit-frame-pointer -fno-strict-aliasing  -G 0 -fno-common -fno-pic -Wall  -pipe -DEXPORT_SYMTAB
+  MODPOST = $(KERNEL_OUT)/scripts/mod/modpost
+#       MODPOST_DEFINES += -DKBUILD_BASENAME=$(DIR_NAME)_module -DKBUILD_MODNAME=$(DIR_NAME)_module
+  MODNAME = -D"KBUILD_MODNAME=KBUILD_STR(hsl_module)"
+  MODPOST_DEFINES = -D"KBUILD_STR(s)=\#s" $(MODNAME)
+
+ else
+  MODULE_CFLAGS += -D__KERNEL__ -DLINUX -DMODULE -O2 -fomit-frame-pointer -fno-strict-aliasing  -G 0 -fno-pic -Wall  -pipe -DEXPORT_SYMTAB
+ endif
+
+ MODULE_CFLAGS += -I$(KERNEL_SOURCE)/include
+endif
+
+
+  ifeq ($(findstring e500v2,$(COMPILER_PREFIX)),e500v2)
+    MODULE_CFLAGS+= -fno-strict-aliasing -fno-common -O2 -msoft-float -pipe -ffixed-r2 -mmultiple -mno-altivec -mno-spe -mno-string -Wa,-me500  -fomit-frame-pointer
+  endif
+
+  ifeq ($(COMPILER_PREFIX),ppc_82xx-)
+    MODULE_CFLAGS+= -msoft-float -mlongcall -mcpu=603
+  endif 
+
+  ifeq ($(COMPILER_PREFIX),mips_fp_be-)
+    MODULE_CFLAGS+= -mno-abicalls -mips2 -Wa,--trap -mlong-calls -mtune=r4600  
+  endif 
+
+MODULE_CFLAGS += -I$(dir $(shell $(COMPILER_DIR)/$(COMPILER_PREFIX)gcc -print-libgcc-file-name))include
+
+EXTRA_LDFLAGS += -r
+MAKE_SINGLE_DEPS= $(CC) -M $(MODULE_CFLAGS)
+MAKE_SINGLE_FILE= $(CC) -c $(MODULE_CFLAGS)
+
+HSL_OS_NAME=linux
+
+endif
+endif
+
+# VxWorks-Windnet
+ifeq ($(BLD_NAME),vxworks)
+  HSL_OS_NAME=vxworks
+  ifeq ($(PNE_VERSION),PNE_2_2)
+     MODULE_CFLAGS+=-D_KERNEL
+     MODULE_CFLAGS+=-D_WRS_KERNEL
+     HSL_STACK_NAME=pne_2_2
+  else
+     HSL_STACK_NAME=windnet
+  endif
+endif
+ifeq ($(BLD_NAME),vxworks_ipnet2)
+  HSL_OS_NAME=vxworks
+  HSL_STACK_NAME=ipnet2
+endif
+ifeq ($(BLD_NAME),linux)
+  HSL_OS_NAME=linux
+  ifeq ($(ENABLE_IPNET),yes)
+    HSL_STACK_NAME=ipnet2
+  else
+    HSL_STACK_NAME=native
+  endif
+endif
+
+#
+# Lists of input files (to handle conditional compilation of files)
+#
+ifeq ($(ADD_HARDWARE),yes)
+DIR_SRCS=
+
+ifeq ($(ENABLE_MARVELL),no)
+DIR_SRCS+=hsl.c
+endif
+
+DIR_ADDS+=$(SRC_DIR)/libhsl
+DIR_ADDS+=$(SRC_DIR)/libhsl/common
+
+DIR_HDRS=
+DIR_HDRS+= hsl.h
+
+#
+# Conditional additions to above
+#
+DIR_ADDS+=common
+#DIR_ADDS+=oss
+
+#
+# Harware - OS - Stack 
+#
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hal
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hal/hsl
+
+ifeq ($(ENABLE_MARVELL),no)
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/$(HSL_OS_NAME)
+ifeq ($(BLD_NAME),vxworks_ipnet2)
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/$(HSL_OS_NAME)/$(HSL_STACK_NAME)
+endif
+endif
+
+endif
+
+
+#
+# Multicast/Igmp snooping 
+#
+ifeq ($(ENABLE_MCAST_IPV4),yes)
+  DIR_ADDS+=ipmc
+  MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/ipmc
+else
+  ifeq ($(ENABLE_MCAST_IPV6),yes)
+    DIR_ADDS+=ipmc 
+    MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/ipmc
+  else
+    ifeq ($(ENABLE_IGMP_SNOOP),yes)
+       DIR_ADDS+=ipmc 
+       MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/ipmc
+     endif
+  endif
+endif
+
+#
+# Hardware specific initialization.
+#
+
+ifeq ($(ADD_HARDWARE),yes)
+#
+# Harware - OS - Stack 
+#
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hal
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hal/hsl
+endif
+#
+# Layer 2 
+#
+ifeq ($(ENABLE_L2),yes)
+  DIR_ADDS+=L2
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hal/L2
+  MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/L2
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/L2
+endif
+#
+# Layer 3 
+#
+ifeq ($(ENABLE_L3),yes)
+  DIR_ADDS+=L3
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hal/L3
+  MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/L3
+  MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/L3
+  MODULE_CFLAGS+=-DINCLUDE_L3
+endif
+
+ifeq ($(ENABLE_MPLS),yes)
+  DIR_ADDS+=MPLS
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hal/MPLS
+  MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/MPLS
+endif
+
+ifeq ($(ENABLE_USER_HSL),yes)
+  MODULE_CFLAGS+=-I$(SRC_DIR)/HSL/$(HSL_OS_NAME)
+else
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/$(HSL_OS_NAME)
+endif

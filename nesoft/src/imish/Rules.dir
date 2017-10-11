@@ -1,0 +1,460 @@
+#------------------------------------------------------------------------------
+#
+# This file specifies the product name and the section name
+#
+# It is used by the generic section makefile to figure out what to expect.
+#
+# This file is where the make process edits need to be
+#
+
+#
+# Directory product name and directory name
+#
+# Note that DIR_ADDS includes all sources in any directories listed.
+# DIR_ADDD only makes sure the directory is available in the output space.
+#
+DIR_PROD=PacOS
+DIR_NAME=imish
+DIR_OFFS=
+DIR_MODE=lib
+DIR_ADDS=
+DIR_ADDD=
+
+#
+# Adjust so it is relative path to the product top directory
+#
+SRC_DIR=..
+TOP_DIR=../..
+
+#
+# Additional compilation flags for this module
+#
+MODULE_CFLAGS=
+
+#
+# Additional targets specified in here which should be made with this module
+#
+DIR_ALLP=$(IMISH_CMD_FILE_OBJ)
+DIR_DEPP=$(IMISH_CMD_FILE_DEPS)
+DIR_FDEP=$(IMISH_CMD_FILE_FDEP)
+DIR_CLNP=$(IMISH_CMD_FILE_CLEAN)
+
+#
+# This allows additional objects (such as provided by vendor) to be
+# linked with the module directly.
+#
+OBJ_ADDS=
+
+#
+# Lists of input files (to handle conditional compilation of files)
+#
+DIR_SRCS=$(wildcard *.c)
+DIR_HDRS=$(wildcard *.h)
+
+#
+# Add libedit library.
+#
+DIR_ADDS+= libedit
+MODULE_CFLAGS+= -I$(TOP_DIR)/platform/$(BLD_NAME)
+MODULE_CFLAGS+= -I$(SRC_DIR)/imish/libedit
+DIR_ADDS+= libedit/readline
+MODULE_CFLAGS+= -I$(SRC_DIR)/imish/libedit/readline
+
+# CUSTOM1
+ifeq ($(ENABLE_CUSTOM1),yes)
+  DIR_ADDS+= custom1
+  MODULE_CFLAGS+= -I$(SRC_DIR)/imish/custom1
+endif
+
+#
+# Conditional additions to above
+#
+
+
+#------------------------------------------------------------------------------
+#
+# VTYSH configures itself according to same rules as the rest of the
+# platform, which means it needs a little more help here...
+#
+
+#
+# VTYSH pulls commands from all active directories except these directories.
+# The active directory list is the Rules.platform ALL_TGTD variable.
+#
+NO_EXTRACT_CMDS=
+NO_EXTRACT_CMDS+= imish
+NO_EXTRACT_CMDS+= vtysh
+NO_EXTRACT_CMDS+= pal
+NO_EXTRACT_CMDS+= lib
+NO_EXTRACT_CMDS+= mpls
+NO_EXTRACT_CMDS+= imi
+NO_EXTRACT_CMDS+= vr
+ifeq ($(ENABLE_BGPD),no)
+  NO_EXTRACT_CMDS+= bgpd
+endif
+ifeq ($(ENABLE_RIPD),no)
+  NO_EXTRACT_CMDS+= ripd
+endif
+ifeq ($(ENABLE_RIPNGD),no)
+  NO_EXTRACT_CMDS+= ripngd
+endif
+ifeq ($(ENABLE_OSPFD),no)
+  NO_EXTRACT_CMDS+= ospfd
+endif
+ifeq ($(ENABLE_OSPF6D),no)
+  NO_EXTRACT_CMDS+= ospf6d
+endif
+ifeq ($(ENABLE_LDPD),no)
+  NO_EXTRACT_CMDS+= ldpd
+endif
+ifeq ($(ENABLE_RSVPD),no)
+  NO_EXTRACT_CMDS+= rsvpd
+endif
+ifeq ($(ENABLE_ISISD),no)
+  NO_EXTRACT_CMDS+= isisd
+endif
+ifeq ($(ENABLE_PDMD),no)
+  NO_EXTRACT_CMDS+= pdmd
+endif
+ifeq ($(ENABLE_PIMD),no)
+  NO_EXTRACT_CMDS+= pimd
+endif
+ifeq ($(ENABLE_PIM6D),no)
+  NO_EXTRACT_CMDS+= pim6d
+endif
+ifeq ($(ENABLE_AUTHD),no)
+  NO_EXTRACT_CMDS+= authd
+endif
+
+ifeq ($(ENABLE_MSTPD),no)
+  ifeq ($(ENABLE_STPD),no)
+    ifeq ($(ENABLE_RSTPD),no)
+      ifeq ($(ENABLE_RPVST_PLUS),no)
+	NO_EXTRACT_CMDS+= mstpd
+      endif
+    endif
+  endif
+endif
+
+ifeq ($(ENABLE_LACPD),no)
+  NO_EXTRACT_CMDS+= lacpd
+endif
+ifeq ($(ENABLE_RMOND),no)
+  NO_EXTRACT_CMDS+= rmond
+endif
+ifeq ($(ENABLE_HA),no)
+  NO_EXTRACT_CMDS+= cal
+endif
+
+ifeq ($(ENABLE_VLOGD),no)
+  NO_EXTRACT_CMDS+= vlogd
+endif
+
+ifeq ($(ENABLE_ELMID),no)
+  NO_EXTRACT_CMDS+= elmid
+endif
+
+#
+# IMISH pulls commands from these files (wildcards allowed).
+#
+YES_EXTRACT_CMDS=
+YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/line.c
+YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/log.c
+YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/keychain.c
+YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/routemap.c
+YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/filter.c
+YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/plist.c
+YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/distribute.c
+YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/if_rmap.c
+YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/host.c
+YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/fm/lib_fm_cli.c
+
+YES_INC_CMDS= cpp -DHAVE_CONFIG_H -DEXTRACT_CLI -I. -I..
+YES_INC_CMDS+= -I../pal/api -I../pal/$(BLD_NAME) -I../../platform/$(BLD_NAME)
+YES_INC_CMDS+= -I../lib -I../lib/fm -I../lib/L2 -I../lib/mpls -I../lib/mpls_client
+YES_INC_CMDS+= -I../nsm -I../nsm/L2 -I../nsm/L2/garp -I../nsm/L2/gvrp -I../nsm/L2/gmrp -I../nsm/rib -I../nsm/mpls -I../nsm/vpls
+YES_INC_CMDS+= -I../hal -I../hal/MPLS -I../imi/util
+
+ifeq ($(ENABLE_FIREWALL),yes)
+YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/firewall/nsm_firewall_cli.c
+endif
+
+ifeq ($(ENABLE_IPSEC),yes)
+YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/ipsec/ipsec_cli.c
+YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/ipsec/ipsec_show.c
+endif
+
+ifeq ($(ENABLE_HAL),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/hal/hsl/hal_debug.c
+endif
+
+YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/rib/nsm_static_mroute.c
+YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/nsm_interface.c
+ifeq ($(ENABLE_NSM_IF_UNNUMBERED),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/nsm_if_unnumbered.c
+endif
+ifeq ($(ENABLE_NSM_IF_ARBITER),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/nsm_if_arbiter.c
+endif
+
+ifeq ($(ENABLE_SNMP),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/snmp.c
+endif
+
+ifeq ($(ENABLE_BGPD),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/bgpd/bgp_debug.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/bgpd/bgp_dump.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/bgpd/bgp_filter.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/bgpd/bgp_mplsvpn.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/bgpd/bgp_nexthop.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/bgpd/bgp_route.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/bgpd/bgp_vrf.c
+endif
+
+ifeq ($(ENABLE_OSPFD),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/ospfd/ospf_vrf.c
+endif
+
+ifeq ($(ENABLE_MEMMGR),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/imi_memory.c
+endif
+
+ifeq ($(ENABLE_L2),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_bridge_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_pbb_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_pbb_te_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_pmirror.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_mac_acl_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_flowctrl.c
+  ifeq ($(ENABLE_LACPD),yes)
+    YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/lacp/nsm_static_aggregator_cli.c
+    YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/lacp/nsm_lacp_cli.c
+  endif
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_dcb_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_dcb_show.c
+endif
+
+ifeq ($(ENABLE_RATE_LIMIT),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_ratelimit.c
+endif
+
+ifeq ($(ENABLE_VLAN),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_vlan_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_vlan_access_cli.c
+  ifeq ($(ENABLE_PVLAN),yes)
+    YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_pvlan_cli.c
+  endif
+  ifeq ($(ENABLE_VLAN_CLASS),yes)
+    YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_vlanclassifier.c
+  endif
+  ifeq ($(ENABLE_VLAN_STACK),yes)
+    YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_vlan_stack.c
+  endif
+endif
+
+ifeq ($(ENABLE_PDMD),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/pdmd/pdm_debug.c
+endif
+
+ifeq ($(ENABLE_GMRP),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/gmrp/gmrp_cli.c
+endif
+ifeq ($(ENABLE_GVRP),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/gvrp/gvrp_cli.c
+endif
+
+ifeq ($(ENABLE_MCAST_IPV4),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/igmp/igmp_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/igmp/igmp_show.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/mcast/mcast4/nsm_mcast4_cli.c
+  ifeq ($(ENABLE_IGMP_SNOOP),yes)
+    YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_l2_mcast.c
+  endif  
+else
+  ifeq ($(ENABLE_IGMP_SNOOP),yes)
+    YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/igmp/igmp_cli.c
+    YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/igmp/igmp_show.c
+    YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_l2_mcast.c
+  endif
+endif
+
+ifeq ($(ENABLE_MCAST_IPV6),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/mld/mld_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/mld/mld_show.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/mcast/mcast6/nsm_mcast6_cli.c
+  ifeq ($(ENABLE_IGMP_SNOOP),no) 
+  ifeq ($(ENABLE_MLD_SNOOP),yes)
+    YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_l2_mcast.c
+  endif   
+  endif
+else
+  ifeq ($(ENABLE_MLD_SNOOP),yes)
+    YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/mld/mld_cli.c
+    YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/mld/mld_show.c
+    ifeq ($(ENABLE_IGMP_SNOOP),no)
+      YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_l2_mcast.c
+    endif   
+  endif
+endif
+
+
+ifeq ($(ENABLE_TUNNEL),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/tunnel/nsm_tunnel.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/tunnel/nsm_tunnel4.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/tunnel/nsm_tunnel6.c
+endif
+ifeq ($(ENABLE_VR),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/nsm_vr.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/imi_vr.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/lib/entity.c
+endif
+ifeq ($(ENABLE_VRRP),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/vrrp/vrrp_cli.c
+endif
+ifeq ($(ENABLE_MPLS),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/mpls/nsm_mpls_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/mpls/nsm_mpls_bfd_cli.c
+endif
+ifeq ($(ENABLE_GMPLS),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/gmpls/nsm_gmpls_ifcli.c
+endif
+ifeq ($(ENABLE_MPLS_FRR),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/rsvpd/frr/rsvp_frr_cli.c
+endif
+ifeq ($(ENABLE_CRX),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/crx/*.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/crx/*.c
+endif
+
+YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/imi_interface.c
+YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/imi_cli.c
+#YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/imi_config.c
+
+ifeq ($(ENABLE_DNS_CLIENT),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/util/imi_dns.c
+endif
+ifeq ($(ENABLE_DHCP_CLIENT),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/util/imi_dhcpc.c
+endif
+ifeq ($(ENABLE_DHCP_SERVER),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/util/imi_dhcps.c
+endif
+ifeq ($(ENABLE_PPPOE_CLIENT),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/util/imi_pppoe.c
+endif
+ifeq ($(ENABLE_NAT),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/util/imi_fw.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/util/imi_vs.c
+endif
+#ifeq ($(ENABLE_ACL),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/util/imi_filter.c
+#endif
+ifeq ($(ENABLE_NTP),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/util/imi_ntp.c
+endif
+ifeq ($(ENABLE_CUSTOM1),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/imish/custom1/*.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/custom1/imi_snmp_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/imi/custom1/imi_arp_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/npf/L2/custom1/swp_vlan_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/npf/L2/custom1/swp_fdb_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/custom1/nsm_custom1_cli.c
+endif
+
+ifeq ($(ENABLE_ONMD),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/oam/nsm_l2_oam_cli.c
+endif
+
+ifeq ($(ENABLE_LLDP),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/onmd/lldp/lldp_cli.c
+endif
+
+ifeq ($(ENABLE_CFM),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/onmd/cfm/cfm_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/onmd/cfm/cfm_pbb_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/onmd/cfm/cfm_pbb_te_cli.c
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/onmd/cfm/pbb-te-aps/aps_cli.c
+endif
+
+ifeq ($(ENABLE_G8031),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/onmd/cfm/g8031/g8031_cli.c
+endif
+
+ifeq ($(ENABLE_G8032),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/onmd/cfm/g8032/g8032_cli.c
+endif
+
+ifeq ($(ENABLE_EFM),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/onmd/efm-oam/efm_cli.c
+endif
+
+ifeq ($(ENABLE_HA),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/cal/cal_cli.c
+endif
+
+ifeq ($(ENABLE_FM_SIM),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/cal/fm/sim/sim_fm_cli.c
+endif
+
+ifeq ($(ENABLE_VLAN),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/nsm/L2/nsm_stats_cli.c
+endif
+
+ifeq ($(ENABLE_BFD_MONO),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/oamd/bfd_cli.c
+endif
+
+ifeq ($(ENABLE_BFD_MAIN),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/oamd/bfd_cli.c
+endif
+
+ifeq ($(ENABLE_VLOGD),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/vlogd/vlog_cli.c
+endif
+
+ifeq ($(ENABLE_ELMID),yes)
+  YES_EXTRACT_CMDS+= $(SRC_DIR)/elmid/elmi_cli.c
+endif
+
+ifeq ($(ENABLE_NSM),yes)
+  PAC_SUB_DIR := $(shell find $(SRC_DIR)/pac -maxdepth 1 -type d)
+  YES_EXTRACT_CMDS+= $(patsubst %, %/*_cli.c, $(filter-out $(SRC_DIR)/pac, $(PAC_SUB_DIR)))
+  YES_INC_CMDS+= $(patsubst %, -I%, $(PAC_SUB_DIR))
+  NO_EXTRACT_CMDS += pac
+endif
+#
+# IMISH commands list source, object, and dependencies, and cleanup
+#
+IMISH_CMD_FILE=$(OBJ_BASE)/$(DIR_NAME)/imish_cmd.c
+IMISH_CMD_FILE_OBJ=$(OBJ_BASE)/$(DIR_NAME)/imish_cmd.o
+IMISH_CMD_FILE_DEPS=$(DEP_BASE)/$(DIR_NAME)_cmd.dep
+IMISH_CMD_FILE_FDEP=$(DEP_BASE)/$(DIR_NAME)_cmd-fdep
+IMISH_CMD_FILE_CLEAN=$(DEP_BASE)/$(DIR_NAME)_cmd-clean
+
+#
+# From here on, it's better to not make changes
+#
+
+EXTRACT_LIST=$(patsubst %,$(SRC_DIR)/%/*_cli.c,$(filter-out $(NO_EXTRACT_CMDS),$(ALL_TGTD))) $(patsubst %,$(SRC_DIR)/%/*_show.c,$(filter-out $(NO_EXTRACT_CMDS),$(ALL_TGTD))) $(YES_EXTRACT_CMDS)
+
+$(IMISH_CMD_FILE) :
+	perl $(SRC_DIR)/lib/cli.pl $(BLD_NAME) "$(YES_INC_CMDS)" -show $(EXTRACT_LIST) > $(IMISH_CMD_FILE) 2>/dev/null
+	$(RM) $(IMISH_CMD_FILE_OBJ) $(IMISH_CMD_FILE_DEPS)
+
+$(IMISH_CMD_FILE_OBJ) : $(IMISH_CMD_FILE)
+	$(MAKE_SINGLE_FILE) $(MODULE_CFLAGS) -o $@ $(IMISH_CMD_FILE)
+
+$(IMISH_CMD_FILE_DEPS) : $(IMISH_CMD_FILE)
+	$(ECHO_NOCR) "$(DIR_OBJB)/" > $(IMISH_CMD_FILE_DEPS)
+	$(MAKE_SINGLE_DEPS) $(MODULE_CFLAGS) $(IMISH_CMD_FILE) >> $(IMISH_CMD_FILE_DEPS)
+
+$(IMISH_CMD_FILE_FDEP) :
+	$(RM) $(IMISH_CMD_FILE_DEPS)
+	$(MAKE) $(IMISH_CMD_FILE_DEPS)
+
+$(IMISH_CMD_FILE_CLEAN) :
+	$(RM) $(IMISH_CMD_FILE) $(IMISH_CMD_FILE_OBJ) $(IMISH_CMD_FILE_DEPS)
+
+ifneq ($(wildcard $(IMISH_CMD_FILE_DEPS)),$(empty))
+  include $(IMISH_CMD_FILE_DEPS)
+endif

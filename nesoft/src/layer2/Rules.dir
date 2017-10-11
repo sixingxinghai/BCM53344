@@ -1,0 +1,129 @@
+#------------------------------------------------------------------------------
+#
+# This file specifies the product name and the section name
+#
+# It is used by the generic section makefile to figure out what to expect.
+#
+# This file is where the make process edits need to be
+#
+
+#
+# Directory product name and directory name
+#
+# Note that DIR_ADDS includes all sources in any directories listed.
+# DIR_ADDD only makes sure the directory is available in the output space.
+#
+DIR_PROD=PacOS
+DIR_NAME=layer2
+DIR_OFFS=
+DIR_MODE=out
+DIR_ADDS=
+DIR_ADDD=
+
+#
+# Adjust so it is relative path to the product top directory
+#
+SRC_DIR=..
+TOP_DIR=../..
+
+#
+# Additional compilation flags for this module
+#
+MODULE_CFLAGS=
+
+#
+# Additional targets specified in here which should be made with this module
+#
+DIR_ALLP=
+DIR_DEPP=
+DIR_FDEP=
+DIR_CLNP=
+
+#
+# This allows additional objects (such as provided by vendor) to be
+# linked with the module directly.
+#
+OBJ_ADDS=
+
+#
+# Lists of input files (to handle conditional compilation of files)
+#
+DIR_SRCS=$(wildcard *.c) 
+DIR_HDRS=$(wildcard *.h)
+
+# 
+# Module CFLAGS
+#
+ifeq ($(ENABLE_MPLS),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/hal/MPLS
+endif
+
+#
+# Conditional additions to above
+#
+ifeq ($(KERNEL_SOURCE),$(empty))
+KERNEL_SOURCE=/lib/modules/$(shell echo `uname -r`)/source
+endif
+
+ifeq ($(ENABLE_SWFWDR),yes)
+ARCH_CFLAGS= -I$(SRC_DIR)/layer2/swfwdr
+FWDER_CFLAGS= -g -O6 -DMODULE -D__KERNEL__ -DLINUX
+
+# For GCC versions > 0300. Workaround for a bug in GCC.
+# FWDER_CFLAGS +=-mregparm=3
+# FWDER_CFLAGS +=-fno-strict-aliasing -fno-common -ffreestanding -O2     -fomit-frame-pointer -g -pipe -msoft-float -mpreferred-stack-boundary=2 -fno-unit-at-a-time -march=i686 -mtune=pentium4 -mregparm=3
+FWDER_CFLAGS +=-fno-strict-aliasing -fno-common -ffreestanding -O2     -fomit-frame-pointer -g -pipe -msoft-float -fno-unit-at-a-time
+
+# Kernel search paths
+# KERNEL_SOURCE points to kernel source
+# KERNEL_OUT points to kernel binary output
+
+ifeq ($(KERNEL_OUT),$(empty))
+KERNEL_OUT=$(KERNEL_SOURCE)
+endif
+
+FWDER_CFLAGS+= -I$(KERNEL_SOURCE)/include
+FWDER_CFLAGS+= -I$(KERNEL_OUT)/include
+
+FWDER_CFLAGS+= -I$(KERNEL_OUT)/arch/powerpc
+FWDER_CFLAGS+= -I$(KERNEL_OUT)/arch/powerpc/include
+ 
+MODPOST = $(KERNEL_OUT)/scripts/mod/modpost
+
+# Phase 3 modpost defines.
+MODNAME = -D"KBUILD_MODNAME=KBUILD_STR(layer2_module)"
+MODPOST_DEFINES = -D"KBUILD_STR(s)=\#s" $(MODNAME)
+
+FWDER_LDFLAGS= -m elf32ppclinux -r
+DIR_ADDS+=swfwdr
+MODULE_CFLAGS+= -I$(SRC_DIR)/layer2/swfwdr
+MODULE_CFLAGS+= -I$(TOP_DIR)/platform/linux
+ifeq ($(ENABLE_L2), yes)
+DIR_ADDS+=swfwdr/bridge
+MODULE_CFLAGS+= -I$(SRC_DIR)/layer2/swfwdr/bridge
+DIR_ADDS+=swfwdr/lldp
+MODULE_CFLAGS+= -I$(SRC_DIR)/layer2/swfwdr/lldp
+DIR_ADDS+=swfwdr/efm
+MODULE_CFLAGS+= -I$(SRC_DIR)/layer2/swfwdr/efm
+DIR_ADDS+=swfwdr/cfm
+MODULE_CFLAGS+= -I$(SRC_DIR)/layer2/swfwdr/cfm
+DIR_ADDS+=swfwdr/elmi
+MODULE_CFLAGS+= -I$(SRC_DIR)/layer2/swfwdr/elmi
+endif
+ifeq ($(ENABLE_LACPD), yes)
+DIR_ADDS+=swfwdr/lacp
+MODULE_CFLAGS+= -I$(SRC_DIR)/layer2/swfwdr/lacp
+endif
+ifeq ($(ENABLE_AUTHD), yes)
+DIR_ADDS+=swfwdr/auth
+MODULE_CFLAGS+= -I$(SRC_DIR)/layer2/swfwdr/auth
+else
+ifeq ($(ENABLE_MAC_AUTH),  yes)
+MODULE_CFLAGS+= -I$(SRC_DIR)/layer2/swfwdr/auth
+endif
+endif
+
+MAKE_SINGLE_DEPS= $(CC) -M $(FWDER_CFLAGS)
+MAKE_SINGLE_FILE= $(CC) -c $(FWDER_CFLAGS)
+endif
+

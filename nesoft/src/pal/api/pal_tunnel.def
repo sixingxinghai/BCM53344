@@ -1,0 +1,16 @@
+/* Copyright (C) 2003   All Rights Reserved.  */
+
+#ifndef _PAL_TUNNEL_DEF
+#define _PAL_TUNNEL_DEF
+
+int pal_tunnel_add (struct interface *);
+int pal_tunnel_del (struct interface *);
+int pal_tunnel_update (struct interface *);
+int pal_tunnel_up (struct interface *);
+int pal_tunnel_down (struct interface *);
+int pal_tunnel_get (struct interface *);
+
+#define PAL_TUNNEL_PREFIX       "Tunnel"
+#define PAL_TUNNEL_PREFIX_LEN   6
+
+#endif /* _PAL_TUNNEL_DEF */

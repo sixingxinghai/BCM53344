@@ -1,0 +1,8 @@
+
+This directory contains several other directories.  Each one is the
+implementation of the PAL for a specific platform.  Please note that
+the pal* files in the api directory are for baseline reference, and
+the files in other directories provide implementation for them.
+
+Do not add files to this directory.
+

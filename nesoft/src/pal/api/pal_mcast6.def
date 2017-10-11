@@ -1,0 +1,187 @@
+/* Copyright (C) 2002-2003   All Rights Reserved.  */
+#ifndef _PAL_MCAST6_DEF
+#define _PAL_MCAST6_DEF
+#include "plat_incl.h"
+
+/* PAL IPv6 Multicast  API.  */
+
+/* Add Multicast Forwarding Entry  
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+**    IN     struct pal_in6_addr   *src
+**    IN     struct pal_in6_addr   *group
+**    IN     pal_mifi_t iif
+**    IN     int num_oifs
+**    IN     u_int16_t *oifs
+**    IN     u_int32_t rp
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t
+pal_mcast6_mfc_add (pal_sock_handle_t sock, struct pal_in6_addr *src, struct pal_in6_addr *group,
+    pal_mifi_t iif, int num_oifs, u_int16_t *oifs);
+
+/* Delete Multicast Forwarding Entry 
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+**    IN     struct pal_in4_addr   *src
+**    IN     struct pal_in4_addr   *group
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t
+pal_mcast6_mfc_delete (pal_sock_handle_t sock, struct pal_in6_addr *src, 
+		struct pal_in6_addr *group);
+
+/* Add a PIM vif to the multicast forwarder 
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+**    IN     pal_mifi_t vif_index
+**    IN     u_int8_t flags
+**    IN     u_int16_t pifi
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_mcast6_vif_attach (pal_sock_handle_t sock, pal_mifi_t vif_index, 
+u_int8_t flags, u_int16_t pifi);
+
+/* Delete a PIM vif from the multicast forwarder 
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+**    IN     pal_mifi_t vif_index
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_mcast6_vif_detach (pal_sock_handle_t sock, pal_mifi_t vif_index);
+
+
+/* Get (S,G) packet and byte count from the forwarder 
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+**    IN     struct pal_in6_addr   *src
+**    IN     struct pal_in6_addr   *group
+**    OUT    u_int32_t *pktcnt
+**    OUT    u_int32_t *bytecnt
+**    OUT    u_int32_t *wrongif
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_mcast6_get_sg_count (pal_sock_handle_t sock, struct pal_in6_addr *src,
+struct pal_in6_addr *group, u_int32_t *pktcnt, u_int32_t *bytecnt,
+u_int32_t *wrongif);
+
+/* Get vif packet and byte count from the forwarder 
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+**    IN     int vif_index
+**    OUT    u_int32_t *ipktcnt
+**    OUT    u_int32_t *opktcnt
+**    OUT    u_int32_t *ibytecnt
+**    OUT    u_int32_t *obytecnt
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_mcast6_get_vif_count (pal_sock_handle_t sock, int vif_index,
+u_int32_t *ipktcnt, u_int32_t *opktcnt, u_int32_t *ibytecnt,
+u_int32_t *obytecnt);
+
+/* Set the multicast routing socket options and start multicast routing
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_mrt6_start (pal_sock_handle_t sock);
+
+/* Unset the multicast routing socket options and stop 
+** multicast routing
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_mrt6_stop (pal_sock_handle_t sock);
+
+/* Set the multicast routing socket options for PIM and start multicast routing
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_pim6_mrt_start (pal_sock_handle_t sock);
+
+/* Unset the multicast routing socket options for PIM and stop multicast routing
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_pim6_mrt_stop (pal_sock_handle_t sock);
+
+/* Set the Hop Limit of PIM Register Inner multicast data packet IP header
+**
+** Parameters:
+**    IN     struct pal_in6_header*   iph
+** Results:
+**    None
+*/
+void 
+pal_pim6_reg_data_set_ttl (struct pal_in6_header *iph);
+
+/* Get the packet len of inner multicast data packet for Registers
+**
+** Parameters:
+**    IN     struct pal_in6_header*   iph
+**    OUT    u_int32_t*   len
+** Results:
+**    None
+*/
+void 
+pal_pim6_reg_data_pkt_len_get (struct pal_in6_header *iph, u_int32_t *len);
+
+/* Calculate the checksum of PIM Register Inner multicast data packet IP header
+**
+** Parameters:
+**    IN     struct pal_in6_header*   iph
+** Results:
+**    None
+*/
+void 
+pal_pim6_reg_data_set_cksum (struct pal_in6_header *iph);
+
+/* Adjust the mrt6msg in the buffer received from kernel so that im6_src and
+** im6_dst are properly set to ip6_src and ip6_dst for WHOLEPKT message.
+**
+** Parameters:
+**    IN     u_char*   buf
+** Results:
+**    None
+*/
+void 
+pal_pim6_correct_wholepkt_msg (u_char *buf);
+
+/* IPv6 SSM Range Address ("FF03::") */
+#undef IN6_IS_ADDR_MC_SSM_RANGE
+#define IN6_IS_ADDR_MC_SSM_RANGE(ADDR)                                \
+  (IN6_IS_ADDR_MULTICAST (ADDR)                                       \
+   && (((__const uint8_t *) (ADDR))[1] == 0x03))
+
+#endif /* _PAL_MCAST6_DEF */

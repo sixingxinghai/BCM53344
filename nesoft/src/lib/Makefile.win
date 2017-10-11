@@ -1,0 +1,150 @@
+############################################################################
+#                           PROGRAM MODULE
+#
+#	$Workfile:   makefile.mk  $ (pal)
+#	Document no: @(#) 550/OSE137-makefile
+#	$Version:   /main/tb_ri24/18  $
+#	shawn
+#	2003/07/03 20:59:33
+#
+#   Copyright (C) 2002. All rights reserved.
+#
+############################################################################
+.SUFFIXES: .obj .c
+
+#PACOS_ROOT = C:\PacOS5
+
+!include $(PACOS_ROOT)\platform\windows\Rules.options
+!include $(PACOS_ROOT)\platform\windows\pacos.mk
+!include <win32.mak>
+
+OBJ = $(PACOS_ROOT)\platform\windows\obj
+ZEBLIBOBJ = $(OBJ)
+
+ZEBLIB_SRC = $(PACOS_ROOT)\lib
+ZEBLIB_VR_SRC = $(PACOS_ROOT)\lib\vr
+ZEBLIB_MPLS_SRC = $(PACOS_ROOT)\lib\mpls_client\*.c
+ZEBLIB_MPLSSRC = $(PACOS_ROOT)\lib\mpls\*.c
+ZEBLIB_CSPF_SRC = $(PACOS_ROOT)\lib\cspf_client\*.c
+ZEBLIB_OSPF_SRC = $(PACOS_ROOT)\lib\ospf_common\*.c
+ZEBLIB_DIFF_SRC = $(PACOS_ROOT)\lib\diffserv\*.c
+ZEBLIB_LIB = $(ZEBLIBOBJ)\zeblib.lib
+
+ZEBLIB_OBJECTS = $(ZEBLIBOBJ)\api.obj          \
+                 $(ZEBLIBOBJ)\bitmap.obj       \
+				 $(ZEBLIBOBJ)\buffer.obj       \
+				 $(ZEBLIBOBJ)\cfg.obj          \
+				 $(ZEBLIBOBJ)\checksum.obj     \
+				 $(ZEBLIBOBJ)\command.obj      \
+				 $(ZEBLIBOBJ)\distribute.obj   \
+				 $(ZEBLIBOBJ)\filter.obj       \
+				 $(ZEBLIBOBJ)\hash.obj         \
+				 $(ZEBLIBOBJ)\if.obj           \
+				 $(ZEBLIBOBJ)\if_rmap.obj      \
+				 $(ZEBLIBOBJ)\keychain.obj     \
+				 $(ZEBLIBOBJ)\lib.obj          \
+				 $(ZEBLIBOBJ)\licmgr.obj       \
+				 $(ZEBLIBOBJ)\linklist.obj     \
+				 $(ZEBLIBOBJ)\log.obj          \
+				 $(ZEBLIBOBJ)\ls_prefix.obj    \
+				 $(ZEBLIBOBJ)\ls_table.obj     \
+				 $(ZEBLIBOBJ)\message.obj      \
+				 $(ZEBLIBOBJ)\network.obj      \
+				 $(ZEBLIBOBJ)\nsm_client.obj   \
+				 $(ZEBLIBOBJ)\nsm_message.obj  \
+				 $(ZEBLIBOBJ)\plist.obj        \
+				 $(ZEBLIBOBJ)\prefix.obj       \
+				 $(ZEBLIBOBJ)\ptree.obj        \
+				 $(ZEBLIBOBJ)\routemap.obj     \
+				 $(ZEBLIBOBJ)\smux.obj         \
+				 $(ZEBLIBOBJ)\snmp_misc.obj    \
+				 $(ZEBLIBOBJ)\snprintf.obj     \
+				 $(ZEBLIBOBJ)\sockunion.obj    \
+				 $(ZEBLIBOBJ)\stream.obj       \
+                 $(ZEBLIBOBJ)\table.obj        \
+				 $(ZEBLIBOBJ)\thread.obj       \
+				 $(ZEBLIBOBJ)\tlv.obj          \
+				 $(ZEBLIBOBJ)\vector.obj       \
+				 $(ZEBLIBOBJ)\version.obj      \
+				 $(ZEBLIBOBJ)\vty.obj          \
+				 $(ZEBLIBOBJ)\zffs.obj         
+
+# lib\vr files
+#				 $(ZEBLIBOBJ)\gma_client.obj   \
+#				 $(ZEBLIBOBJ)\vr_cli.obj       \
+#				 $(ZEBLIBOBJ)\vr_lib.obj       \
+#				 $(ZEBLIBOBJ)\vr_login.obj     \
+#				 $(ZEBLIBOBJ)\vr_user.obj      \
+
+# lib\cspf_client
+#!IF "$(ENABLE_CSPF)" == "yes"
+ZEBLIB_CSPF_OBJECTS = $(ZEBLIBOBJ)\cspf_api.obj     \
+                      $(ZEBLIBOBJ)\cspf_client.obj  \
+                      $(ZEBLIBOBJ)\cspf_common.obj
+#!ENDIF
+
+ZEBLIB_MPLS_OBJECTS = $(ZEBLIBOBJ)\mpls_client.obj
+
+ZEBLIB_MPLSOBJECTS = $(ZEBLIBOBJ)\admin_grp.obj     \
+					 $(ZEBLIBOBJ)\label_pool.obj    \
+					 $(ZEBLIBOBJ)\lp_client.obj     \
+					 $(ZEBLIBOBJ)\mpls.obj          \
+					 $(ZEBLIBOBJ)\qos_client.obj    \
+					 $(ZEBLIBOBJ)\qos_common.obj
+
+ZEBLIB_DIFF_OBJECTS = $(ZEBLIBOBJ)\diffserv.obj
+
+ZEBLIB_OSPF_OBJECTS = $(ZEBLIBOBJ)\ospf_const.obj       \
+                      $(ZEBLIBOBJ)\ospf_debug_msg.obj   \
+                      $(ZEBLIBOBJ)\ospf_util.obj        
+#
+# Targets
+#
+
+all: $(ZEBLIB_OBJECTS) $(ZEBLIB_CSPF_OBJECTS) $(ZEBLIB_LIB) $(ZEBLIB_MPLS_OBJECTS) $(ZEBLIB_MPLSOBJECTS) $(ZEBLIB_DIFF_OBJECTS) $(ZEBLIB_OSPF_OBJECTS)
+
+{$(ZEBLIB_SRC)}.c{$(ZEBLIBOBJ)}.obj:
+#    $(cc) $(cdebug) $(cflags) $(cvarsdll) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE)    \
+#    $(cc) $(cdebug) $(cflags) $(cvarsmt) -D_DEBUG $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE)    \
+    $(cc) $(cdebug) $(cflags) $(cvars) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE)    \
+          $(ZEBPLAT_INCLUDE) $(ZEBROOT_INCLUDE) $(ZEBLIB_INCLUDE) $(ZEBNSM_INCLUDE) \
+          /W3 /Yd /Zi /Fo"$(OBJ)\\" -c $<
+
+#!IF "$(ENABLE_CSPF)" == "yes"
+$(ZEBLIB_CSPF_OBJECTS): $(ZEBLIB_CSPF_SRC)
+#    $(cc) $(cdebug) $(cflags) $(cvarsdll) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE)    \
+#    $(cc) $(cdebug) $(cflags) $(cvarsmt) -D_DEBUG $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE)    \
+    $(cc) $(cdebug) $(cflags) $(cvars) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE)    \
+          $(ZEBPLAT_INCLUDE) $(ZEBROOT_INCLUDE) $(ZEBLIB_INCLUDE) $(ZEBNSM_INCLUDE) \
+          /W3 /Yd /Zi /Fo"$(OBJ)\\" -c $(ZEBLIB_CSPF_SRC)
+#!ENDIF
+
+$(ZEBLIB_MPLS_OBJECTS): $(ZEBLIB_MPLS_SRC)
+#    $(cc) $(cdebug) $(cflags) $(cvarsdll) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE)    \
+#    $(cc) $(cdebug) $(cflags) $(cvarsmt) -D_DEBUG $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE)    \
+    $(cc) $(cdebug) $(cflags) $(cvars) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE)    \
+          $(ZEBPLAT_INCLUDE) $(ZEBROOT_INCLUDE) $(ZEBLIB_INCLUDE) $(ZEBNSM_INCLUDE) \
+          /W3 /Yd /Zi /Fo"$(OBJ)\\" -c $(ZEBLIB_MPLS_SRC)
+
+$(ZEBLIB_MPLSOBJECTS): $(ZEBLIB_MPLSSRC)
+    $(cc) $(cdebug) $(cflags) $(cvars) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE)    \
+          $(ZEBPLAT_INCLUDE) $(ZEBROOT_INCLUDE) $(ZEBLIB_INCLUDE) $(ZEBNSM_INCLUDE) \
+          /W3 /Yd /Zi /Fo"$(OBJ)\\" -c $(ZEBLIB_MPLSSRC)
+
+$(ZEBLIB_DIFF_OBJECTS): $(ZEBLIB_DIFF_SRC)
+    $(cc) $(cdebug) $(cflags) $(cvars) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE)    \
+          $(ZEBPLAT_INCLUDE) $(ZEBROOT_INCLUDE) $(ZEBLIB_INCLUDE) $(ZEBNSM_INCLUDE) \
+          /W3 /Yd /Zi /Fo"$(OBJ)\\" -c $(ZEBLIB_DIFF_SRC)
+
+$(ZEBLIB_OSPF_OBJECTS): $(ZEBLIB_OSPF_SRC)
+#    $(cc) $(cdebug) $(cflags) $(cvarsdll) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE)    \
+#    $(cc) $(cdebug) $(cflags) $(cvarsmt) -D_DEBUG $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE)    \
+    $(cc) $(cdebug) $(cflags) $(cvars) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE)    \
+          $(ZEBPLAT_INCLUDE) $(ZEBROOT_INCLUDE) $(ZEBLIB_INCLUDE) $(ZEBNSM_INCLUDE) \
+          /W3 /Yd /Zi /Fo"$(OBJ)\\" -c $(ZEBLIB_OSPF_SRC)
+
+
+$(ZEBLIB_LIB): $(ZEBLIB_OBJECTS) $(ZEBLIB_CSPF_OBJECTS) $(ZEBLIB_MPLS_OBJECTS) $(ZEBLIB_MPLSOBJECTS) $(ZEBLIB_DIFF_OBJECTS) $(ZEBLIB_OSPF_OBJECTS)
+    lib /OUT:"$(ZEBLIB_LIB)" $**
+
+

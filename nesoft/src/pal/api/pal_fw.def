@@ -1,0 +1,57 @@
+/* Copyright (C) 2002,   All Rights Reserved.  */
+#ifndef _PAL_FW_DEF
+#define _PAL_FW_DEF
+
+/* PAL DNS APIs.  */
+#include "imi/imi.h"
+
+/*
+   Functions
+*/
+
+/* Start.  */
+extern result_t pal_fw_start (struct lib_globals *lib_node);
+
+/* Stop. */
+extern result_t pal_fw_stop (struct lib_globals *lib_node);
+
+/* Translate NAT rules. */
+extern result_t pal_nat_translate_rule (int, int, int, u_int16_t,
+                                        struct prefix_am4 *, struct prefix_am4 *,
+                                        u_int16_t, u_int16_t, int,
+                                        u_int16_t, u_int16_t, int,
+                                        char *, char *, struct pal_in4_addr *,
+                                        struct pal_in4_addr *, u_int16_t, u_int16_t, u_int16_t);
+
+/* Clear NAT rules. */
+extern result_t pal_nat_clear_all_translations (void);
+
+/* Clear Filter rules. */
+extern result_t pal_filter_clear_all_rules (void);
+
+/* Translate Firewall rules. */
+result_t pal_fw_translate_rule (int op, int scope, u_int16_t proto,
+                                struct prefix_am *src, struct prefix_am *dst,
+                                s_int16_t sport_lo, s_int16_t sport, int sport_op,
+                                s_int16_t dport_lo, s_int16_t dport, int dport_op,
+                                char  *interface,
+                                int    filter,
+                                int    rulenum,
+                                int    icmp_type,
+                                bool_t established,
+                                int    length_lo, int length, int length_op,
+                                int    tos,
+                                bool_t fragments,
+                                bool_t log);
+
+/* Clear NAT translation timeouts. */
+extern result_t pal_nat_clear_all_timeouts (void);
+
+extern result_t pal_nat_translation_timeout_set(int );
+extern result_t pal_nat_translation_icmp_timeout_set(int);
+extern result_t pal_nat_translation_udp_timeout_set(int);
+extern result_t pal_nat_translation_tcp_timeout_set(int);
+extern result_t pal_nat_translation_tcp_fin_timeout_set(int);
+extern result_t pal_nat_translation_timeout_get(struct imi_nat_timeouts *);
+
+#endif /* _PAL_DNS_DEF */

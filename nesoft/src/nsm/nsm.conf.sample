@@ -1,0 +1,44 @@
+! -*- nsm -*-
+!
+! nsm sample configuration file
+!
+! nsm.conf.sample,v 1.2 2003/12/11 01:04:16 jue Exp
+!
+hostname Router
+password pacos
+enable password pacos
+!
+!debug nsm events
+!
+! VRF definition
+!
+!ip vrf test1
+!ip vrf test2
+!
+! Interface's description. 
+!
+!interface lo
+! description test of desc.
+!
+!interface sit0
+! multicast
+!
+!interface eth0
+! ip vrf forwarding test1
+! ip address 10.0.0.1/30
+!
+!
+!
+! Static default route sample.
+!
+! ip route 0.0.0.0/0 203.181.89.241
+!
+! ip route vrf test1 10.0.5.0/24 10.0.0.2 eth0 
+!
+!
+! If you are running OSPF on *BSD stack machines, uncomment the line.
+!
+! ip route 224.0.0.5/32 127.0.0.1
+!
+!
+!log file nsm.log

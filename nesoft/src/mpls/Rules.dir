@@ -1,0 +1,113 @@
+#------------------------------------------------------------------------------
+#
+# This file specifies the product name and the section name
+#
+# It is used by the generic section makefile to figure out what to expect.
+#
+# This file is where the make process edits need to be
+#
+
+#
+# Directory product name and directory name
+#
+# Note that DIR_ADDS includes all sources in any directories listed.
+# DIR_ADDD only makes sure the directory is available in the output space.
+#
+DIR_PROD=PacOS
+DIR_NAME=mpls
+DIR_OFFS=
+DIR_MODE=out
+DIR_ADDS=
+DIR_ADDD=
+
+#
+# Adjust so it is relative path to the product top directory
+#
+SRC_DIR=..
+TOP_DIR=../..
+
+#
+# Additional compilation flags for this module
+#
+MODULE_CFLAGS=
+
+#
+# Additional targets specified in here which should be made with this module
+#
+DIR_ALLP=
+DIR_DEPP=
+DIR_FDEP=
+DIR_CLNP=
+
+#
+# This allows additional objects (such as provided by vendor) to be
+# linked with the module directly.
+#
+OBJ_ADDS=
+
+#
+# Lists of input files (to handle conditional compilation of files)
+#
+DIR_SRCS=$(wildcard *.c) 
+DIR_HDRS=$(wildcard *.h)
+
+
+
+#
+# Conditional additions to above
+#
+ifeq ($(ENABLE_MPLS_FWD),yes)
+ifeq ($(ENABLE_CAVIUM_MIPS),yes)
+FWDER_CFLAGS= -O2 -mabi=64 -G 0 -mno-abicalls -fno-pic -pipe -msoft-float -ffreestanding -march=octeon -Wa,--trap -msym32 -DKBUILD_64BIT_SYM32 -D"VMLINUX_LOAD_ADDRESS=0xffffffff81100000" -DMODULE -mlong-calls -D__KERNEL__ -DLINUX
+else
+FWDER_CFLAGS= -g -O6 -DMODULE -D__KERNEL__ -DLINUX
+endif
+
+FWDER_CFLAGS+=-fno-common -fomit-frame-pointer
+
+ifeq ($(ENABLE_SWFWDR),yes)
+FWDER_CFLAGS += -DHAVE_SWFWDR
+endif
+
+
+ifeq ($(KERNEL_SOURCE),$(empty))
+KERNEL_SOURCE=/lib/modules/$(shell echo `uname -r`)/build
+endif
+ifeq ($(KERNEL_OUT),$(empty))
+KERNEL_OUT=$(KERNEL_SOURCE)
+endif
+
+# For GCC versions > 0300. Workaround for a bug in GCC.
+#ifeq ($(ENABLE_CAVIUM_MIPS),$(empty))
+#FWDER_CFLAGS +=-mregparm=3  
+#endif
+
+# Kernel path
+FWDER_CFLAGS+= -I$(KERNEL_SOURCE)/include -I$(SRC_DIR)/lib/mpls_client
+FWDER_CFLAGS+= -I$(KERNEL_OUT)/include
+ifeq ($(ENABLE_CAVIUM_MIPS),yes)
+FWDER_CFLAGS+= -I$(KERNEL_OUT)/include/asm-mips/mach-cavium-octeon
+FWDER_CFLAGS+= -I$(KERNEL_OUT)/include/asm-mips
+FWDER_CFLAGS+= -I$(KERNEL_OUT)/include/asm/mach-generic
+else
+FWDER_CFLAGS+= -I$(KERNEL_OUT)/arch/powerpc
+FWDER_CFLAGS+= -I$(KERNEL_OUT)/arch/powerpc/include
+endif
+
+# MODPOST 
+MODPOST = $(KERNEL_OUT)/scripts/mod/modpost
+
+# Phase 3 modpost defines.
+MODNAME = -D"KBUILD_MODNAME=KBUILD_STR(mpls_module)"
+MODPOST_DEFINES += -D"KBUILD_STR(s)=\#s" $(MODNAME)
+
+ifeq ($(ENABLE_CAVIUM_MIPS),yes)
+FWDER_LDFLAGS= -m elf64btsmip -r
+else
+FWDER_LDFLAGS= -m elf32ppclinux -r
+endif
+
+MAKE_SINGLE_DEPS= $(CC) -M $(FWDER_CFLAGS)
+MAKE_SINGLE_FILE= $(CC) -c $(FWDER_CFLAGS)
+endif
+

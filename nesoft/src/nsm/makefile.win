@@ -1,0 +1,79 @@
+############################################################################
+#                           PROGRAM MODULE
+#
+#	$Workfile:   makefile.mk  $ (nsm)
+#	Document no: @(#) 550/OSE137-makefile
+#	$Version:   /main/tb_ri24/18  $
+#	shawn
+#	2003/07/03 20:59:33
+#
+#   Copyright (C) 2002. All rights reserved.
+#
+############################################################################
+.SUFFIXES: .obj .c
+
+#PACOS_ROOT = C:\PacOS5
+
+!include $(PACOS_ROOT)\platform\windows\Rules.options
+!include $(PACOS_ROOT)\platform\windows\pacos.mk
+!include <win32.mak>
+
+OBJ = $(PACOS_ROOT)\platform\windows\obj
+ZEBNSMOBJ = $(OBJ)
+
+ZEBNSM_SRC = $(PACOS_ROOT)\nsm 
+ZEBNSM_VR_SRC = $(PACOS_ROOT)\nsm\vr
+ZEBNSM_VRRP_SRC = $(PACOS_ROOT)\nsm\vrrp
+ZEBNSM_MPLS_SRC = $(PACOS_ROOT)\nsm\mpls\*.c
+ZEBNSM_LIB = $(ZEBNSMOBJ)\zebnsm.lib
+
+ZEBNSM_OBJECTS = $(ZEBNSMOBJ)\nsm_cli.obj          \
+                 $(ZEBNSMOBJ)\nsm_connected.obj    \
+                 $(ZEBNSMOBJ)\nsm_debug.obj        \
+                 $(ZEBNSMOBJ)\nsm_interface.obj    \
+                 $(ZEBNSMOBJ)\nsm_main.obj         \
+                 $(ZEBNSMOBJ)\nsm_nexthop.obj      \
+                 $(ZEBNSMOBJ)\nsm_redistribute.obj \
+                 $(ZEBNSMOBJ)\nsm_rib.obj          \
+                 $(ZEBNSMOBJ)\nsm_router.obj       \
+                 $(ZEBNSMOBJ)\nsm_rtadv.obj        \
+                 $(ZEBNSMOBJ)\nsm_server.obj       \
+                 $(ZEBNSMOBJ)\nsm_table.obj        \
+                 $(ZEBNSMOBJ)\nsm_vrf.obj
+
+# nsm\mpls files
+ZEBNSM_MPLS_OBJECTS = $(ZEBNSMOBJ)\nsm_lp_serv.obj      \
+					  $(ZEBNSMOBJ)\nsm_mpls.obj         \
+					  $(ZEBNSMOBJ)\nsm_mpls_api.obj     \
+					  $(ZEBNSMOBJ)\nsm_mpls_cli.obj     \
+					  $(ZEBNSMOBJ)\nsm_mpls_fwd.obj     \
+					  $(ZEBNSMOBJ)\nsm_mpls_rib.obj     \
+					  $(ZEBNSMOBJ)\nsm_mpls_vc.obj      \
+					  $(ZEBNSMOBJ)\nsm_qos.obj          \
+					  $(ZEBNSMOBJ)\nsm_qos_serv.obj
+
+#
+# Targets
+#
+
+all: $(ZEBNSM_OBJECTS) $(ZEBNSM_LIB) $(ZEBNSM_MPLS_OBJECTS)
+
+
+{$(ZEBNSM_SRC)}.c{$(ZEBNSMOBJ)}.obj:
+#    $(cc) $(cdebug) $(cflags) $(cvarsdll) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE) \
+#    $(cc) $(cdebug) $(cflags) $(cvarsmt) -D_DEBUG $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE) \
+    $(cc) $(cdebug) $(cflags) $(cvars) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE) \
+          $(ZEBPLAT_INCLUDE) $(ZEBROOT_INCLUDE) $(ZEBLIB_INCLUDE) \
+		  $(ZEBLIB_VR_INCLUDE) $(ZEBNSM_INCLUDE) \
+          /W3 /Yd /Zi /Fo"$(OBJ)\\" -c $<
+
+$(ZEBNSM_MPLS_OBJECTS): $(ZEBNSM_MPLS_SRC)
+    $(cc) $(cdebug) $(cflags) $(cvars) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE) \
+          $(ZEBPLAT_INCLUDE) $(ZEBROOT_INCLUDE) $(ZEBLIB_INCLUDE) \
+		  $(ZEBLIB_VR_INCLUDE) $(ZEBNSM_INCLUDE) \
+          /W3 /Yd /Zi /Fo"$(OBJ)\\" -c $(ZEBNSM_MPLS_SRC)
+
+$(ZEBNSM_LIB): $(ZEBNSM_OBJECTS) $(ZEBNSM_MPLS_OBJECTS)
+	lib /OUT:"$(ZEBNSM_LIB)" $**
+	
+

@@ -1,0 +1,43 @@
+/* Copyright (C) 2002  All Rights Reserved. */
+
+/* Flags for stating the type of arp entries */
+#define PAL_ARP_FLAG_STATIC     2
+#define PAL_ARP_FLAG_DYNAMIC    1
+
+/* This is generic structure defined which
+   holds  values for the ARP cache atttibutes -
+   ipaddress
+   Mac address
+   Interface index information
+   Flags (showing whether it is static or dynamic arp entry)*/
+
+struct show_arp
+{
+  struct pal_in4_addr ipaddr;
+  char  hwaddr[INTERFACE_HWADDR_MAX];
+  char dev[INTERFACE_NAMSIZ];
+  int flags;
+};
+
+#ifdef HAVE_RTADV
+/* Set reachabletimer value for neighbor
+   Parameters:
+     IN u_int8_t *ifname : interface name
+     IN u_int32_t ifindex : interface index
+     IN s_int32_t reachable_time : Neighbor reachable time
+   Results:
+     0 on success
+     -1 on failure
+*/
+extern s_int32_t pal_ipv6_reachabletime_set (u_int8_t *ifname, u_int32_t ifindex, s_int32_t reachable_time_value);
+/* Set hoplimit
+    Parameters:
+     IN u_int8_t *ifname : interface name
+     IN u_int32_t ifindex : interface index
+     IN s_int32_t hoplimit : hop limit
+    Results:
+     0 on success
+    -1 on failure
+*/
+extern s_int32_t pal_ipv6_curhoplimit_set (u_int8_t *ifname, u_int32_t ifindex, u_int8_t hoplimit);
+#endif /* HAVE_RTADV */

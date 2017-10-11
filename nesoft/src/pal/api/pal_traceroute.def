@@ -1,0 +1,28 @@
+/* Copyright (C) 2002-2003   All Rights Reserved.  */
+#ifndef _PAL_TRACEROUTE_DEF
+#define _PAL_TRACEROUTE_DEF
+
+/* Traceroute parameters. */
+#define TRACEROUTE_DEFAULT_MIN_TTL     1
+#define TRACEROUTE_DEFAULT_MAX_TTL     30
+#define TRACEROUTE_DEFAULT_PORTNO      33434
+#define TRACEROUTE_DEFAULT_PROBECNT    3
+#define TRACEROUTE_DEFAULT_TIMEOUT     3
+
+/* "traceroute" options.  */
+#define TRACEROUTE_FAMILY_OPTION       "-A"
+#define TRACEROUTE_ADDRESS_OPTION      "-Z"
+#define TRACEROUTE_FAMILY_IPV4         "inet"
+#define TRACEROUTE_FAMILY_IPV6         "inet6"
+#define TRACEROUTE_SRC_ADDR_OPTION     "-s"
+#define TRACEROUTE_NUMERIC_OPTION      "-n"
+#define TRACEROUTE_TIMEOUT_OPTION      "-w"
+#define TRACEROUTE_PROBE_CNT_OPTION    "-q"
+#define TRACEROUTE_MIN_TTL_OPTION      "-f"
+#define TRACEROUTE_MAX_TTL_OPTION      "-m"
+#define TRACEROUTE_PORTNO_OPTION       "-p"
+                                                                                
+/* Traceroute mapper function. */
+result_t pal_traceroute (int argci, char **argvi, int *argco, char ***argvo, char *fib_id);
+
+#endif /* _PAL_TRACEROUTE_DEF */

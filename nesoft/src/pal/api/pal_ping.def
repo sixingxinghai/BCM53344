@@ -1,0 +1,29 @@
+/* Copyright (C) 2002-2003   All Rights Reserved.  */
+#ifndef _PAL_PING_DEF
+#define _PAL_PING_DEF
+
+/* Default "ping" parameter.  */
+#define PING_DEFAULT_DATAGRAM_SIZE     100
+#define PING_DEFAULT_RPTCNT            5
+#define PING_DEFAULT_TIMEOUT           2
+
+/* "ping" options.  */
+#define PING_FAMILY_OPTION             "-A"
+#define PING_FAMILY_IPV4               "inet"
+#define PING_FAMILY_IPV6               "inet6"
+#define PING_REPEAT_COUNT_OPTION       "-c"
+#define PING_DATAGRAM_SIZE_OPTION      "-s"
+#define PING_TIMEOUT_OPTION            "-w"
+#define PING_INTERFACE_OPTION          "-I"
+#define PING_TOS_OPTION                "-Q"
+#define PING_DF_OPTION                 "-M"
+#define PING_DF_OPTION_YES             "do"
+#define PING_DF_OPTION_NO              "dont"
+#define PING_PATTERN_OPTION            "-p"
+#define PING_ADDRESS_OPTION            "-Z"
+
+/* Ping mapper function. */
+result_t pal_ping (int argci, char **argvi, int *argco, char ***argvo, char *fib_id);
+result_t pal_mpls_oam (int argci, char *argvi, char **argv, int *argco, char ***argvo);
+
+#endif /* _PAL_PING_DEF */

@@ -1,0 +1,32 @@
+/* Copyright (C) 2002,   All Rights Reserved.  */
+#ifndef _PAL_DHCP_DEF
+#define _PAL_DHCP_DEF
+
+/* PAL DHCP APIs.  */
+#include "imi/imi.h"
+
+/*-----------------------------------------------------------------------------
+   Functions
+*/
+
+/* DHCP Client Start. */
+extern result_t pal_dhcp_client_start (struct lib_globals *lib_node,
+				       struct imi_dhcp_client *idc);
+
+/* DHCP Client Stop. */
+extern result_t pal_dhcp_client_stop (struct lib_globals *lib_node,
+				      struct imi_dhcp_client *idc);
+
+/* DHCP Server Start.  */
+extern pal_handle_t pal_dhcp_start (struct lib_globals *lib_node,
+				    struct imi_dhcp *dhcp);
+
+/* DHCP SERVER Stop. */
+extern result_t pal_dhcp_stop (struct lib_globals *lib_node,
+		  	       pal_handle_t pal_dhcp);
+
+/* DHCP Server Refresh. */
+extern result_t pal_dhcp_refresh (struct lib_globals *lib_node,
+				  struct imi_dhcp *dhcp);
+
+#endif /* _PAL_DHCP_DEF */

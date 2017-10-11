@@ -1,0 +1,69 @@
+############################################################################
+#                           PROGRAM MODULE
+#
+#	$Workfile:   makefile.mk  $ (ospf)
+#	Document no: @(#) 550/OSE137-makefile
+#	$Version:   /main/tb_ri24/18  $
+#	shawn
+#	2003/02/22 01:32:54
+#
+#   Copyright (C) 2002. All rights reserved.
+#
+############################################################################
+.SUFFIXES: .obj .c
+
+#PACOS_ROOT = C:\PacOS5
+
+!include $(PACOS_ROOT)\platform\windows\Rules.platform
+
+!include $(PACOS_ROOT)\platform\windows\pacos.mk
+
+OBJ = $(PACOS_ROOT)\platform\windows\obj
+ZEBIMIOBJ = $(OBJ)
+
+ZEBIMI_SRC = $(PACOS_ROOT)\imi 
+
+ZEBIMI_LIB = $(ZEBIMIOBJ)\zebimi.lib
+
+ZEBIMIOBJECTS = $(ZEBIMIOBJ)\imi_command.obj       \
+                $(ZEBIMIOBJ)\imi_dhcpc.obj         \
+                $(ZEBIMIOBJ)\imi_dhcps.obj         \
+                $(ZEBIMIOBJ)\imi_dns.obj           \
+                $(ZEBIMIOBJ)\imi_exec.obj          \
+                $(ZEBIMIOBJ)\imi_filter.obj        \
+                $(ZEBIMIOBJ)\imi_fw.obj            \
+                $(ZEBIMIOBJ)\imi_interface.obj     \
+                $(ZEBIMIOBJ)\imi_main.obj          \
+                $(ZEBIMIOBJ)\imi_nsm.obj           \
+                $(ZEBIMIOBJ)\imi_pppoe.obj         \
+                $(ZEBIMIOBJ)\imi_server.obj        \
+                $(ZEBIMIOBJ)\imi_util.obj          \
+                $(ZEBIMIOBJ)\imi_vs.obj            \
+                $(ZEBIMIOBJ)\vtysh_config.obj
+
+
+
+#
+# Targets
+#
+
+all: $(ZEBIMIOBJECTS) $(ZEBIMI_LIB)
+
+
+{$(ZEBIMI_SRC)}.c{$(ZEBIMIOBJ)}.obj:
+    $(cc) $(cdebug) $(cflags) $(cvarsdll) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE) \
+          $(ZEBPLAT_INCLUDE) $(ZEBROOT_INCLUDE) $(ZEBLIB_INCLUDE) $(ZEBNSM_INCLUDE) \
+          $(ZEBIMI_INCLUDE) \
+          /W3 /Yd /Zi /Fo"$(OBJ)\\" -c $<
+
+#$(ZEBLIBEDITOBJECTS): $(ZEBIMI_LIBEDIT_SRC)
+#    $(cc) $(cdebug) $(cflags) $(cvarsdll) $(DEFINES) $(ZEBPAL_INCLUDE) $(ZEBPALAPI_INCLUDE) \
+#          $(ZEBPLAT_INCLUDE) $(ZEBROOT_INCLUDE) $(ZEBLIB_INCLUDE) $(ZEBNSM_INCLUDE) \
+#          $(ZEBIMI_INCLUDE) \
+#          /W3 /Yd /Zi /Fo"$(OBJ)\\" -c $(ZEBIMI_LIBEDIT_SRC)
+
+$(ZEBIMI_LIB): $(ZEBIMIOBJECTS)
+	lib /OUT:"$(ZEBIMI_LIB)" $**
+	
+
+

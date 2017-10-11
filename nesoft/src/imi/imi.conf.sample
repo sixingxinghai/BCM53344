@@ -1,0 +1,62 @@
+!
+!
+! Sample configuration file for Integrated Management Interface (IMI)
+!   2003/01/31 02:39:00
+!
+hostname IMI
+password pacos
+!
+!key chain key1
+! key 5
+!  key-string key
+!
+access-list pacos inbound permit any any any
+access-list pacos outbound permit any any any
+!
+!ip prefix-list mydeny seq 5 deny 200.0.0.150/24
+!ip prefix-list mypref seq 5 permit any
+!
+line vty
+ exec-timeout 1 0
+!
+!
+interface lo
+!
+interface eth0
+ ip nat outside
+ ip access-group inbound in
+ ip access-group outbound out
+ ip address 10.10.0.?
+!
+interface eth1
+ ip nat inside
+ ip address 192.168.0.1/24
+!
+! Default gateway
+ip route 0.0.0.0/0 10.10.0.1
+!
+! DNS
+ip domain-list pacbridge.net
+ip name-server 10.10.0.2
+ip name-server 10.10.10.2
+ip domain-lookup
+!
+! DHCP
+ip dhcp pool default
+ network 192.168.0.0 255.255.255.0
+ range 192.168.0.100 192.168.0.150
+ dns-server 10.10.0.2
+ dns-server 10.10.0.88
+ default-router 10.10.0.1
+ lease infinite
+ domain-name mydomain.com
+service dhcp
+!
+! NAT Address pools.
+ip nat pool myip 24.84.168.251 24.84.168.251 255.255.252.0
+!
+! NAT
+ip nat inside source list outbound pool myip
+!
+! Virtual Servers.
+!

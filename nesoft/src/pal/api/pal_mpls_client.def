@@ -1,0 +1,128 @@
+/* Copyright (C) 2001-2003  All Rights Reserved.  */
+
+#ifndef _PAL_MPLS_CLIENT_DEF
+#define _PAL_MPLS_CLIENT_DEF
+
+#ifdef HAVE_MPLS_FWD
+/*
+ * The following are the APIs that will be used by the APN protocols.
+ */
+int pal_apn_mpls_init_all_handles  (struct lib_globals *zg, u_char protocol);
+int pal_apn_mpls_close_all_handles (u_char protocol);
+int pal_apn_mpls_if_init           (struct if_ident *if_info,
+				    unsigned short label_space);
+int pal_apn_mpls_if_end            (struct if_ident *if_info);
+int pal_apn_mpls_vrf_init          (int vrf);
+int pal_apn_mpls_vrf_end           (int vrf);
+#if (!defined (HAVE_GMPLS) || defined (HAVE_PACKET))
+#ifdef HAVE_DIFFSERV
+int pal_apn_mpls_ilm_entry_add     (u_char protocol,
+				    unsigned int *label_id_in,
+				    unsigned int *label_id_out,
+				    struct if_ident *if_in,
+				    struct if_ident *if_out,
+				    struct pal_in4_addr *fec_addr,
+				    u_char *fec_prefixlen,
+				    struct pal_in4_addr *nexthop_addr,
+				    u_char is_egress,
+                                    struct ds_info_fwd *ds_info,
+				    char opcode,
+				    u_int32_t nhlfe_ix,
+				    struct mpls_owner_fwd *owner);
+int pal_apn_mpls_ftn_entry_add     (int vrf,
+				    u_char protocol,
+				    unsigned int *label_id_out,
+				    struct pal_in4_addr *fec_addr,
+				    u_char *prefixlen,
+                                    u_char *in_dscp,
+                                    u_int32_t *tunnel_id,
+				    u_int32_t *qos_resrc_id,
+				    struct pal_in4_addr *nexthop_addr,
+				    struct if_ident *if_info,
+				    struct ds_info_fwd *ds_info,
+				    char opcode,
+				    u_int32_t nhlfe_ix,
+				    u_int32_t ftn_ix,
+				    u_char ftn_type,
+				    struct mpls_owner_fwd *owner,
+                                    u_int32_t bypass_ftn_ix,
+                                    u_char lsp_type,
+                                    int active_head);
+#endif /* HAVE_DIFFSERV */
+#else
+int pal_apn_mpls_ilm_entry_add     (u_char protocol,
+				    unsigned int *label_id_in,
+				    unsigned int *label_id_out,
+				    struct if_ident *if_in,
+				    struct if_ident *if_out,
+				    struct pal_in4_addr *fec_addr,
+				    u_char *fec_prefixlen,
+				    struct pal_in4_addr *nexthop_addr,
+				    u_char is_egress,
+				    char opcode,
+				    u_int32_t nhlfe_ix,
+				    struct mpls_owner_fwd *owner);
+int pal_apn_mpls_ftn_entry_add     (int vrf,
+				    u_char protocol,
+				    unsigned int *label_id_out,
+				    struct pal_in4_addr *fec_addr,
+				    u_char *prefixlen,
+                                    u_char *in_dscp,
+                                    u_int32_t *tunnel_id,
+				    u_int32_t *qos_resrc_id,
+				    struct pal_in4_addr *nexthop_addr,
+				    struct if_ident *if_info,
+				    char opcode,
+				    u_int32_t nhlfe_ix,
+				    u_int32_t ftn_ix,
+				    u_char ftn_type,
+				    struct mpls_owner_fwd *owner,
+                                    u_int32_t bypass_ftn_ix,
+                                    u_char lsp_type,
+                                    int active_head);
+#endif /* !HAVE_GMPLS || HAVE_PACKET */
+
+int pal_apn_mpls_vc_ftn_entry_add  (u_char protocol,
+				    unsigned int *vc_id,
+				    unsigned int *label_id_out,
+				    struct pal_in4_addr *nexthop_addr,
+				    struct if_ident *if_in,
+				    struct if_ident *if_out,
+				    char opcode,
+                                    u_int32_t tunnel_ftnix);
+int pal_apn_mpls_ilm_entry_del     (u_char protocol,
+				    unsigned int *label_id_in,
+				    struct if_ident *if_info);
+int pal_apn_mpls_ftn_entry_del     (int vrf,
+				    u_char protocol,
+                                    u_int32_t *tunnel_id,
+				    struct pal_in4_addr *fec_addr,
+				    u_char *prefixlen,
+                                    u_int32_t ftn_ix);
+int pal_apn_mpls_vc_ftn_entry_del  (u_char protocol,
+				    struct if_ident *if_in,
+				    unsigned int *vc_id);
+int pal_apn_mpls_clean_fib_for     (u_char protocol);
+int pal_apn_mpls_clean_vrf_for     (u_char protocol);
+int pal_apn_mpls_if_update_vrf     (struct if_ident *if_info,
+				    int vrf);
+int pal_apn_mpls_send_ttl          (u_char protocol,
+                                    u_char type,
+				    int ingress,
+				    int new_ttl);
+int pal_apn_mpls_local_pkt_handle  (u_char protocol,
+				    int enable);
+int pal_apn_mpls_debugging_handle  (u_char protocol,
+				    u_char msg_type,
+				    int enable);
+int pal_apn_mpls_vc_init           (struct if_ident *if_info,
+				    u_int32_t vc_id);
+int pal_apn_mpls_vc_end            (struct if_ident *if_info);
+int pal_apn_mpls_clear_fwd_stats   (u_char protocol, u_char type);
+int pal_apn_mpls_fwd_over_tunnel (u_int32_t ftn_index, u_int32_t cpkt_id,
+				  u_int32_t flags, u_int32_t total_len,
+				  u_int32_t seq_num, u_int32_t pkt_size,
+				  u_char *pkt);
+int pal_register_mpls_oam_netlink_callback (OAM_NETLINK_CALLBACK callback);
+#endif /* HAVE_MPLS_FWD */
+#endif /* _PAL_MPLS_CLIENT_DEF */

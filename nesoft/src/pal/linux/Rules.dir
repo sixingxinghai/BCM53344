@@ -1,0 +1,184 @@
+#------------------------------------------------------------------------------
+#
+# This file specifies the product name and the section name
+#
+# It is used by the generic section makefile to figure out what to expect.
+#
+# This file is where the make process edits need to be
+#
+# There is a reason for the blank after += and not before; leave it there.
+#
+
+#
+# Directory product name and directory name
+#
+# Note that DIR_ADDS includes all sources in any directories listed.
+# DIR_ADDD only makes sure the directory is available in the output space.
+#
+DIR_PROD=PacOS
+DIR_NAME=pal
+DIR_OFFS=
+DIR_MODE=lib
+DIR_ADDS=
+DIR_ADDD=
+
+#
+# Adjust so it is relative path to the product top directory
+#
+SRC_DIR=../..
+TOP_DIR=../../..
+
+#
+# Additional compilation flags for this module
+#
+MODULE_CFLAGS=
+MODULE_CFLAGS+= -I$(SRC_DIR)/nsm
+
+#
+# Additional targets specified in here which should be made with this module
+#
+DIR_ALLP=
+DIR_DEPP=
+DIR_FDEP=
+DIR_CLNP=
+
+#
+# This allows additional objects (such as provided by vendor) to be
+# linked with the module directly.
+#
+OBJ_ADDS=
+
+#
+# Lists of input files (to handle conditional compilation of files)
+#
+DIR_SRCS=
+DIR_SRCS+= pal_inet.c
+DIR_SRCS+= pal_kernel.c
+DIR_SRCS+= pal_log.c
+DIR_SRCS+= pal_memory.c
+DIR_SRCS+= pal_socket.c
+DIR_SRCS+= pal_stdlib.c
+DIR_SRCS+= pal_string.c
+DIR_SRCS+= pal_time.c
+DIR_SRCS+= pal_sock_ll.c
+DIR_SRCS+= pal_if_types.c
+DIR_SRCS+= pal_if_stats.c
+DIR_SRCS+= pal_sock_raw.c
+DIR_SRCS+= plat_daemon.c
+DIR_SRCS+= plat_ipforward.c
+DIR_SRCS+= plat_if_proc.c
+DIR_SRCS+= plat_mii.c
+DIR_SRCS+= pal_sock_udp.c
+DIR_SRCS+= pal_posix.c
+DIR_SRCS+= pal_pipe.c
+DIR_SRCS+= pal_term.c
+DIR_SRCS+= pal_signal.c
+DIR_SRCS+= pal_arp.c
+DIR_SRCS+= pal_bw_mgr.c
+DIR_HDRS=$(wildcard *.h)
+
+#
+# Conditional additions to above
+#
+
+ifeq ($(ENABLE_FIREWALL),yes)
+  DIR_SRCS+= pal_firewall.c
+endif
+
+ifeq ($(ENABLE_IGMP),yes)
+  DIR_SRCS+= pal_igmp.c
+endif
+
+ifeq ($(ENABLE_VR),yes)
+  DIR_ADDS+= vr
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/vr
+endif
+
+ifeq ($(ENABLE_MPLS),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/mpls
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/mpls
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/mpls_client
+endif
+ifeq ($(ENABLE_MPLS),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/dste
+endif
+
+
+ifeq ($(ENABLE_VRRP),yes)
+  DIR_SRCS+= plat_vrrp.c
+endif
+
+ifeq ($(ENABLE_CRX),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/crx
+endif
+
+ifeq ($(ENABLE_NETLINK),yes)
+  DIR_SRCS+= plat_if_netlink.c
+  DIR_SRCS+= plat_rt_netlink.c
+  DIR_SRCS+= plat_rtread_netlink.c
+else
+  DIR_SRCS+= plat_if_ioctl.c
+  DIR_SRCS+= plat_rt_ioctl.c
+  DIR_SRCS+= plat_rtread_proc.c
+endif
+
+ifeq ($(ENABLE_MPLS_FWD),yes)
+  DIR_SRCS+= pal_mpls_client.c
+  DIR_SRCS+= pal_mpls_stats.c
+ifeq ($(ENABLE_RSVPD),yes)
+  DIR_SRCS+= pal_mpls_tn_stats.c
+endif
+endif
+
+ifeq ($(ENABLE_MCAST_IPV4),yes)
+  DIR_SRCS+= pal_mcast.c
+endif
+
+ifeq ($(ENABLE_MCAST_IPV6),yes)
+  DIR_SRCS+= pal_mcast6.c
+endif
+
+ifeq ($(ENABLE_L2),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/L2
+endif
+
+ifeq ($(ENABLE_L3), yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/rib
+endif
+
+
+ifeq ($(ENABLE_IMI),yes)
+  DIR_ADDS+= imi
+  DIR_SRCS+= pal_ping.c
+  DIR_SRCS+= pal_traceroute.c
+  MODULE_CFLAGS+= -I$(SRC_DIR)/imi
+endif
+
+ifeq ($(ENABLE_IMISH),yes)
+  DIR_SRCS+= pal_syslog.c
+endif
+
+ifeq ($(ENABLE_VTYSH),yes)
+  DIR_SRCS+= pal_ping.c
+  DIR_SRCS+= pal_traceroute.c
+endif
+
+ifeq ($(ENABLE_TUNNEL),yes)
+  DIR_SRCS+= pal_tunnel.c
+endif
+
+ifeq ($(ENABLE_IPNET),yes)
+ifeq ($(ENABLE_IPSEC),yes)
+  DIR_SRCS+= pal_ipsec.c
+endif
+
+ifeq ($(ENABLE_FIREWALL),yes)
+  DIR_SRCS+= pal_ipfirewall.c
+endif
+endif
+
+ifeq ($(ENABLE_VLOGD),yes)
+  DIR_SRCS+= pal_vlog.c
+endif
+
+

@@ -1,0 +1,207 @@
+#------------------------------------------------------------------------------
+#
+# This file specifies the product name and the section name
+#
+# It is used by the generic section makefile to figure out what to expect.
+#
+# This file is where the make process edits need to be
+#
+
+#
+# Directory product name and directory name
+#
+# Note that DIR_ADDS includes all sources in any directories listed.
+# DIR_ADDD only makes sure the directory is available in the output space.
+#
+DIR_PROD=PacOS
+DIR_NAME=pac
+DIR_OFFS=
+DIR_MODE=lib
+DIR_ADDS=
+DIR_ADDD=
+
+#
+# Adjust so it is relative path to the product top directory
+#
+SRC_DIR=..
+TOP_DIR=../..
+
+#
+# Additional compilation flags for this module
+#
+MODULE_CFLAGS=
+MODULE_CFLAGS+= -I$(SRC_DIR)/$(DIR_NAME)
+
+#
+# Additional targets specified in here which should be made with this module
+#
+DIR_ALLP=
+DIR_DEPP=
+DIR_FDEP=
+DIR_CLNP=
+
+#
+# This allows additional objects (such as provided by vendor) to be
+# linked with the module directly.
+#
+OBJ_ADDS=
+
+#
+# Lists of input files (to handle conditional compilation of files)
+#
+DIR_SRCS=$(wildcard *.c)
+DIR_HDRS=$(wildcard *.h)
+
+#
+# Conditional additions to above
+#
+
+SUB_DIR := $(shell find . -maxdepth 1 -type d)
+SUB_DIR := $(basename $(patsubst ./%, %, $(SUB_DIR)))
+
+DIR_ADDS+= $(SUB_DIR)
+MODULE_CFLAGS+= $(patsubst %, -I$(SRC_DIR)/pac/%, $(SUB_DIR))
+
+ifeq ($(ENABLE_VRRP),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/vrrp
+endif
+
+ifeq ($(ENABLE_CRX),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/crx
+endif
+
+ifeq ($(ENABLE_RMM),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/rd
+endif
+
+ifeq ($(ENABLE_MPLS),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/mpls_client
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/mpls
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/mpls
+  MODULE_CFLAGS+= -I$(SRC_DIR)/hal/MPLS
+endif
+
+ifeq ($(ENABLE_GMPLS),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/gmpls
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/gmpls
+endif
+
+ifeq ($(ENABLE_IPSEC),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/ipsec
+endif
+ifeq ($(ENABLE_FIREWALL),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/firewall
+endif
+
+ifeq ($(ENABLE_LICMGR),yes)
+  MODULE_CFLAGS+= -I$(LICMGRINCLUDE)
+endif
+
+ifeq ($(ENABLE_DIFFSERV),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/diffserv
+endif
+
+ifeq ($(ENABLE_VPLS),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/vpls
+endif
+
+ifeq ($(ENABLE_NSM_MPLS_OAM),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/mpls/oam
+endif
+
+ifeq ($(ENABLE_DSTE),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/dste
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/dste
+endif
+
+ifeq ($(ENABLE_MCAST_IPV4),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/mcast
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/mcast/mcast4
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/igmp
+endif
+
+ifeq ($(ENABLE_MCAST_IPV6),yes)
+  ifeq ($(ENABLE_MCAST_IPV4),no)
+    MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/mcast
+  endif
+  DIR_ADDS+=mcast/mcast6
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/mcast/mcast6
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/mld
+endif
+
+ifeq ($(ENABLE_LACPD),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/lacp
+endif
+
+ifeq ($(ENABLE_ONMD),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/oam
+  MODULE_CFLAGS+= -I$(SRC_DIR)/onmd/cfm/g8032
+  MODULE_CFLAGS+= -I$(SRC_DIR)/onmd/
+  
+endif
+
+ifeq ($(ENABLE_L2),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/hal
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/L2
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/L2
+ifeq ($(ENABLE_SNMP),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/L2/snmp
+endif
+ifeq ($(ENABLE_GMRP),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/L2/garp
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/L2/gmrp
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/L2/efm
+endif
+ifeq ($(ENABLE_GVRP),yes)
+ifeq ($(ENABLE_GMRP),no)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/L2/garp
+endif
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/L2/gvrp
+endif
+ifeq ($(ENABLE_IGMP_SNOOP),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/igmp
+endif
+ifeq ($(ENABLE_MLD_SNOOP),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/mld
+endif
+endif
+
+ifeq ($(ENABLE_CUSTOM1),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/L2
+endif
+  
+ifeq ($(ENABLE_CUSTOM1),yes)
+  ifeq ($(ENABLE_VRRP),yes)
+  endif
+endif
+
+ifeq ($(ENABLE_HAL), yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/hal
+ifeq ($(ENABLE_L2), yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/hal/L2
+endif
+endif
+ifeq ($(ENABLE_L3), yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/hal/L3
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/rib
+endif
+# HA 
+ifeq ($(ENABLE_HA), yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/ha
+#
+  ifeq ($(ENABLE_L3), yes) 
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/rib/ha
+  endif
+#
+ifeq ($(ENABLE_LACPD),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/lacp/ha
+endif
+ifeq ($(ENABLE_L2),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/L2/ha
+endif
+endif 
+#HA
+
+ifeq ($(ENABLE_SMI),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/smi
+endif

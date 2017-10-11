@@ -1,0 +1,201 @@
+/* Copyright (C) 2002-2003   All Rights Reserved.  */
+#ifndef _PAL_MCAST_DEF
+#define _PAL_MCAST_DEF
+#include "plat_incl.h"
+
+/* PAL Multicast  API.  */
+
+/* Add Multicast Forwarding Entry  
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+**    IN     struct pal_in4_addr   *src
+**    IN     struct pal_in4_addr   *group
+**    IN     vifi_t iif
+**    IN     int num_oifs
+**    IN     u_int16_t olist_vifs
+**    IN     u_char[] ttls
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t
+pal_mcast_mfc_add (pal_sock_handle_t sock, struct pal_in4_addr *src, struct pal_in4_addr *group,
+    vifi_t iif, int num_oifs, u_int16_t *olist_vifs, u_char ttls[]);
+
+/* Delete Multicast Forwarding Entry 
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+**    IN     struct pal_in4_addr   *src
+**    IN     struct pal_in4_addr   *group
+**    IN     vifi_t iif
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t
+pal_mcast_mfc_delete (pal_sock_handle_t sock, struct pal_in4_addr *src, 
+		struct pal_in4_addr *group, vifi_t iif);
+
+/* Add a PIM vif to the multicast forwarder 
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+**    IN     s_int32_t vif_index
+**    IN     struct pal_in4_addr   *addr
+**    IN     struct pal_in4_addr   *rmt_addr
+**    IN     u_int16_t flags
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_mcast_vif_attach (pal_sock_handle_t sock, s_int32_t vif_index, 
+struct pal_in4_addr *addr, struct pal_in4_addr *rmt_addr, u_int16_t flags);
+
+/* Delete a PIM vif from the multicast forwarder 
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+**    IN     s_int32_t vif_index
+**    IN     struct pal_in4_addr   *addr
+**    IN     struct pal_in4_addr   *rmt_addr
+**    IN     u_int16_t flags
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_mcast_vif_detach (pal_sock_handle_t sock, s_int32_t vif_index, 
+struct pal_in4_addr *addr, struct pal_in4_addr *rmt_addr, u_int16_t flags);
+
+/* Get (S,G) packet and byte count from the forwarder 
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+**    IN     struct pal_in4_addr   src
+**    IN     struct pal_in4_addr   group
+**    OUT    u_int32_t *pktcnt
+**    OUT    u_int32_t *bytecnt
+**    OUT    u_int32_t *wrongif
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_mcast_get_sg_count (pal_sock_handle_t sock, struct pal_in4_addr *src,
+struct pal_in4_addr *group, u_int32_t *pktcnt, u_int32_t *bytecnt,
+u_int32_t *wrongif);
+
+/* Get vif packet and byte count from the forwarder 
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+**    IN     int vif_index
+**    OUT    u_int32_t *ipktcnt
+**    OUT    u_int32_t *opktcnt
+**    OUT    u_int32_t *ibytecnt
+**    OUT    u_int32_t *obytecnt
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_mcast_get_vif_count (pal_sock_handle_t sock, int vif_index,
+u_int32_t *ipktcnt, u_int32_t *opktcnt, u_int32_t *ibytecnt,
+u_int32_t *obytecnt);
+
+/* Set the multicast routing socket options for PIM and start multicast routing
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_pim_mrt_start (pal_sock_handle_t sock);
+
+/* Unset the multicast routing socket options for PIM and stop multicast routing
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_pim_mrt_stop (pal_sock_handle_t sock);
+
+/* Set the multicast routing socket options and start 
+** multicast routing
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_mrt_start (pal_sock_handle_t sock);
+
+/* Unset the multicast routing socket options and stop 
+** multicast routing
+**
+** Parameters:
+**    IN     pal_sock_handle_t   sock
+** Results:
+**    0 for success, -1 for error
+*/
+s_int32_t 
+pal_mrt_stop (pal_sock_handle_t sock);
+
+/* Set the TTL of PIM Register Inner multicast data packet IP header
+**
+** Parameters:
+**    IN     struct pal_in4_header*   iph
+** Results:
+**    None
+*/
+void 
+pal_pim_reg_data_set_ttl (struct pal_in4_header *iph);
+
+/* Get the packet len of inner multicast data packet for Registers
+**
+** Parameters:
+**    IN     struct pal_in4_header*   iph
+**    OUT    u_int32_t*   len
+** Results:
+**    None
+*/
+void 
+pal_pim_reg_data_pkt_len_get (struct pal_in4_header *iph, u_int32_t *len);
+
+/* Calculate the checksum of PIM Register Inner multicast data packet IP header
+**
+** Parameters:
+**    IN     struct pal_in4_header*   iph
+** Results:
+**    None
+*/
+void 
+pal_pim_reg_data_set_cksum (struct pal_in4_header *iph);
+
+/* Get the name of a tunnel vif
+**
+** Parameters:
+**    IN     u_int32_t index
+**    OUT    char *tun_name 
+** Results:
+**    None
+** Assumptions:
+**    tun_name should be a pointing to a buffer of IFNAMSIZ
+*/
+void
+pal_mcast_get_tun_name (u_int32_t index, char *tun_name);
+
+/* Check if the name is a tunnel vif name
+**
+** Parameters:
+**    IN    char *tun_name 
+** Results:
+**    TRUE  If tun_name is a name of tunnel interface
+**    FALSE If tun_name is not a name of tunnel interface
+** Assumptions:
+**    tun_name should be a pointing to a buffer of IFNAMSIZ
+*/
+bool_t
+pal_mcast_is_tun_name (char *tun_name);
+#endif /* _PAL_MCAST_DEF */

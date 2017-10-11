@@ -1,0 +1,259 @@
+/* Copyright (C) 2002-2003   All Rights Reserved. */
+#ifndef _PAL_NP_DEF
+#define _PAL_NP_DEF
+
+/* PAL Network Processor API.  */
+
+/*-----------------------------------------------------------------------------
+  
+   Functions
+*/
+
+/* Start the kernel control manager.  This sets up any needed
+   variables and hooks into the OS, and prepares the kernel for
+   transactions, as appropriate.  It is only called during startup.
+   This returns a handle which is kept in the library globals.  If it
+   is called multiple times without an intervening stop, it returns
+   the same pointer.
+  
+   Parameters
+     none
+  
+   Results
+     A nonzero handle for success
+     NULL for failure
+*/
+extern pal_handle_t pal_np_start(void);
+
+/* Stop the kernel control manager.  This finishes any pending
+   transactions and shuts down the kernel control manager, breaking
+   any previously created connections to the kernel or OS.  It also
+   frees any resources allocated by the kernel control manager.  It is
+   only called during the shutdown process.  This must be called as
+   many times as start before the stop is actually committed.
+  
+   Parameters
+     none
+  
+   Results
+     RESULT_OK for success, else the error which occurred.
+*/
+extern result_t pal_np_stop(void);
+
+/* Find the NP handle mapping for the provided interface and fill in
+   the proper field in the interface structure to reflect the mapping.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance to use
+     IO  struct interface *ifp : A pointer to the interface to use.
+  
+   Results
+     RESULT_OK for success, else the error which occurred.
+*/
+extern result_t pal_np_if_kernel_map(u_int32_t instance,
+                                     struct interface *ifp);
+
+/* Check the current state of IPv4 forwarding in the NP.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance of IPv4 to check
+  
+   Results
+     zero for off or one for on if success, else the error which occurred
+*/
+extern result_t pal_np_ipv4_forwarding(u_int32_t instance);
+
+/* Turns on IPv4 forwarding in the kernel.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance of IPv4 to control
+  
+   Results
+     zero for success, else the error which occurred
+*/
+extern result_t pal_np_ipv4_forwarding_on(u_int32_t instance);
+
+/* Turns off IPv4 forwarding in the kernel.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance of IPv4 to control
+  
+   Results
+     zero for success, else the error which occurred
+*/
+extern result_t pal_np_ipv4_forwarding_off(u_int32_t instance);
+
+/* Add a new entry to the NP IPv4 forwarding table.  Note that this
+   will overwrite an existing entry, so DO NOT DELETE AN ENTRY IF ONLY
+   UPDATING IT, as doing so will temporarily interrupt forwarding
+   along that path.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance of IPv4 to update
+     IN  struct prefix *p      : A pointer to the prefix to add to the table
+     IN  struct rib *r         : A pointer to the rib entry to add to the table
+  
+   Results
+     RESULT_OK for success, else the error which occurred.
+*/
+extern result_t pal_np_ipv4_add(u_int32_t instance,
+                                struct prefix *p,
+                                struct rib *r);
+
+/* Remove an existing entry from the NP IPv4 forwarding table.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance of IPv4 to update
+     IN  struct prefix *p      : A pointer to the prefix to remove
+     IN  struct rib *r         : A pointer to the rib entry to remove
+  
+   Results
+     RESULT_OK for success, else the error which occurred.
+*/
+extern result_t pal_np_ipv4_del(u_int32_t instance,
+                                struct prefix *p,
+                                struct rib *r);
+
+#ifdef HAVE_IPV6
+
+/* Check the current state of IPv6 forwarding in the NP.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance of IPv4 to check
+  
+   Results
+     zero for off or one for on if success, else the error which occurred
+*/
+extern result_t pal_np_ipv6_forwarding(u_int32_t instance);
+
+/* Turns on IPv6 forwarding in the kernel.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance of IPv4 to control
+  
+   Results
+     zero for success, else the error which occurred
+*/
+extern result_t pal_np_ipv6_forwarding_on(u_int32_t instance);
+
+/* Turns off IPv6 forwarding in the kernel.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance of IPv4 to control
+  
+   Results
+     zero for success, else the error which occurred
+*/
+extern result_t pal_np_ipv6_forwarding_off(u_int32_t instance);
+
+/* Add a new entry to the NP IPv6 forwarding table.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance of IPv4 to control
+     IN  struct prefix *p      : A pointer to the prefix to add to the table
+     IN  struct rib *r         : A pointer to the rib entry to add to the table
+  
+   Results
+     RESULT_OK for success, else the error which occurred.
+*/
+extern result_t pal_np_ipv6_add(u_int32_t instance,
+                                struct prefix *p,
+                                struct rib *r);
+
+/* Remove an existing entry from the NP IPv6 forwarding table.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance of IPv4 to control
+     IN  struct prefix *p      : A pointer to the prefix to remove
+     IN  struct rib *r         : A pointer to the rib entry to remove
+  
+   Results
+     RESULT_OK for success, else the error which occurred.
+*/
+extern result_t pal_np_ipv6_del(u_int32_t instance,
+                                struct prefix *p,
+                                struct rib *r);
+
+#endif /* def HAVE_IPV6 */
+
+/* Bring the NP interface flags into sync with the kernel flags.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance to control
+     IN  struct interface ifp  : A pointer to the interface to use
+  
+   Results
+     RESULT_OK for success, else the error which occurred.
+*/
+extern result_t pal_np_if_flags_sync(u_int32_t instance,
+                                     struct interface *ifp);
+
+/* Set an IPv4 address, mask, broadcast address, for an interface.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance of IPv4 to control
+     IN  struct interface *ifp : A pointer to the interface to use
+     IN  struct connected *ifc : A pointer to the connected address to use
+  
+   Results
+     RESULT_OK for success, else the error which occurred
+*/
+extern result_t pal_np_if_ipv4prefix_set(u_int32_t instance,
+                                         struct interface *ifp,
+                                         struct connected *ifc);
+
+/* Remove an IPv4 address, mask, broadcast address, from an interface.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance of IPv4 to control
+     IN  struct interface *ifp : A pointer to the interface to use
+     IN  struct connected *ifc : A pointer to the connected address to use
+  
+   Results
+     RESULT_OK for success, else the error which occurred
+*/
+extern result_t pal_np_if_ipv4prefix_unset(u_int32_t instance,
+                                           struct interface *ifp,
+                                           struct connected *ifc);
+
+#ifdef HAVE_IPV6
+
+/* Set an IPv6 address, mask, broadcast address, for an interface.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance of IPv6 to control
+     IN  struct interface *ifp : A pointer to the interface to use
+     IN  struct connected *ifc : A pointer to the connected address to use
+  
+   Results
+     RESULT_OK for success, else the error which occurred
+*/
+extern result_t pal_np_if_ipv6prefix_set(u_int32_t instance,
+                                         struct interface *ifp,
+                                         struct connected *ifc);
+
+/* Remove an IPv6 address, mask, broadcast address, from an interface.
+  
+   Parameters
+     IN  u_int32_t instance     : The instance of IPv6 to control
+     IN  struct interface *ifp : A pointer to the interface to use
+     IN  struct connected *ifc : A pointer to the connected address to use
+  
+   Results
+     RESULT_OK for success, else the error which occurred
+*/
+extern result_t pal_np_if_ipv6prefix_unset(u_int32_t instance,
+                                           struct interface *ifp,
+                                           struct connected *ifc);
+
+#endif /* HAVE_IPV6 */
+
+/*-----------------------------------------------------------------------------
+   Done
+*/
+/*
+  Local variables:
+  mode: c
+  end:
+*/
+#endif /* _PAL_NP_DEF */

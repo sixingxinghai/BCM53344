@@ -1,0 +1,168 @@
+#------------------------------------------------------------------------------
+#
+# This file specifies the product name and the section name
+#
+# It is used by the generic section makefile to figure out what to expect.
+#
+# This file is where the make process edits need to be
+#
+
+#
+# Directory product name and directory name
+#
+# Note that DIR_ADDS includes all sources in any directories listed.
+# DIR_ADDD only makes sure the directory is available in the output space.
+#
+DIR_PROD=PacOS
+DIR_NAME=lib
+DIR_OFFS=
+DIR_MODE=lib
+DIR_ADDS=
+DIR_ADDD=
+
+#
+# Adjust so it is relative path to the product top directory
+#
+SRC_DIR=..
+TOP_DIR=../..
+
+#
+# Additional compilation flags for this module
+#
+MODULE_CFLAGS=
+
+#
+# Additional targets specified in here which should be made with this module
+#
+DIR_ALLP=
+DIR_DEPP=
+DIR_FDEP=
+DIR_CLNP=
+
+#
+# This allows additional objects (such as provided by vendor) to be
+# linked with the module directly.
+#
+OBJ_ADDS=
+
+#
+# Lists of input files (to handle conditional compilation of files)
+#
+DIR_SRCS=$(wildcard *.c)
+DIR_HDRS=$(wildcard *.h)
+
+MODULE_CFLAGS+= -I$(SRC_DIR)/nsm
+#
+# Unconditionally add Fault Management 
+#
+MODULE_CFLAGS+= -I$(SRC_DIR)/lib/fm
+DIR_ADDS+=fm
+
+#
+# Unconditionally add Mcast lib 
+#
+MODULE_CFLAGS+= -I$(SRC_DIR)/lib/mcast
+DIR_ADDS+=mcast
+
+#
+# Conditional additions to above
+#
+ifeq ($(ENABLE_MPLS),yes)
+  DIR_ADDS+= mpls_client
+  DIR_ADDS+= mpls
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/mpls_client
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/mpls
+  MODULE_CFLAGS+= -I$(SRC_DIR)/nsm/mpls
+  MODULE_CFLAGS+= -I$(SRC_DIR)/hal/MPLS
+endif
+
+ifeq ($(ENABLE_MPLS_OAM),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/oamd/mpls
+endif
+
+ifeq ($(ENABLE_VR),yes)
+  MODULE_CFLAGS+= -I$(SRC_DIR)/vr
+endif
+
+ifeq ($(ENABLE_CSPF),yes)
+  DIR_ADDS+= cspf
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/cspf
+endif
+
+ifeq ($(ENABLE_GMPLS),yes)
+  DIR_ADDS+= gmpls
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/gmpls
+endif
+
+ifeq ($(ENABLE_OSPFD),yes)
+  DIR_ADDS+= ospf_common
+  MODULES_CFLAGS+= -I$(SRC_DIR)/lib/ospf_common
+else
+  ifeq ($(ENABLE_OSPF6D),yes)
+    DIR_ADDS+= ospf_common
+    MODULES_CFLAGS+= -I$(SRC_DIR)/lib/ospf_common
+  endif
+endif
+
+ifeq ($(ENABLE_LICMGR),yes)
+  MODULE_CFLAGS+= -I$(LICMGRINCLUDE)
+endif
+
+ifeq ($(ENABLE_DIFFSERV),yes)
+  DIR_ADDS+= diffserv
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/diffserv
+endif
+
+ifeq ($(ENABLE_MEMMGR),yes)
+  DIR_ADDS+=memmgr
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/memmgr
+endif
+
+ifeq ($(ENABLE_TUNNEL),yes)
+  DIR_ADDS+= tunnel
+endif
+
+ifeq ($(ENABLE_DSTE),yes)
+  DIR_ADDS+= dste
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/dste
+endif
+
+ifeq ($(ENABLE_MCAST_IPV4),yes)
+  DIR_ADDS+= igmp
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/igmp
+else
+  ifeq ($(ENABLE_IGMP_SNOOP),yes)
+    DIR_ADDS+= igmp
+    MODULE_CFLAGS+= -I$(SRC_DIR)/lib/igmp
+  endif
+endif
+
+ifeq ($(ENABLE_MCAST_IPV6),yes)
+  DIR_ADDS+= mld
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/mld
+else
+  ifeq ($(ENABLE_MLD_SNOOP), yes)
+    DIR_ADDS+= mld
+    MODULE_CFLAGS+= -I$(SRC_DIR)/lib/mld
+  endif
+endif
+
+ifeq ($(ENABLE_L2),yes)
+  DIR_ADDS+=L2
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/L2
+endif
+
+ifeq ($(ENABLE_HA),yes)
+  DIR_ADDS+=ha
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/ha
+endif
+
+ifeq ($(ENABLE_SMI),yes)
+  DIR_ADDS+= smi/
+  DIR_ADDS+= smi/client
+  DIR_ADDS+= smi/client/api
+  DIR_ADDS+= smi/server
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/smi/client
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/smi/client/api
+  MODULE_CFLAGS+= -I$(SRC_DIR)/lib/smi/smi
+endif

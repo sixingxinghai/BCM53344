@@ -1,0 +1,23 @@
+/* Copyright (C) 2001-2004  All Rights Reserved.  */
+
+#ifndef _PAL_MPLS_STATS_DEF
+#define _PAL_MPLS_STATS_DEF
+
+#ifdef HAVE_MPLS_FWD
+
+struct nsm_master;
+void pal_mpls_fib_stats_update (struct lib_globals *, pal_fib_stats_t *);
+void pal_mpls_if_stats_update (struct nsm_master *);
+void pal_mpls_ftn_stats_update (struct nsm_master *);
+void pal_mpls_ilm_stats_update (struct nsm_master *);
+void pal_mpls_nhlfe_stats_update (struct nsm_master *);
+
+void pal_mpls_fib_stats (pal_fib_stats_t *, char *, int);
+void pal_mpls_if_entry_stats (pal_mpls_if_entry_stats_t *, char *, int);
+void pal_mpls_ftn_entry_stats (pal_ftn_entry_stats_t *, char *, int);
+void pal_mpls_ilm_entry_stats (pal_ilm_entry_stats_t *, char *, int);
+void pal_mpls_nhlfe_entry_stats (pal_nhlfe_entry_stats_t *, char *, int);
+
+#endif /* HAVE_MPLS_FWD */
+
+#endif /* _PAL_MPLS_STATS_DEF */

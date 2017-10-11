@@ -1,0 +1,52 @@
+/* Copyright (C) 2004   All Rights Reserved.  */
+
+#ifndef _PAL_MODULES_DEF
+#define _PAL_MODULES_DEF
+
+/* This defines the module identifier.  */
+#define APN_PROTO_UNSPEC        0      /* Unspecified module.  */
+#define APN_PROTO_LIB           APN_PROTO_UNSPEC
+#define APN_PROTO_NSM           1      /* NSM */
+#define APN_PROTO_RIP           2      /* RIP (IPv4) */
+#define APN_PROTO_RIPNG         3      /* RIPng (IPv6) */
+#define APN_PROTO_OSPF          4      /* OSPF (IPv4) */
+#define APN_PROTO_OSPF6         5      /* OSPFv3 (IPv6) */
+#define APN_PROTO_ISIS          6      /* IS-IS (IPv4/IPv6) */
+#define APN_PROTO_BGP           7      /* BGP (IPv4/IPv6) */
+#define APN_PROTO_LDP           8      /* LDP */
+#define APN_PROTO_RSVP          9      /* RSVP */
+#define APN_PROTO_PIMDM         10     /* PIM-DM */
+#define APN_PROTO_PIMSM         11     /* PIM-SM */
+#define APN_PROTO_PIMSM6        12     /* PIM-SM (IPv6) */
+#define APN_PROTO_DVMRP         13     /* DVMRP */
+#define APN_PROTO_8021X         14     /* Layer 2 802.1x AUTH */
+#define APN_PROTO_LACP          15     /* Layer 2 LACP */
+#define APN_PROTO_STP           16     /* Layer 2 STP */
+#define APN_PROTO_RSTP          17     /* Layer 2 RSTP */
+#define APN_PROTO_MSTP          18     /* Layer 2 MSTP */
+#define APN_PROTO_IMI           19     /* IMI */
+#define APN_PROTO_IMISH         20     /* IMI shell */
+#define APN_PROTO_VTYSH         21     /* VTYSH */
+#define APN_PROTO_PIMPKTGEN     22     /* PIM packet generator */
+#define APN_PROTO_NPFIM         23     /* NPF Interface Manager. */
+#define APN_PROTO_RMON          24     /* RMON */
+#define APN_PROTO_ONM           25     /* ONMD */
+#define APN_PROTO_MPLSONM       26     /* MPLS OAM */
+#define APN_PROTO_HSL           27     /* User level HSL process */
+#define APN_PROTO_ITUTMPLSONM   28     /* MPLS OAM ITUT */
+#define APN_PROTO_OAM           29
+#define APN_PROTO_LMP           30     /* LMP */
+#define APN_PROTO_VLOG          31     /* VLOG */
+#define APN_PROTO_ELMI          32     /* ELMI */
+#define APN_PROTO_MAX           33     /* No module.  Must be last.  */
+
+#define APN_PROTO_MCAST(p)    \
+(((p) == APN_PROTO_PIMDM) || ((p) == APN_PROTO_PIMSM) || \
+ ((p) == APN_PROTO_PIMSM6) || ((p) == APN_PROTO_DVMRP))
+
+#define APN_PROTO_HA_GR_CAPABLE(p)    \
+(((p) == APN_PROTO_RIP) || ((p) == APN_PROTO_RIPNG) ||  \
+ ((p) == APN_PROTO_OSPF) || ((p) == APN_PROTO_OSPF6) || \
+ ((p) == APN_PROTO_ISIS) || ((p) == APN_PROTO_BGP)      \
+ )
+#endif /* _PAL_MODULES_DEF */

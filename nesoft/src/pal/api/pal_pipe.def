@@ -1,0 +1,9 @@
+/* Copyright (C) 2004   All Rights Reserved. */
+
+#ifndef _PAL_PIPE_DEF
+#define _PAL_PIPE_DEF
+
+/* PIPE API. */
+int pal_pipe (int fd[2]);
+
+#endif /* _PAL_PIPE_DEF */

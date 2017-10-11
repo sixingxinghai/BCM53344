@@ -1,0 +1,688 @@
+# Copyright (C) 2002-2003   All rights reserved.
+
+#-----------------------------------------------------------------------------
+#
+# Rules.platform file
+#
+# This describes various aspects of the platform, and allows us to keep
+# the makefile very generic, even the top-level one.
+#
+
+#-----------------------------------------------------------------------------
+#
+# Build environment (platform name)
+#
+BLD_NAME=linux
+
+#
+# This includes the platform options file, which needs to be included from
+# here because the sub-makefiles in the directories don't really know about
+# it, but this file needs it to function, and they include this.  Probably
+# best to keep it this way.  This is probably the only place where the path
+# should ever be expressed in this manner.  Normally, you'd use BLD_BASE.
+#
+include $(TOP_DIR)/platform/$(BLD_NAME)/Rules.options
+
+#-----------------------------------------------------------------------------
+#
+# Installation stage
+#
+
+#
+# Install configuration file samples how...
+#
+# INS_CONF = where to put them
+# INS_CCMD = incantation for the installer
+#
+INS_CONF=$(SYSCONFDIR)
+INS_CCMD=/usr/bin/install -c -m 600
+
+#
+# Install final executables how...
+#
+# INS_EXES = where to put them
+# INS_ECMD = incantation for the installer
+#
+INS_EXES=$(PREFIX)/sbin
+INS_ECMD=/usr/bin/install -c
+
+#-----------------------------------------------------------------------------
+#
+# File suffixes used on this platform
+#
+
+#
+# Suffix for an object file
+# This must not be null, and it must not be equal to other _SUFF.
+#
+OBJ_SUFF=.o
+
+#
+# Suffix for archive/library files
+# This must not be null, and it must not be equal to other _SUFF.
+#
+LIB_SUFF=.a
+
+#
+# Suffix for executable files
+# This may be null, but it must not be equal to other _SUFF.
+#
+EXE_SUFF=
+
+#-----------------------------------------------------------------------------
+#
+# Tools we use which seem to vary between platforms
+#
+
+#
+# Compiler and related tools
+#
+# CC = C compiler
+# AR = Archiver / librarian
+# LD = Linker
+#
+ifeq ($(COMPILER_DIR),$(empty))
+COMPILER_DIR=/usr/bin
+endif
+CC=$(COMPILER_DIR)/$(COMPILER_PREFIX)gcc
+AR=$(COMPILER_DIR)/$(COMPILER_PREFIX)ar
+LD=$(COMPILER_DIR)/$(COMPILER_PREFIX)ld
+
+#
+# File manipulation tools
+#
+# MV = File move or rename
+# RM = File remove (delete) forced
+# RR = File remove (delete) recursive and forced
+# CP = File copy
+# MKDIR = make directory
+#
+MV=mv
+RM=rm -f
+RR=rm -rf
+CP=cp
+MKDIR=mkdir
+
+#
+# Special control over console output
+#
+# ECHO_NOCR writes rest of command line without suffix CR or CR/LF
+# ECHO_FORM writes rest of command line parsing backslash escape sequences
+# ECHO_FNCR combines the two functions
+#
+ECHO_NOCR=/bin/echo -n
+ECHO_FORM=/bin/echo -e
+ECHO_FNCR=/bin/echo -n -e
+
+#-----------------------------------------------------------------------------
+#
+# Flags and options for the tools above
+#
+
+#
+# Flags for the archive/library program
+#
+ARFLAGS=-r
+
+#
+# Flags for the final stage link
+#
+LDFLAGS=
+#LDLIBS=md5 m crypt crypto snmp ncurses
+#LDLIBS_FLAGS=$(addprefix -l,$(LDLIBS))
+LDLIBS_FLAGS=$(LIBS) $(LD_PATH)
+
+ifeq ($(ENABLE_STATIC), yes)
+LDFLAGS=-static
+endif
+
+#
+# Architecture flags for the C compiler
+# Please leave the first line blank, and be sure to put the space at the
+# beginning of additional lines.  Just follow the example.  Comment out
+# or remove options which don't apply.
+#
+#ARCH_CFLAGS= -Werror
+ARCH_CFLAGS+= -I$(SRC_DIR)
+ARCH_CFLAGS+= -I$(API_BASE)
+ARCH_CFLAGS+= -I$(PAL_BASE)
+ARCH_CFLAGS+= -I$(LIB_BASE)
+ARCH_CFLAGS+= -I$(CAL_BASE)
+ARCH_CFLAGS+= -I$(BLD_BASE)
+ARCH_CFLAGS+= $(EXTRA_CFLAGS)
+#ARCH_CFLAGS+= -ansi
+#ARCH_CFLAGS+= -pedantic
+ARCH_CFLAGS+= -Wall
+ARCH_CFLAGS+= -fno-builtin
+ARCH_CFLAGS+= -funsigned-char
+ARCH_CFLAGS+= -fno-signed-char
+ARCH_CFLAGS+= -fno-strict-aliasing
+
+# See if this compiler supports this option
+ifeq ($(COPT_NO_POINTER_SIGN),yes)
+ARCH_CFLAGS+= -Wno-pointer-sign
+endif
+
+ifeq ($(COPT_NO_WORKING_DIRECTORY),yes)
+ARCH_CFLAGS+= -fno-working-directory
+endif
+
+#ARCH_CFLAGS+= -Wredundant-decls
+ARCH_CFLAGS+= -Wlong-long
+ARCH_CFLAGS+= -Wnested-externs
+#ARCH_CFLAGS+= -Wcast-qual
+#ARCH_CFLAGS+= -Wcast-align
+#ARCH_CFLAGS+= -L/usr/lib
+
+ARCH_CFLAGS+= -I$(SRC_DIR)/lib/fm
+
+ifeq ($(ENABLE_MEMMGR),yes)
+  ARCH_CFLAGS+= -I$(SRC_DIR)/lib/memmgr
+endif
+
+ifeq ($(ENABLE_DIFFSERV),yes)
+  ARCH_CFLAGS+= -I$(SRC_DIR)/lib/diffserv
+endif
+
+ifeq ($(ENABLE_DSTE),yes)
+  ARCH_CFLAGS+= -I$(LIB_BASE)/dste
+endif
+
+ifeq ($(ENABLE_PBR),yes)
+  ARCH_CFLAGS+= -I$(SRC_DIR)/hal/PBR
+endif
+
+ifeq ($(ENABLE_MPLS),yes)
+  ARCH_CFLAGS+= -I$(LIB_BASE)/mpls
+#  ARCH_CFLAGS+= -I$(SRC_DIR)/nsm/mpls
+  ARCH_CFLAGS+= -I$(SRC_DIR)/hal/MPLS
+  ARCH_CFLAGS+= -I$(SRC_DIR)/lib/mpls_client
+ifeq ($(ENABLE_NSM_MPLS_OAM), yes)
+  ARCH_CFLAGS+= -I$(SRC_DIR)/nsm/mpls/oam
+endif
+endif
+
+ifeq ($(ENABLE_IMI),yes)
+#  ARCH_CFLAGS+= -I$(SRC_DIR)/imi/util
+endif
+
+ifeq ($(ENABLE_HAL),yes)
+  ARCH_CFLAGS+= -I$(SRC_DIR)/hal
+endif
+
+ifeq ($(ENABLE_SWFWDR),yes)
+  ARCH_CFLAGS+= -I$(SRC_DIR)/hal
+  ARCH_CFLAGS+= -I$(SRC_DIR)/hal/L2
+  ARCH_CFLAGS+= -I$(SRC_DIR)/hal/l2swfwdr
+endif
+
+#
+# Debugging flags for the C compiler (leave the first line alone)
+#
+DEBUG_CFLAGS=
+#DEBUG_CFLAGS+= -g
+
+#-----------------------------------------------------------------------------
+#
+# Actual commands starting to be put together
+#
+
+#
+# Ways to make a few things
+#
+# MAKE_SINGLE_DEPS is the depend invocation (assumed : input.c)
+# MAKE_SINGLE_FILE is the compiler invocation (assumed : -o output.o input.c)
+# MAKE_LIBRARY_FILE is the librarian invocation (assumed : output.a input_list)
+# MAKE_OUTPUT_FILE is the linker invocation (assumed : -o output input_list)
+#
+MAKE_SINGLE_DEPS=$(CC) -M $(ARCH_CFLAGS) $(DEBUG_CFLAGS) $(IPNET_CFLAGS)
+MAKE_SINGLE_FILE=$(CC) -c $(ARCH_CFLAGS) $(DEBUG_CFLAGS) $(IPNET_CFLAGS)
+MAKE_OUTPUT_FILE=$(CC) $(ARCH_CFLAGS) $(DEBUG_CFLAGS) $(LDFLAGS) $(IPNET_CFLAGS)
+MAKE_SINGLE_DEPS_1=$(CC) -M $(ARCH_CFLAGS) $(DEBUG_CFLAGS)
+MAKE_SINGLE_FILE_1=$(CC) -c $(ARCH_CFLAGS) $(DEBUG_CFLAGS)
+MAKE_OUTPUT_FILE_1=$(CC) $(ARCH_CFLAGS) $(DEBUG_CFLAGS) $(LDFLAGS)
+LINK_OUTPUT_FILE=$(LD) $(LDFLAGS)
+MAKE_LIBRARY_FILE=$(AR) $(ARFLAGS)
+
+#-----------------------------------------------------------------------------
+#
+# These are calculated from the data above, and from the configuration data
+# in Rules.options.  They would be in the Makefile except that they are needed
+# by the sub-makefiles even when they run locally.  Please do not modify, save
+# to add new features or protocols.
+#
+
+#
+# Path collection
+#
+BLD_BASE=$(TOP_DIR)/platform/$(BLD_NAME)
+OBJ_BASE=$(TOP_DIR)/platform/$(BLD_NAME)/obj
+EXE_BASE=$(TOP_DIR)/platform/$(BLD_NAME)/bin
+DEP_BASE=$(TOP_DIR)/platform/$(BLD_NAME)/dep
+API_BASE=$(SRC_DIR)/pal/api
+PAL_BASE=$(SRC_DIR)/pal/$(BLD_NAME)
+LIB_BASE=$(SRC_DIR)/lib
+CAL_BASE=$(SRC_DIR)/cal
+
+#
+# Extra libraries
+#
+EXTRA_LIBS=
+HW_SDK_LIBS=
+HW_EXTRA_LIBS=
+
+#
+# Directories to include in the build (these are off SRC_DIR)
+#
+#ALL_TGTD=pal lib
+ALL_TGTD=
+ALL_EXES=
+ALL_EXEN=
+ALL_EXEI=
+ALL_EXED=
+ALL_EXEHW=
+APS_EXES=
+APS_OUTPUT=
+#APS_EXES=nsm ripd ripngd ospfd ospf6d imi
+#APS_OUTPUT=imi.a imi.o imi nsm ripd ripngd ospfd ospf6d
+
+ifeq ($(ENABLE_HA),yes)
+ALL_TGTD+= cal
+ARCH_CFLAGS+= -I$(SRC_DIR)/lib/ha
+ARCH_CFLAGS+= -I$(CAL_BASE)/cmi
+ARCH_CFLAGS+= -I$(CAL_BASE)/fm
+ARCH_CFLAGS+= -I$(CAL_BASE)/fm/sim
+EXTRA_LIBS+= $(OBJ_BASE)/cal$(LIB_SUFF)
+endif
+
+ifeq ($(ENABLE_ENEA_ELEMENT),yes)
+ARCH_CFLAGS+= -I$(CAL_BASE)/cmi/enea
+EXTRA_LIBS+= $(ENEA_ELEM_PATH)/lib/linux-$(ARCH)/libelem_chkpt_api.a
+EXTRA_LIBS+= $(ENEA_ELEM_PATH)/lib/linux-$(ARCH)/libelem_chmgmt_api.a
+EXTRA_LIBS+= $(ENEA_ELEM_PATH)/lib/linux-$(ARCH)/libelem_core_api.a
+EXTRA_LIBS+= $(ENEA_ELEM_PATH)/lib/linux-$(ARCH)/libelem_fault_api.a
+EXTRA_LIBS+= $(ENEA_ELEM_PATH)/lib/linux-$(ARCH)/libelem_mobj_api.a
+EXTRA_LIBS+= $(ENEA_ELEM_PATH)/lib/linux-$(ARCH)/libelem_rel_api.a
+EXTRA_LIBS+= $(ENEA_ELEM_PATH)/src/os_specific/linux/osal_linux/lib/linux-$(ARCH)/libosal_linux.a
+EXTRA_LIBS+= $(ENEA_ELEM_PATH)/linx/linx-1.4.1/lib/liblinx.a
+EXTRA_LIBS+= $(ENEA_ELEM_REF_PLAT_PATH)/callouts/lib/linux-$(ARCH)/libelement_callouts.a
+endif
+
+ifeq ($(ENABLE_OPEN_SAF),yes)
+ARCH_CFLAGS+= -I$(CAL_BASE)/cmi/osaf
+EXTRA_LIBS+= $(OPEN_SAF_PATH)/targets/i686-redhat-linux-gnu/lib/libncs_core.so
+EXTRA_LIBS+= $(OPEN_SAF_PATH)/targets/i686-redhat-linux-gnu/lib/libSaCkpt.so
+endif
+
+ifeq ($(ENABLE_FM_SIM),yes)
+ARCH_CFLAGS+= -I$(CAL_BASE)/fm/sim
+endif
+
+ifeq ($(ENABLE_RMM),yes)
+EXTRA_LIBS+= $(OBJ_BASE)/rmm$(LIB_SUFF)
+ALL_TGTD+= rmm
+ALL_EXES+= rmm
+ALL_EXEN+= rmm
+endif
+
+#ifeq ($(ENABLE_INTEL),yes)
+#EXTRA_LIBS+= $(OBJ_BASE)/hsl$(LIB_SUFF)
+#ALL_TGTD+= hsl
+#endif
+
+ifeq ($(ENABLE_SWFWDR),yes)
+EXTRA_LIBS+= $(OBJ_BASE)/hal$(LIB_SUFF)
+ALL_TGTD+=layer2
+endif
+
+ifeq ($(ENABLE_LICMGR),yes)
+EXTRA_LIBS+= $(LICMGRLIB)
+endif
+
+#ifeq ($(ENABLE_L2),yes)
+#  ARCH_CFLAGS+= -I$(SRC_DIR)/nsm
+#  ARCH_CFLAGS+= -I$(SRC_DIR)/nsm/L2
+#ifeq ($(ENABLE_GMRP),yes)
+#  ARCH_CFLAGS+= -I$(SRC_DIR)/nsm/L2/garp
+#  ARCH_CFLAGS+= -I$(SRC_DIR)/nsm/L2/gmrp
+#endif
+#ifeq ($(ENABLE_GVRP),yes)
+#ifeq ($(ENABLE_GMRP),no)
+#  ARCH_CFLAGS+= -I$(SRC_DIR)/nsm/L2/garp
+#endif
+#  ARCH_CFLAGS+= -I$(SRC_DIR)/nsm/L2/gvrp
+#endif
+#ifeq ($(ENABLE_IGMP_SNOOP),yes)
+#  ARCH_CFLAGS+= -I$(SRC_DIR)/nsm/L2/igmp_snoop
+#endif
+#endif
+
+#ifeq ($(ENABLE_NSM),yes)
+#ALL_TGTD+= nsm
+#ALL_EXES+= nsm
+#ALL_EXEN+= nsm
+#endif
+
+ifeq ($(ENABLE_BGPD),yes)
+ALL_TGTD+= bgpd
+ALL_EXES+= bgpd
+ALL_EXED+= bgp
+endif
+
+ifeq ($(ENABLE_ISISD),yes)
+ALL_TGTD+= isisd
+ALL_EXES+= isisd
+ALL_EXED+= isis
+endif
+
+ifeq ($(ENABLE_OSPFD),yes)
+ALL_TGTD+= ospfd
+ALL_EXES+= ospfd
+ALL_EXED+= ospf
+endif
+
+ifeq ($(ENABLE_BFD),yes)
+ALL_TGTD+= oamd
+ALL_EXES+= oamd
+ALL_EXED+= oam
+else
+  ifeq ($(ENABLE_MPLS_OAM),yes)
+#  ALL_TGTD+= oamd
+#  ALL_EXES+= oamd
+#  ALL_EXED+= oam
+  endif
+endif
+
+ifeq ($(ENABLE_OSPF6D),yes)
+ifeq ($(ENABLE_IPV6),yes)
+ALL_TGTD+= ospf6d
+ALL_EXES+= ospf6d
+ALL_EXED+= ospf6
+endif
+endif
+
+ifeq ($(ENABLE_PDMD),yes)
+ALL_TGTD+= pdmd
+ALL_EXES+= pdmd
+ALL_EXED+= pdm
+endif
+
+ifeq ($(ENABLE_PIMD),yes)
+ALL_TGTD+= pimd
+ALL_EXES+= pimd
+ALL_EXED+= pim
+endif
+
+ifeq ($(ENABLE_DVMRPD),yes)
+ALL_TGTD+= dvmrpd
+ALL_EXES+= dvmrpd
+ALL_EXED+= dvmrp
+endif
+
+ifeq ($(ENABLE_PIMPKTGEND),yes)
+ALL_TGTD+= pimpktgend
+ALL_EXES+= pimpktgend
+ALL_EXED+= pimpktgen
+endif
+
+ifeq ($(ENABLE_PIM6D),yes)
+ifeq ($(ENABLE_IPV6),yes)
+ALL_TGTD+= pim6d
+ALL_EXES+= pim6d
+ALL_EXED+= pim6
+endif
+endif
+
+ifeq ($(ENABLE_RIPD),yes)
+ALL_TGTD+= ripd
+ALL_EXES+= ripd
+ALL_EXED+= rip
+endif
+
+ifeq ($(ENABLE_LDPD),yes)
+ALL_TGTD+= ldpd
+ALL_EXES+= ldpd
+ALL_EXED+= ldp
+endif
+
+ifeq ($(ENABLE_RIPNGD),yes)
+ifeq ($(ENABLE_IPV6),yes)
+ALL_TGTD+= ripngd
+ALL_EXES+= ripngd
+ALL_EXED+= ripng
+endif
+endif
+
+ifeq ($(ENABLE_RSVPD),yes)
+ALL_TGTD+= rsvpd
+ALL_EXES+= rsvpd
+ALL_EXED+= rsvp
+endif
+
+ifeq ($(ENABLE_MPLS_FWD),yes)
+#ALL_TGTD+= mpls
+endif
+
+ifeq ($(ENABLE_MPLS_OAM), yes)
+  ALL_TGTD+= mplsonm
+  ALL_EXES+= mplsonm
+  ALL_EXEI+= mplsonm
+endif
+
+#ifeq ($(ENABLE_MSTPD),yes)
+#ALL_TGTD+= mstpd
+#ALL_EXES+= mstpd
+#ALL_EXED+= mstp
+#else
+#  ifeq ($(ENABLE_RSTPD),yes)
+#  ALL_TGTD+= mstpd
+#  ALL_EXES+= mstpd
+#  ALL_EXED+= mstp
+#  else
+#    ifeq ($(ENABLE_STPD),yes)
+#    ALL_TGTD+= mstpd
+#    ALL_EXES+= mstpd
+#    ALL_EXED+= mstp
+#    else
+#      ifeq ($(ENABLE_RPVST_PLUS),yes)
+#      ALL_TGTD+= mstpd
+#      ALL_EXES+= mstpd
+#      ALL_EXED+= mstp
+#      endif
+#    endif
+#  endif
+#endif
+
+ifeq ($(ENABLE_AUTHD),yes)
+ALL_TGTD+= authd
+ALL_EXES+= authd
+ALL_EXED+= auth
+endif
+
+ifeq ($(ENABLE_LACPD),yes)
+ALL_TGTD+= lacpd
+ALL_EXES+= lacpd
+ALL_EXED+= lacp
+endif
+
+ifeq ($(ENABLE_ELMID),yes)
+ALL_TGTD+= elmid
+ALL_EXES+= elmid
+ALL_EXED+= elmi
+endif
+
+ifeq ($(ENABLE_ONMD),yes)
+ALL_TGTD+= onmd
+ALL_EXES+= onmd
+ALL_EXED+= onm
+endif
+
+ifeq ($(ENABLE_RMOND),yes)
+ALL_TGTD+= rmond
+ALL_EXES+= rmond
+ALL_EXED+= rmon
+endif
+
+#ifeq ($(ENABLE_IMI),yes)
+#ALL_TGTD+= imi
+#ALL_EXES+= imi
+#ALL_EXEI+= imi
+#endif
+
+#ifeq ($(ENABLE_IMISH),yes)
+#ALL_TGTD+= imish
+#ALL_EXES+= imish
+#ALL_EXEI+= imish
+#endif
+
+ifeq ($(ENABLE_VTYSH),yes)
+ALL_TGTD+= vtysh
+ALL_EXES+= vtysh
+ALL_EXEI+= vtysh
+endif
+
+ifeq ($(ENABLE_VLOGD),yes)
+ALL_TGTD+= vlogd
+ALL_EXES+= vlogd
+ALL_EXED+= vlog
+endif
+
+ifeq ($(ENABLE_LMP),yes)
+ALL_TGTD+= lmpd
+ALL_EXES+= lmpd
+ALL_EXED+= lmp
+endif
+
+ifeq ($(ENABLE_VR),yes)
+VR_EXES=
+ifeq ($(ENABLE_IMI),yes)
+VR_EXES+= imi
+ifeq ($(ENABLE_IMISH),yes)
+VR_EXES+= imish
+endif
+endif
+VR_EXES+= nsm ospfd bgpd ripd
+endif
+
+#ifeq ($(ENABLE_AXELX),yes)
+#ALL_TGTD+= libhsl
+#ALL_TGTD+= HSL
+#ALL_EXES+= HSL
+#ALL_EXEI+= HSL
+#EXTRA_LIBS+=$(OBJ_BASE)/libhsl$(LIB_SUFF)
+#ARCH_CFLAGS+= -I$(SRC_DIR)/hal
+#ARCH_CFLAGS+= -I$(SRC_DIR)/hal/L2
+#ARCH_CFLAGS+= -I$(SRC_DIR)/hal/hsl
+#endif
+
+#ifeq ($(ENABLE_MARVELL),yes)
+#ALL_TGTD+= libhsl
+#ARCH_CFLAGS+= -I$(SRC_DIR)/hal
+#ARCH_CFLAGS+= -I$(SRC_DIR)/hal/L2
+#ARCH_CFLAGS+= -I$(SRC_DIR)/hal/hsl
+
+#ifeq ($(SDK), cpss)
+#ALL_TGTD+=hsl
+#HW_SDK_OBJS = $(MARVELL_LIB_DIR)/cpssEnabler$(OBJ_SUFF)
+#HW_EXTRA_LIBS += -lpthread -lrt -ldl
+#endif
+
+#ifeq ($(ENABLE_USER_HSL),yes)
+#ALL_TGTD+= HSL
+#ALL_EXES+= HSL
+#ALL_EXEHW+=HSL
+#endif
+#endif
+
+
+#ifeq ($(ENABLE_HAL),yes)
+#ALL_TGTD+=hal
+#EXTRA_LIBS+=$(OBJ_BASE)/hal$(LIB_SUFF)
+#endif
+
+ifeq ($(ENABLE_AXELX),yes)
+EXTRA_LIBS+=$(AXEL_LIB_DIR)/axel_drv$(LIB_SUFF)
+endif
+
+ifeq ($(ENABLE_BROADCOM),yes)
+#  ifeq ($(COMPILER_PREFIX),ppc_82xx-)
+#    ARCH_CFLAGS+= -mmultiple
+#    ARCH_CFLAGS+= -mstring
+#  endif 
+#  ifeq ($(COMPILER_PREFIX),powerpc-wrs-linux-gnu-ppc_e500v2-glibc_small-)
+#  endif
+  ALL_TGTD+= libhsl
+  ALL_TGTD+=hsl
+endif
+
+# Marvell : ppc603e
+#ifeq ($(ENABLE_MARVELL_LS),yes)
+#ALL_TGTD+= libhsl
+#ALL_TGTD+= HSL
+#ALL_EXES+= HSL
+#ALL_EXEI+= HSL
+#EXTRA_LIBS+=$(OBJ_BASE)/libhsl$(LIB_SUFF)
+#ARCH_CFLAGS+=-I$(HOST_CROSS_INCLUDE_DIR)
+#ARCH_CFLAGS+=-mpowerpc -m32 -mcpu=603e -msoft-float -fomit-frame-pointer -D__USE_STRING_INLINES -pipe
+#ARCH_CFLAGS+= -I$(SRC_DIR)/hal
+#ARCH_CFLAGS+= -I$(SRC_DIR)/hal/L2
+#ARCH_CFLAGS+= -I$(SRC_DIR)/hal/hsl
+#ARCH_CFLAGS+=-L$(HOST_CROSS_LIB_DIR)
+#EXTRA_LIBS+=$(OBJ_BASE)/hal$(LIB_SUFF)
+#EXTRA_LIBS+=$(MARVELL_DSDT)/Library/qdDrv.o
+#endif
+
+ifeq ($(ENABLE_SMI),yes)
+ALL_TGTD+= testapi
+ALL_EXES+= testapi
+ALL_EXEI+= testapi
+ARCH_CFLAGS+= -I$(SRC_DIR)/lib/smi/client
+ARCH_CFLAGS+= -I$(SRC_DIR)/lib/smi/client/api
+ARCH_CFLAGS+= -I$(SRC_DIR)/lib/smi/server
+endif
+
+# IPNET LAS inclusion
+ifeq ($(ENABLE_IPNET),yes)
+ifeq ($(ENABLE_BIGENDIAN),yes)
+  ARCH_CFLAGS+= -DIP_BIG_ENDIAN
+else
+  ifeq ($(ENABLE_BIGENDIAN),no)
+    ARCH_CFLAGS+= -DIP_LITTLE_ENDIAN
+  else
+    $(warning .)
+    $(warning Use --enable_bigendian or --disable_bigendian option)
+    $(warning to specify required endianness.)
+    $(warning .)
+    $(error Aborting)
+  endif
+endif
+
+  IPNET_CFLAGS=
+  IPNET_CFLAGS+= -DIPNET
+  IPNET_CFLAGS+= -DIP_PORT_LAS
+#  IPNET_CFLAGS+= -DIPCOM_USE_SA_LEN
+ifeq ($(ENABLE_IPV6),yes)
+  IPNET_CFLAGS+= -DIPCOM_USE_INET6
+endif
+  IPNET_CFLAGS+= -I$(IPCOM_LAS_ROOT)/include
+  IPNET_CFLAGS+= -I$(IPCOM_LAS_ROOT)/config
+  IPNET_CFLAGS+= -I$(IPCOM_LAS_ROOT)/port/include
+  IPNET_CFLAGS+= -I$(IPCOM_LAS_ROOT)/port/las/include
+  IPNET_CFLAGS+= -I$(IPCOM_LAS_ROOT)/port/las/src
+  IPNET_CFLAGS+= -I$(IPCOM_LAS_ROOT)/port/las/config
+  IPNET_CFLAGS+= -I$(IPCOM_LAS_ROOT)/port/include
+  IPNET_CFLAGS+= -I$(IPNET_ROOT)
+  IPNET_CFLAGS+= -I$(IPNET_ROOT)/include
+  IPNET_CFLAGS+= -I$(IPNET_ROOT)/config
+  IPNET_CFLAGS+= -I$(IPNET_ROOT)/src/ipnet
+  IPNET_CFLAGS+= -I$(IPNET_ROOT)/src
+ # IPNET_CFLAGS+= -DIPCOM_USE_SA_LEN
+  IPNET_CFLAGS+= -I$(IPCOM_LAS_ROOT)/port/include
+ifeq ($(ENABLE_FIREWALL),yes)
+  IPNET_CFLAGS+= -I$(IPNET_FIREWALL_ROOT)/include
+  IPNET_CFLAGS+= -I$(IPNET_FIREWALL_ROOT)/config
+  IPNET_CFLAGS+= -I$(IPNET_FIREWALL_ROOT)/src
+endif
+
+endif
+

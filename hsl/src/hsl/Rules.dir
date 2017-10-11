@@ -1,0 +1,296 @@
+#------------------------------------------------------------------------------
+#
+# This file specifies the product name and the section name
+#
+# It is used by the generic section makefile to figure out what to expect.
+#
+# This file is where the make process edits need to be
+#
+
+#
+# Directory product name and directory name
+#
+# Note that DIR_ADDS includes all sources in any directories listed.
+# DIR_ADDD only makes sure the directory is available in the output space.
+#
+DIR_PROD=PacOS
+DIR_NAME=hsl
+DIR_OFFS=
+DIR_MODE=lib
+DIR_ADDS=
+DIR_ADDD=
+
+#
+# Adjust so it is relative path to the product top directory
+#
+SRC_DIR=..
+TOP_DIR=../..
+
+#
+# Additional compilation flags for this module
+#
+MODULE_CFLAGS=
+MODULE_CFLAGS+= -I$(SRC_DIR)/$(DIR_NAME)
+
+#
+# Additional targets specified in here which should be made with this module
+#
+DIR_ALLP=
+DIR_DEPP=
+DIR_FDEP=
+DIR_CLNP=
+
+#
+# This allows additional objects (such as provided by vendor) to be
+# linked with the module directly.
+#
+OBJ_ADDS=
+
+#
+# HSL enable 
+# 
+ifeq ($(ENABLE_BROADCOM),yes)
+  ADD_HARDWARE=yes
+  HARDWARE_NAME=broadcom
+  MODULE_CFLAGS+=-I$(BROADCOM_SDK)/include
+  MODULE_CFLAGS+=-I$(BROADCOM_SDK)/src
+  MODULE_CFLAGS+=-DINCLUDE_L3 -DBCM_ESW_SUPPORT -DBCM_RPC_SUPPORT
+endif
+
+#
+# If building for Linux, the build mode is out(loadable module)
+#
+ifeq ($(ADD_HARDWARE),yes)
+ifeq ($(BLD_NAME),linux)
+DIR_MODE=out
+#
+# Linux module compilation
+#
+# Removeing this line becasue it will clear the Broadcome SDK include
+#MODULE_CFLAGS =    
+
+MODULE_CFLAGS += -D__KERNEL__ -DLINUX -DMODULE -O2 -fomit-frame-pointer -fno-strict-aliasing  -G 0 -fno-common -fno-pic -Wall  -pipe -DEXPORT_SYMTAB
+#MODULE_CFLAGS += -D__KERNEL__ -DLINUX -DMODULE -O2 -fomit-frame-pointer -fno-strict-aliasing -fno-common -fno-pic -Wall  -pipe -DEXPORT_SYMTAB
+
+ifeq ($(findstring e500v2,$(COMPILER_PREFIX)),e500v2)
+  MODULE_CFLAGS+= -fno-strict-aliasing -fno-common -O2 -msoft-float -pipe -ffixed-r2 -mmultiple -mno-altivec -mno-spe -mno-string -Wa,-me500  -fomit-frame-pointer
+endif 
+
+ifeq ($(COMPILER_PREFIX),ppc_82xx-)
+  MODULE_CFLAGS+= -msoft-float -mlongcall -mcpu=603
+endif 
+
+ifeq ($(COMPILER_PREFIX),mips_fp_be-)
+  MODULE_CFLAGS+= -mno-abicalls -mips2 -Wa,--trap -mlong-calls -mtune=r4600  
+endif 
+#MODULE_CFLAGS += -nostdinc
+ifeq ($(KERNEL_OUT),$(empty))
+KERNEL_OUT=$(KERNEL_SOURCE)
+endif
+
+MODULE_CFLAGS += -include $(KERNEL_OUT)/include/linux/version.h -include $(KERNEL_OUT)/include/linux/autoconf.h
+MODULE_CFLAGS += -I$(KERNEL_OUT)/include -I$(KERNEL_OUT)/include2
+MODULE_CFLAGS += -I$(KERNEL_SOURCE)/include
+MODULE_CFLAGS += -I$(KERNEL_SOURCE)/arch/powerpc/include
+MODULE_CFLAGS += -I$(KERNEL_SOURCE)/arch/powerpc
+MODULE_CFLAGS += -I$(KERNEL_SOURCE)/include/asm-powerpc
+
+#MODULE_CFLAGS += -I/opt/hardhat/devkit/mips/fp_be/lib/gcc-lib/mips-hardhat-linux/3.2.1/include
+
+MODULE_CFLAGS += -I$(dir $(shell $(COMPILER_DIR)/$(COMPILER_PREFIX)gcc -print-libgcc-file-name))include
+
+# MODPOST 
+MODPOST = $(KERNEL_OUT)/scripts/mod/modpost
+MODPOST_FLAGS = -w -m -i
+
+MODNAME = -D"KBUILD_MODNAME=KBUILD_STR(hsl_module)"
+MODPOST_DEFINES = -D"KBUILD_STR(s)=\#s" $(MODNAME)
+
+# Phase 3 modpost defines.
+ifeq ($(WIND_PLATFORM),wrlinux-3.0)
+  MODPOST_FLAGS = -w -m -i 
+  MODPOST_DEFINES += -D"KBUILD_STR(s)=\#s" $(basename_flags) $(modname_flags)
+  comma = ,
+  basetarget = $(basename $(notdir $@))
+  modname = $(basetarget)
+
+  name-fix = $(subst $(comma),_,$(subst -,_,$1))
+  basename_flags = -D"KBUILD_BASENAME=KBUILD_STR($(call name-fix,$(basetarget)))"
+  modname_flags  = $(if $(filter 1,$(words $(modname))),\
+                 -D"KBUILD_MODNAME=KBUILD_STR($(call name-fix,$(modname)))")
+endif
+
+ifeq ($(ENABLE_IPNET),yes)
+#MODULE_CFLAGS+= -DIPCOM_USE_SA_LEN
+MODULE_CFLAGS+= -I$(IPCOM_ROOT)/include
+MODULE_CFLAGS+= -I$(IPCOM_ROOT)/config
+MODULE_CFLAGS+= -I$(IPCOM_ROOT)/port/include
+MODULE_CFLAGS+= -I$(IPCOM_ROOT)/port/lkm/include
+MODULE_CFLAGS+= -I$(IPCOM_ROOT)/port/lkm/src
+MODULE_CFLAGS+= -I$(IPCOM_ROOT)/port/lkm/config
+MODULE_CFLAGS+= -I$(IPCOM_ROOT)/crypto
+MODULE_CFLAGS+= -I$(IPNET_ROOT)
+MODULE_CFLAGS+= -I$(IPNET_ROOT)/include
+MODULE_CFLAGS+= -I$(IPNET_ROOT)/config
+MODULE_CFLAGS+= -I$(IPNET_ROOT)/src/ipnet
+MODULE_CFLAGS+= -I$(IPNET_ROOT)/src
+
+MODULE_CFLAGS+= -DIPNET
+MODULE_CFLAGS+= -DIPTCP
+MODULE_CFLAGS+= -DIPCOM_BSDAPI
+MODULE_CFLAGS+= -DIPCOM_USE_INET6
+MODULE_CFLAGS+= -DIP_BIG_ENDIAN
+MODULE_CFLAGS+= -DIP_PORT_LKM
+#MODULE_CFLAGS+= -DIP_ASSERT
+#MODULE_CFLAGS+= -DIP_DEBUG
+endif
+EXTRA_LDFLAGS += -r
+MAKE_SINGLE_DEPS= $(CC) -M $(MODULE_CFLAGS)
+MAKE_SINGLE_FILE= $(CC) -c $(MODULE_CFLAGS)
+endif
+endif
+
+
+#
+# Lists of input files (to handle conditional compilation of files)
+#
+ifeq ($(ADD_HARDWARE),yes)
+DIR_SRCS=
+#
+# Conditional additions to above
+#
+endif
+
+MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl
+MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/common
+
+#
+# Multicast/Igmp snooping 
+#
+ifeq ($(ENABLE_MCAST_IPV4),yes)
+  MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/ipmc
+else
+  ifeq ($(ENABLE_MCAST_IPV6),yes)
+    MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/ipmc
+  else
+    ifeq ($(ENABLE_IGMP_SNOOP),yes)
+       MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/ipmc
+     endif
+  endif
+endif
+
+#
+# OS & Stack 
+#
+# VxWorks-Windnet
+ifeq ($(BLD_NAME),vxworks)
+  HSL_OS_NAME=vxworks
+  ifeq ($(PNE_VERSION),PNE_2_2)
+     MODULE_CFLAGS+=-D_KERNEL
+     MODULE_CFLAGS+=-D_WRS_KERNEL
+     HSL_STACK_NAME=pne_2_2
+  else
+     HSL_STACK_NAME=windnet
+  endif
+endif
+ifeq ($(BLD_NAME),vxworks_ipnet2)
+  HSL_OS_NAME=vxworks
+  HSL_STACK_NAME=ipnet2
+endif
+ifeq ($(BLD_NAME),linux)
+  HSL_OS_NAME=linux
+  ifeq ($(ENABLE_IPNET),yes)
+    HSL_STACK_NAME=ipnet2
+  else
+    HSL_STACK_NAME=native
+  endif
+endif
+ 
+#
+# Hardware specific initialization.
+#
+
+ifeq ($(ADD_HARDWARE),yes)
+#
+# Harware - OS - Stack 
+#
+  DIR_ADDS+=$(HARDWARE_NAME)
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hal
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hal/hsl
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)
+  DIR_ADDS+=$(HARDWARE_NAME)/$(HSL_OS_NAME)
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/$(HSL_OS_NAME)
+ifeq ($(BLD_NAME),vxworks_ipnet2)
+  DIR_ADDS+=$(HARDWARE_NAME)/$(HSL_OS_NAME)/$(HSL_STACK_NAME)
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/$(HSL_OS_NAME)/$(HSL_STACK_NAME)
+endif
+#
+# Layer 2 
+#
+ifeq ($(ENABLE_L2),yes)
+  DIR_ADDS+=$(HARDWARE_NAME)/L2 
+
+ifeq ($(BLD_NAME),vxworks)
+  ifeq ($(PNE_VERSION),PNE_2_2)
+       DIR_ADDS+=$(HARDWARE_NAME)/$(HSL_OS_NAME)/L2_22
+       MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/$(HSL_OS_NAME)/L2_22
+  else # ! PNE_2_2
+       DIR_ADDS+=$(HARDWARE_NAME)/$(HSL_OS_NAME)/L2_20
+       MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/$(HSL_OS_NAME)/L2_20
+  endif
+endif # vxworks  
+
+ifeq ($(BLD_NAME),vxworks_ipnet2)
+  ifeq ($(PNE_VERSION),PNE_2_2)
+       DIR_ADDS+=$(HARDWARE_NAME)/$(HSL_OS_NAME)/L2_22
+       MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/$(HSL_OS_NAME)/L2_22
+  else # ! PNE_2_2
+       DIR_ADDS+=$(HARDWARE_NAME)/$(HSL_OS_NAME)/L2_20
+       MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/$(HSL_OS_NAME)/L2_20
+  endif
+else # linux
+  DIR_ADDS+=$(HARDWARE_NAME)/$(HSL_OS_NAME)/L2
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/$(HSL_OS_NAME)/L2
+endif # vxworks_ipnet2
+
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hal/L2
+  MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/L2
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/L2
+endif
+#
+# Layer 3 
+#
+ifeq ($(ENABLE_L3),yes)
+  DIR_ADDS+=$(HARDWARE_NAME)/L3 
+  DIR_ADDS+=$(HARDWARE_NAME)/$(HSL_OS_NAME)/L3 
+  DIR_ADDS+=$(HARDWARE_NAME)/$(HSL_OS_NAME)/L3/$(HSL_STACK_NAME)
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hal/L3
+  MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/L3
+  MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/L3
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/L3
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/$(HSL_OS_NAME)/L3
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/$(HSL_OS_NAME)/L3/$(HSL_STACK_NAME)
+  MODULE_CFLAGS+=-DINCLUDE_L3
+endif
+
+ifeq ($(ENABLE_MPLS),yes)
+  DIR_ADDS+=$(HARDWARE_NAME)/MPLS 
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hal/MPLS
+  MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/MPLS
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/MPLS
+endif
+
+  DIR_ADDS+=$(HARDWARE_NAME)/eline 
+  DIR_ADDS+=$(HARDWARE_NAME)/vpls  
+  DIR_ADDS+=$(HARDWARE_NAME)/ptp  
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/eline
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/vpls
+  MODULE_CFLAGS+=-I$(SRC_DIR)/hsl/$(HARDWARE_NAME)/ptp
+
+# SUB_DIR := $(shell find . -maxdepth 2 -type d)
+# SUB_DIR := $(basename $(patsubst ./%, %, $(SUB_DIR))) DIR_ADDS+= $(SUB_DIR)
+# MODULE_CFLAGS+= $(patsubst %, -I$(SRC_DIR)/pac/%, $(SUB_DIR))
+
+endif
+
+

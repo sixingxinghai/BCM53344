@@ -1,0 +1,15 @@
+/* Copyright (C) 2002-2003   All Rights Reserved.  */
+#ifndef _PAL_IF_STATS_DEF
+#define _PAL_IF_STATS_DEF
+
+result_t pal_if_stat_update(int *);
+
+void pal_if_stats_get_input_stats (struct pal_if_stats *stats, char *buf, s_int32_t len);
+void pal_if_stats_get_input_errors (struct pal_if_stats *stats, char *buf, s_int32_t len);
+void pal_if_stats_get_output (struct pal_if_stats *stats, char *buf, s_int32_t len);
+void pal_if_stats_get_output_errors (struct pal_if_stats *stats, char *buf, s_int32_t len);
+void pal_if_stats_get_collisions (struct pal_if_stats *stats, char *buf, s_int32_t len);
+
+#endif /* _PAL_IF_STATS_DEF */
+
+

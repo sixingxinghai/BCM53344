@@ -1,0 +1,34 @@
+/* Copyright (C) 2004   All Rights Reserved. */
+
+#ifndef _PAL_TERM_DEF
+#define _PAL_TERM_DEF
+
+/* Set window size
+
+   Parameters:
+     IN  pal_sock_handle_t sock
+     IN  u_int16_t row
+     IN  u_int16_t col
+
+   Results:
+     RESULT_OK for success, -1 for error
+*/
+extern result_t pal_term_winsize_set (pal_sock_handle_t sock,
+				      u_int16_t row,
+				      u_int16_t col);
+
+/* Get window size
+
+   Parameters:
+     IN  pal_sock_handle_t sock
+     OUT u_int16_t *row
+     OUT u_int16_t *col
+
+   Results:
+     RESULT_OK for success, -1 for error
+*/
+extern result_t pal_term_winsize_get (pal_sock_handle_t sock,
+				      u_int16_t *row,
+				      u_int16_t *col);
+
+#endif /* _PAL_TERM_DEF */

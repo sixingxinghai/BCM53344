@@ -1,0 +1,24 @@
+/* Copyright (C) 2002,   All Rights Reserved.  */
+#ifndef _PAL_DNS_DEF
+#define _PAL_DNS_DEF
+
+/* PAL DNS APIs.  */
+#include "imi/imi.h"
+
+/*-----------------------------------------------------------------------------
+   Functions
+*/
+
+/* Start.  */
+extern pal_handle_t pal_dns_start (struct lib_globals *lib_node,
+				   struct imi_dns *dns);
+
+/* Stop. */
+extern result_t pal_dns_stop (struct lib_globals *lib_node,
+		  	      pal_handle_t pal_dns);
+
+/* Refresh DNS. */
+extern result_t pal_dns_refresh (struct lib_globals *lib_node,
+				 struct imi_dns *dns);
+
+#endif /* _PAL_DNS_DEF */

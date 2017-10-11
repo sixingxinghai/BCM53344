@@ -1,0 +1,28 @@
+Caveats for the MPLS-BGP/VPN solution provided by APN:
+
+1. IP addresses of all Customer Edge Routers (CEs) connected to
+   a Provider Edge Router (PE) are required to be global in the
+   given PEs scope.
+
+
+       --------
+       | CE 1 | -------<>---------- 
+       --------                   |
+                              ----------
+       --------               |        |
+       | CE 2 | -------<>---- |   PE   | ---------~
+       --------               |        |
+                              ----------
+       --------                   |
+       | CE 3 | -------<>----------
+       --------
+
+   Given a scenario such as the one described above, the three CEs
+   are required to have unique -- but not globally unique -- IP
+   addresses.
+
+2. If a Route Reflector is in use in a VPN scenario, the LSRs
+   can only use a platform-wide label-space.
+
+3. Inter-Provider VPN Solution is not currently supported. We currently
+   support IBGP connections b/w Provider Edge Routers only.

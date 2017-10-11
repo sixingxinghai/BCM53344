@@ -1,0 +1,97 @@
+/* Copyright (C) 2006  All Rights Reserved. */
+
+#ifndef _PAL_FIREWALL_DEF
+#define _PAL_FIREWALL_DEF
+
+
+/* General Comment:
+   This file contains the definition of the structures that are used by
+   nsm and for local PacOS processing. Speaking of structures the main
+   structure is the Firewall Rule structure. The structure defined here is
+   the duplicated structure of the Ipfirewall_rule structure of Interpeak
+   but without the unwanted members i.e the members that are not used in nsm
+   procesisng in anyway are not included in this structure to keep it simple.
+   The members here declared are configurable from the CLI. Later we can add
+   members if required and supported by CLIs
+*/
+
+/* Firewall Rule Structure to be used by PacOS */
+struct pal_firewall_rule
+{
+  struct list    list_rule;          /* List */
+  u_int32_t      rule_no;            /* Rule number in this group */
+/* Do not add any entries before the group_head member */
+  u_int8_t       group_head;     /* TRUE if head of group */
+  u_int32_t      group_no;       /* Group number */
+  u_int32_t      family;         /* IP_AF_INET or IP_AF_INET6 */
+  u_int8_t       block;          /* action: block or pass */
+  u_int8_t       in;             /* direction: incoming our outgoing */
+  u_int8_t       log;            /* "log" (optional) */
+
+  u_int8_t       on;             /* "on" (optional) */
+
+  u_int8_t       ifname[IFNAMSIZ]; /* Interface name */
+
+  u_int8_t       tos;            /* "tos"(optional) */
+  u_int8_t       proto;          /* "proto"(optional) */
+  u_int8_t       tcpudp;         /* "tcp/udp" */
+
+  u_int8_t       icmp_type;      /* "icmp-type" (optional) */
+  u_int8_t       icmp_num;       /* icmp type */
+
+  u_int8_t       from;           /* "from" (optional) */
+  u_int8_t       src_any;        /* any source address */
+  u_int8_t       src_port;       /* "port" (optional) */
+
+  struct prefix  src;            /* source address and mask */
+  u_int32_t      src_op;         /* operator */
+  u_int16_t      src_port_hi;    /* port number or port high limit in case
+                                    of '<>' or '><' operator */
+
+  u_int8_t       to;              /* "to" (optional) */
+  u_int8_t       dst_any;         /* any destination address */
+  u_int8_t       dst_port;        /* "port" (optional) */
+
+  struct prefix  dst;             /* destination address and mask */
+  u_int32_t      dst_op;          /* operator */
+  u_int16_t      dst_port_hi;     /* port number or port high limit in 
+                                     case of '<>' or '><' operator */
+
+  u_int8_t       protocol;        /* protocol number */
+};
+
+/* Function to show  the firewall rules congiured at kernel level
+** Parameters:
+**   IN   s_int32_t                   group_no
+**   IN   struct pal_firewall_rule*   rule
+**
+** Results:
+**   RESULT_OK for success, -1 for error
+*/
+s_int32_t
+pal_firewall_show_rules (s_int32_t, struct pal_firewall_rule *);
+
+
+/* Function to add/remove firewall rules to/from kernel level
+** Parameters:
+**   IN   struct pal_firewall_rule*   rule
+**   IN   bool_t                      remove
+**
+** Results:
+**   RESULT_OK for success, -1 for error
+*/
+s_int32_t
+pal_firewall_addremove_rule (struct pal_firewall_rule *, bool_t);
+
+
+/* Function to flush the firewall rules configured at kernel level
+** Parameters:
+**   IN   void
+**
+** Results:
+**   RESULT_OK for success, -1 for error
+*/
+s_int32_t
+pal_firewall_flush_rules (void);
+
+#endif /* _PAL_FIREWALL_DEF */

@@ -1,0 +1,25 @@
+/* Copyright (C) 2003   All Rights Reserved.  */
+#ifndef _PAL_NTP_DEF
+#define _PAL_NTP_DEF
+
+/* PAL NTP defines. */
+
+/* Initialize NTP. */
+int pal_ntp_init (void);
+
+/* Deinitialize NTP. */
+int pal_ntp_deinit (void);
+
+/* Refresh NTP keys. */
+int pal_ntp_refresh_keys (struct lib_globals *lib_node, struct list *ntp_key_list);
+
+/* Refrech NTP configuration. */
+int pal_ntp_refresh_config (struct lib_globals *lib_node, struct ntp_master *ntpm);
+
+/* Get NTP status. */
+int pal_ntp_update_status(struct ntp_sys_stats *stats);
+
+/* Get all NTP peer status. */
+int pal_ntp_update_associations(struct ntp_all_peer_stats *peerstats);
+
+#endif /* _PAL_MEMORY_DEF */

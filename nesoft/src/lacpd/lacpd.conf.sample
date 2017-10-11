@@ -1,0 +1,16 @@
+! -*- LACP -*-
+!
+! LACP sample configuration file
+!
+! 
+!
+hostname iptn
+password iapn
+!
+! set lacp-channel system-priority 1 
+! set port lacp-channel IFNAME-1 mode active
+! set port lacp-channel IFNAME-2 mode active
+!
+!log file lacp.log
+!
+log stdout

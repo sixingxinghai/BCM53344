@@ -1,0 +1,47 @@
+Thu Nov  6 13:19:00 EST 2003
+
+This is the release 6.1 of the Link Aggregation Control Protocol.
+
+The integrator will need to performs certain steps (enumerated below)
+in order to properly integrate LACP into a system. This release does
+not include either the collection or distribution functions.
+It is expected that these functions are performed by hardware.
+
+The system integrator will need to perform the following
+tasks:
+
+Configure the system parameters prior to compilation.
+Relevant parameters contained in lacp_config.h include:
+
+  LACP_AGG_LIST_SIZE  - maximum number of aggregators
+  LACP_MAX_LINKS      - maximum number of links capable of
+                        bring aggregated.
+  LACP_MAX_AGGREGATOR_LINKS - maximum number of links aggregated
+                        in an aggregator.
+
+  MUX_INDEPENDENT_CTRL  - define this if HW is capable of 
+                        independent control of the collection
+                        distribution function.
+
+  LACP_DYNAMIC_AGG_ASSIGNMENT - define this is the aggregators
+                        can be dynamically selected for aggregation.
+                        Alternatively, the aggregator key is used
+                        to determine if the aggregator can aggregate
+                        a link (aggregator key must match link key).
+
+Implement the functions declared in npf_lacp.h.
+
+This release does include a linux kernel loadable module that can be
+used to test lacp. It also does not contain either the collection or
+distribution functions. It will however, exchange LACPDUs with
+other LACP peers and properly call the appropriate npf functions
+declared in npf_lacp.h.
+
+In order to integrate with the bridging functions, integrators
+will need to implement a "virtual" interface per aggregator.
+This interface is used to transmit/receive BPDUs. The receive
+function should be hooked into all of the underlying interface
+receive routines to collect STP BPDUs. The transmit routine
+can be hooked to the distribution function to transmit STP BPDUs.
+LACP itself operates on the underlying interfaces for the transmission
+and reception of LACPDUs.

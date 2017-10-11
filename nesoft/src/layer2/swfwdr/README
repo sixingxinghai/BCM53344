@@ -1,0 +1,18 @@
+
+Linux VLAN Aware Forwarder
+
+This directory contains source code for a linux kernel 
+loadable module. This loadable module implements forwarding
+functions including dynamic and static mac address support,
+ageing of dynamic mac address entries, and shared VLAN learning.
+
+In order to load the forwarder, used the "insmod" command, i.e.
+"insmod ipifwd" or "insmod /usr/src/linux-XXX/net/ipifwd/ipifwd.o"
+The forwarder may be unloaded using the "rmmod" command.
+
+Fri Jul 11 10:34:03 EDT 2003
+
+This release of the forwarder does not support the optional replacement
+of dynamic filtering entries upon the filtering table beoming full.
+
+

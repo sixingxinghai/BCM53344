@@ -1,0 +1,22 @@
+! -*- MSTP -*-
+!
+! MSTP sample configuration file
+!
+! 
+!
+hostname mstp
+password ipi
+!
+! debug mstp protocol
+! debug mstp protocol detail
+! debug mstp cli
+! debug mstp timer
+! debug mstp timer detail
+! debug mstp packet tx
+! debug mstp packet rx
+! debug mstp all
+! no debug mstp all
+!
+! log file mstp.log
+!
+log stdout

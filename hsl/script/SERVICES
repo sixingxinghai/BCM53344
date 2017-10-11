@@ -1,0 +1,17 @@
+# --- Please add follwoing to your /etc/services ---
+#
+# PacOS services
+#
+
+zebrasrv	2600/tcp
+zebra		2601/tcp
+pacos		2601/tcp
+ripd		2602/tcp
+ripng		2603/tcp
+ospfd		2604/tcp
+bgpd		2605/tcp
+ospf6d		2606/tcp
+ldpd		2607/tcp
+rsvpd		2608/tcp
+isisd		2609/tcp
+pimd		2610/tcp
