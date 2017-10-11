@@ -20,6 +20,8 @@
 #define HSL_QOS_IF_FILTER_MAX    100
 #define HSL_QOS_IF_METER_MAX    10
 
+typedef int bcm_filterid_t; //qcl 20170808
+
 struct hsl_bcm_qos_filter
 {
   int type;

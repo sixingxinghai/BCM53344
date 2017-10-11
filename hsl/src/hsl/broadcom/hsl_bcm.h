@@ -29,6 +29,7 @@
 #define ROUTER_ALERT3              0x00
 #define ROUTER_ALERT4              0x00
 
+typedef char mac_addr_t[6];
 extern mac_addr_t bpdu_addr;
 extern mac_addr_t pro_bpdu_addr;
 extern mac_addr_t gmrp_addr;

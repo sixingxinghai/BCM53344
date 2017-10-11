@@ -7440,7 +7440,7 @@ fi
 if test "$opsys" = "gnu-linux" ; then
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
-#include <linux/autoconf.h>
+#include <generated/autoconf.h>
 CONFIG_TCP_MD5SIG
 _ACEOF
 if (eval "$ac_cpp conftest.$ac_ext") 2>&5 |
@@ -7489,7 +7489,7 @@ if (eval "$ac_cpp conftest.$ac_ext") 2>&5 |
   $EGREP "132622" >/dev/null 2>&1; then :
   mylvm=14
 else
-  mylvm=27
+  mylvm=5
 fi
 rm -f conftest*
 
@@ -7499,8 +7499,8 @@ $as_echo "#define LINUX_KERNEL_2_6 /**/" >>confdefs.h
 fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking Linux version is" >&5
 $as_echo_n "checking Linux version is... " >&6; }
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: 2.${mylv}" >&5
-$as_echo "2.${mylv}" >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: 3.${mylv}" >&5
+$as_echo "3.${mylv}" >&6; }
 fi
 LINUX_VERSION_MAJOR="$mylv"
 LINUX_VERSION_MINOR="$mylvm"
@@ -11483,10 +11483,10 @@ $as_echo "#define HAVE_GTO /**/" >>confdefs.h
 	     	     	     yes)
 		{ $as_echo "$as_me:${as_lineno-$LINENO}: checking Kernel version is" >&5
 $as_echo_n "checking Kernel version is... " >&6; }
-		if test "$LINUX_VERSION_MINOR" = "27"
+		if test "$LINUX_VERSION_MINOR" = "5"
 		then
-			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: 2.6.$LINUX_VERSION_MINOR" >&5
-$as_echo "2.6.$LINUX_VERSION_MINOR" >&6; }
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: 3.6.$LINUX_VERSION_MINOR" >&5
+$as_echo "3.6.$LINUX_VERSION_MINOR" >&6; }
 
 $as_echo "#define HAVE_GTO /**/" >>confdefs.h
 

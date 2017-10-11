@@ -40,8 +40,8 @@ static struct hlist_head _eapol_socklist;
 #else
 static struct sock *_eapol_socklist = 0;
 #endif
-static rwlock_t _eapol_socklist_lock = RW_LOCK_UNLOCKED;
-
+// qcl 20170808 static rwlock_t _eapol_socklist_lock = RW_LOCK_UNLOCKED;
+static DEFINE_RWLOCK(_eapol_socklist_lock);
 /* Private packet socket structures. */
 
 /* Forward declarations. */
@@ -60,25 +60,26 @@ static int _eapol_sock_sendmsg (struct socket *sock, struct msghdr *msg, int len
 static int _eapol_sock_recvmsg (struct socket *sock, struct msghdr *msg, int len, int flags, struct scm_cookie *scm);
 #endif
 
-static struct proto_ops SOCKOPS_WRAPPED (eapol_ops) = {
-  family:       AF_EAPOL,
+//qcl 20170808 static struct proto_ops SOCKOPS_WRAPPED (eapol_ops) = {
+static struct proto_ops eapol_ops = {
+  .family =       AF_EAPOL,
 
-  release:      _eapol_sock_release,
-  bind:         sock_no_bind,
-  connect:      sock_no_connect,
-  socketpair:   sock_no_socketpair,
-  accept:       sock_no_accept,
-  getname:      sock_no_getname,
-  poll:         datagram_poll,
-  ioctl:        sock_no_ioctl,
-  listen:       sock_no_listen,
-  shutdown:     sock_no_shutdown,
-  setsockopt:   sock_no_setsockopt,
-  getsockopt:   sock_no_getsockopt,
-  sendmsg:      _eapol_sock_sendmsg,
-  recvmsg:      _eapol_sock_recvmsg,
-  mmap:         sock_no_mmap,
-  sendpage:     sock_no_sendpage,
+  .release =      _eapol_sock_release,
+  .bind =        sock_no_bind,
+  .connect =      sock_no_connect,
+  .socketpair =   sock_no_socketpair,
+  .accept =       sock_no_accept,
+  .getname =      sock_no_getname,
+  .poll =         datagram_poll,
+  .ioctl =        sock_no_ioctl,
+  .listen =       sock_no_listen,
+  .shutdown =    sock_no_shutdown,
+  .setsockopt =   sock_no_setsockopt,
+  .getsockopt =   sock_no_getsockopt,
+  .sendmsg =      _eapol_sock_sendmsg,
+  .recvmsg =     _eapol_sock_recvmsg,
+  .mmap =         sock_no_mmap,
+  .sendpage =     sock_no_sendpage,
 };
 
 static struct net_proto_family eapol_family_ops = {

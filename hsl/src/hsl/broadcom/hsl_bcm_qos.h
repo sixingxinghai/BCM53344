@@ -37,6 +37,12 @@
 
 #define HSL_BCM_FILTER_PRIORITY_MAX  15
 
+typedef int bcm_ds_clfr_t;	//qcl 20170808
+typedef int bcm_ds_inprofile_actn_t;	//qcl 20170808
+typedef int bcm_ds_outprofile_actn_t;	//qcl 20170808
+typedef int bcm_ds_nomatch_actn_t;	//qcl 20170808
+
+
 int hsl_bcm_cosq_detach ();
 int hsl_bcm_qos_init ();
 int hsl_bcm_qos_deinit ();

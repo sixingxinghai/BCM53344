@@ -3,8 +3,10 @@
 
 #ifndef _HSL_OS_H_
 #define _HSL_OS_H_
-
-#include <linux/autoconf.h>
+#include <linux/kconfig.h>
+#include <generated/autoconf.h>
+#include <linux/semaphore.h>
+#include <linux/prefetch.h>
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
@@ -82,6 +84,8 @@ struct hsl_periodic_task
    struct sal_thread_s *task_id;  
    void (* foo)(void);
 };
+
+typedef char mac_addr_t[6];
 
 /* Deal with CONFIG_MODVERSIONS */
 #if defined (CONFIG_MODVERSIONS)

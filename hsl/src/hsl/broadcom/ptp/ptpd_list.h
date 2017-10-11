@@ -3,7 +3,7 @@
 #ifndef PTPD_LIST_H
 #define PTPD_LIST_H
 
-#include "Datatypes.h"
+#include "datatypes.h"
 #include "datatypes_dep.h"
 #include "ptpd_list.h"
 

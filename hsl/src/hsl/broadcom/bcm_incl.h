@@ -16,7 +16,7 @@
 #include <appl/cputrans/atp.h>
 
 #include <bcm/types.h>
-#include <bcm/igmp.h>
+//#include <bcm/igmp.h>
 #include <bcm/port.h>
 #include <bcm/pkt.h>
 #include <bcm/stack.h>
@@ -37,15 +37,15 @@
 #include <bcmx/stg.h>
 #include <bcmx/vlan.h>
 #include <bcmx/bcmx.h>
-#include <bcmx/diffserv.h>
+//#include <bcmx/diffserv.h>
 #include <bcmx/l3.h>
 #include <bcmx/mcast.h>
 #include <bcmx/rate.h>
 #include <bcmx/switch.h>
 #include <bcmx/cosq.h>
-#include <bcmx/filter.h>
+//#include <bcmx/filter.h>
 #include <bcmx/link.h>
-#include <bcmx/meter.h>
+//#include <bcmx/meter.h>
 #include <bcmx/rx.h>
 #include <bcmx/vlan.h>
 #include <bcmx/trunk.h>

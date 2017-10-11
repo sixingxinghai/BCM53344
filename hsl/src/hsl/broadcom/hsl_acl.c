@@ -66,7 +66,7 @@ int acl_add_vfp_group( bcm_field_group_t acl_group_id)
             /* FVF1 */
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyInPort);       /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyIpType);       /*lint !e506 !e774*/
-            BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyPortClass);    /*lint !e506 !e774*/
+            //BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyPortClass);    /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyOuterVlan);    /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyVlanFormat);   /*lint !e506 !e774*/
             /* FVF2: 0x0 */
@@ -86,7 +86,7 @@ int acl_add_vfp_group( bcm_field_group_t acl_group_id)
             /* FVF1 */
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyInPort);       /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyIpType);       /*lint !e506 !e774*/
-            BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyPortClass);    /*lint !e506 !e774*/
+            //BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyPortClass);    /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyOuterVlan);    /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyVlanFormat);   /*lint !e506 !e774*/
             /* FVF2: 0x3 */
@@ -101,7 +101,7 @@ int acl_add_vfp_group( bcm_field_group_t acl_group_id)
             /* left FVF1 */
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyInPort);       /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyIpType);       /*lint !e506 !e774*/
-            BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyPortClass);    /*lint !e506 !e774*/
+            //BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyPortClass);    /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyOuterVlan);    /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyVlanFormat);   /*lint !e506 !e774*/
             /* left FVF2: 0x3 */
@@ -124,7 +124,7 @@ int acl_add_vfp_group( bcm_field_group_t acl_group_id)
              /* FVF1 */
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyInPort);      /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyIpType);      /*lint !e506 !e774*/
-            BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyPortClass);   /*lint !e506 !e774*/
+            //BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyPortClass);   /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyOuterVlan);   /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyVlanFormat);  /*lint !e506 !e774*/
             /* FVF2: 0x2 */
@@ -139,7 +139,7 @@ int acl_add_vfp_group( bcm_field_group_t acl_group_id)
             /* FVF1 */
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyInPort);       /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyIpType);       /*lint !e506 !e774*/
-            BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyPortClass);    /*lint !e506 !e774*/
+            //BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyPortClass);    /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyOuterVlan);    /*lint !e506 !e774*/
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyVlanFormat);   /*lint !e506 !e774*/
             /* FVF2: 0x1 */
@@ -248,7 +248,7 @@ int acl_add_ifp_group( bcm_field_group_t acl_group_id )
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyStageIngress);  /*lint !e506 !e774*/ 
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyInPorts);           /*lint !e506 !e774*/ 
             /* F1-0*/
-            BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyL3IntfGroup);      /*lint !e506 !e774*/     
+            //BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyL3IntfGroup);      /*lint !e506 !e774*/     
             /* F2-2 */
             BCM_FIELD_QSET_ADD(qset, bcmFieldQualifyDstIp6);      /*lint !e506 !e774*/     
             /* F3-6 */

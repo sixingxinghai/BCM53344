@@ -13,11 +13,10 @@
 #CC=gcc
 #This config.sh is the configuration script used to build this software and is intended to be used as an example. Please refer to the documentation for descriptions of all the configuation options to help configure the code to your specifications.
 
-
-export KERNEL_SOURCE=/home/iapn8500v100r001/plateform/linux-2.6.29.6
-export COMPILER_DIR=/home/iapn8500v100r001/plateform/tools/powerpc-e300c3-linux-gnu/bin
-export COMPILER_PREFIX=powerpc-e300c3-linux-gnu-
-export CROSSOPTS="--host=powerpc-e300c3-linux --build=i686-linux --target=powerpc-linux"
+export KERNEL_SOURCE=/workspace/bcm53344/iproc/kernel/linux-3.6.5
+export COMPILER_DIR=/workspace/bcm53344/iproc/buildroot/host/usr/bin
+export COMPILER_PREFIX=arm-broadcom-linux-uclibcgnueabi-
+export CROSSOPTS="--host=arm-broadcom-linux-uclibcgnueabi --build=i686-pc-linux-gnu --target=arm-broadcom-linux-uclibcgnueabi"
 
 cd $(dirname $0)
 make clean

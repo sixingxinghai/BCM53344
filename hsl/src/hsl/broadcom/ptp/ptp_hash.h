@@ -3,7 +3,7 @@
 #ifndef PTP_HASH_H
 #define PTP_HASH_H
 
-#include "Datatypes.h"
+#include "datatypes.h"
 #include "datatypes_dep.h"
 
 #define PTP_HASH_ARRAY_NUMBER 8

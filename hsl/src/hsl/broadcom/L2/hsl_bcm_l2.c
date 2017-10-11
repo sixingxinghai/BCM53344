@@ -2455,10 +2455,10 @@ hsl_bcm_pbit_copying_init()
       HSL_FN_EXIT (-1);
     }
   
-  bcmx_filter_qualify_format (pbit_fid, BCM_FILTER_PKTFMT_INNER_TAG);
+  bcmx_filter_qualify_format (pbit_fid, 0x0e);//qcl 20170808 BCM_FILTER_PKTFMT_INNER_TAG
   
   /* Define processing rules */
-  bcmx_filter_action_match (pbit_fid, bcmActionInsPrio, 2);
+  bcmx_filter_action_match (pbit_fid,0x04 , 2);//qcl 20170808 bcmActionInsPrio
   ret = bcmx_filter_install (pbit_fid);
   
   HSL_FN_EXIT (ret);

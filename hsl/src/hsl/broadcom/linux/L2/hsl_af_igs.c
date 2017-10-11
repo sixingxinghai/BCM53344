@@ -44,8 +44,8 @@ static struct hlist_head _igmp_snoop_socklist;
 #else
 static struct sock *_igmp_snoop_socklist = 0;
 #endif
-static rwlock_t _igmp_snoop_socklist_lock = RW_LOCK_UNLOCKED;
-
+//qcl 20170808 static rwlock_t _igmp_snoop_socklist_lock = RW_LOCK_UNLOCKED;
+static DEFINE_RWLOCK(_igmp_snoop_socklist_lock);
 /* Private packet socket structures. */
 
 /* Forward declarations. */
@@ -67,25 +67,26 @@ static int _igmp_snoop_setsockopt (struct socket *sk, int level,
                                    int optname, char *optval,
                                    int optlen);
 
-static struct proto_ops SOCKOPS_WRAPPED (igmp_snoop_ops) = {
-  family:       AF_IGMP_SNOOP,
+//qcl 20170808 static struct proto_ops SOCKOPS_WRAPPED (igmp_snoop_ops) = {
+static struct proto_ops igmp_snoop_ops = {
+  .family =       AF_IGMP_SNOOP,
 
-  release:      _igmp_snoop_sock_release,
-  bind:         sock_no_bind,
-  connect:      sock_no_connect,
-  socketpair:   sock_no_socketpair,
-  accept:       sock_no_accept,
-  getname:      sock_no_getname,
-  poll:         datagram_poll,
-  ioctl:        sock_no_ioctl,
-  listen:       sock_no_listen,
-  shutdown:     sock_no_shutdown,
-  setsockopt:   _igmp_snoop_setsockopt,
-  getsockopt:   sock_no_getsockopt,
-  sendmsg:      _igmp_snoop_sock_sendmsg,
-  recvmsg:      _igmp_snoop_sock_recvmsg,
-  mmap:         sock_no_mmap,
-  sendpage:     sock_no_sendpage,
+  .release =       _igmp_snoop_sock_release,
+  .bind =          sock_no_bind,
+  .connect =       sock_no_connect,
+  .socketpair =    sock_no_socketpair,
+  .accept =        sock_no_accept,
+  .getname =       sock_no_getname,
+  .poll =          datagram_poll,
+  .ioctl =         sock_no_ioctl,
+  .listen =        sock_no_listen,
+  .shutdown =      sock_no_shutdown,
+  .setsockopt =    _igmp_snoop_setsockopt,
+  .getsockopt =    sock_no_getsockopt,
+  .sendmsg =       _igmp_snoop_sock_sendmsg,
+  .recvmsg =       _igmp_snoop_sock_recvmsg,
+  .mmap =          sock_no_mmap,
+  .sendpage =      sock_no_sendpage,
 };
 
 static struct net_proto_family igmp_snoop_family_ops = {

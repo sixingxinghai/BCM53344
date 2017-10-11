@@ -30,7 +30,7 @@
 #include "hal_qos.h"
 #include "hsl_bcm_qos.h"
 
-#include "hsl_rsrc.h"//zlh@150108 
+#include "hsl_Rsrc.h"//zlh@150108 
 
 
 static int hsl_bcm_qos_initialized = HSL_FALSE;
@@ -425,7 +425,7 @@ int hsl_bcm_qos_port_cosq_bandwidth_set(hal_wrr_car_info_t wrr_car_info)
   	pir = 0;
   }
   
-  flags = BCM_COSQ_BW_MINIMUM_PREF;
+  flags = 0x0e;//qcl 20170808 BCM_COSQ_BW_MINIMUM_PREF;
   qid = wrr_car_info.qid;
   port = wrr_car_info.portId;
 
@@ -844,7 +844,7 @@ hsl_bcm_qos_cos_qualifier_set (bcm_filterid_t filter, unsigned char cos)
 {
   int ret;
   
-  ret = bcmx_filter_qualify_format (filter, BCM_FILTER_PKTFMT_INNER_TAG);
+  ret = bcmx_filter_qualify_format (filter, 0x09);//qcl 20170808 BCM_FILTER_PKTFMT_INNER_TAG
   if (ret != BCM_E_NONE)
     return ret;
   
@@ -946,20 +946,20 @@ hsl_bcm_qos_set_in_profile_action (struct hsl_bcm_qos_filter *qf,
       if (set->type == HAL_QOS_SET_COS)
         {
           ret = bcmx_filter_action_match (qf->u.filter, 
-                                          bcmActionInsPrio|bcmActionDoSwitch, 
-                                          set->val);
+                                         0x09, 
+                                          set->val);//qcl 20170808  bcmActionInsPrio|bcmActionDoSwitch
         }
       else if (set->type == HAL_QOS_SET_DSCP)
         {
           ret = bcmx_filter_action_match (qf->u.filter, 
-                                          bcmActionInsDiffServ|bcmActionDoSwitch,
-                                          set->val);
+                                          0x03,
+                                          set->val);//qcl 20170808 bcmActionInsDiffServ|bcmActionDoSwitch
         }
       else if (set->type == HAL_QOS_SET_IP_PREC)
         {
           ret = bcmx_filter_action_match (qf->u.filter,
-                                          bcmActionInsDiffServ|bcmActionDoSwitch, 
-                                          set->val << 3);
+                                          0x05, 
+                                          set->val << 3);//qcl 20170808 bcmActionInsDiffServ|bcmActionDoSwitch
         }
     }
   else if (qf->type == HSL_BCM_FEATURE_FIELD)
@@ -1004,8 +1004,8 @@ hsl_bcm_qos_set_out_profile_action (struct hsl_bcm_qos_filter *qf,
       if (police->exd_act == HAL_QOS_EXD_ACT_DROP)
         {
           ret = bcmx_filter_action_out_profile (qf->u.filter, 
-                                                bcmActionDoNotSwitch, 
-                                                0, meter_id);
+                                                0x08, 
+                                                0, meter_id);//qcl 20170808 bcmActionDoNotSwitch
         }
     }
   else if (qf->type == HSL_BCM_FEATURE_FIELD)
@@ -1060,7 +1060,7 @@ hsl_bcm_qos_filter_apply (struct hsl_bcm_qos_filter *qf,
       
       if (action == HAL_QOS_FILTER_DENY)
         {
-          ret = bcmx_filter_action_match (qf->u.filter, bcmActionDoNotSwitch, 0);
+          ret = bcmx_filter_action_match (qf->u.filter,0x08 , 0);//qcl 20170808 bcmActionDoNotSwitch
           if (ret < 0)
             goto err_ret;
         }
@@ -2702,7 +2702,7 @@ hsl_bcm_qos_cos_inner_filter_apply (struct hsl_bcm_qos_filter *qf,
 
       bcmx_lplist_free (&plist);
       
-      ret = bcmx_filter_action_match (qf->u.filter, bcmActionInsPrio, cos);
+      ret = bcmx_filter_action_match (qf->u.filter,0x04 , cos);//qcl 20170808 bcmActionInsPrio
       if (ret != BCM_E_NONE)
         return ret;
       

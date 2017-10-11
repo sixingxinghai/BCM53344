@@ -30,7 +30,8 @@ int hsl_sock_if_event (int cmd, void *param1, void *param2);
 
 /* List of all HSL backend sockets. */
 static struct hsl_sock *hsl_socklist = 0;
-static rwlock_t hsl_socklist_lock = RW_LOCK_UNLOCKED;
+//qcl 20170808 static rwlock_t hsl_socklist_lock = RW_LOCK_UNLOCKED;
+static DEFINE_RWLOCK(hsl_socklist_lock);
 static struct hsl_if_notifier_chain hsl_comm_cb =
   {
     notifier: hsl_sock_if_event,
@@ -56,27 +57,28 @@ static int _hsl_sock_getname (struct socket *sock, struct sockaddr *saddr, int *
 
 /* Private packet socket structures. */
 
-#include <linux/autoconf.h>
+#include <generated/autoconf.h>
 
-static struct proto_ops SOCKOPS_WRAPPED (hsl_ops) = {
-  family:       AF_HSL,
+//qcl 20170808 static struct proto_ops SOCKOPS_WRAPPED (hsl_ops) = {
+ static struct proto_ops hsl_ops = {
+  .family =      AF_HSL,
 
-  release:      hsl_sock_release,
-  bind:         _hsl_sock_bind,
-  connect:      sock_no_connect,
-  socketpair:   sock_no_socketpair,
-  accept:       sock_no_accept,
-  getname:      _hsl_sock_getname,
-  poll:         datagram_poll,
-  ioctl:        sock_no_ioctl,
-  listen:       sock_no_listen,
-  shutdown:     sock_no_shutdown,
-  setsockopt:   sock_no_setsockopt,
-  getsockopt:   sock_no_getsockopt,
-  sendmsg:      _hsl_sock_sendmsg,
-  recvmsg:      _hsl_sock_recvmsg,
-  mmap:         sock_no_mmap,
-  sendpage:     sock_no_sendpage,
+  .release =      hsl_sock_release,
+  .bind =         _hsl_sock_bind,
+  .connect =      sock_no_connect,
+  .socketpair =   sock_no_socketpair,
+  .accept =       sock_no_accept,
+  .getname =      _hsl_sock_getname,
+  .poll =         datagram_poll,
+  .ioctl =        sock_no_ioctl,
+  .listen =       sock_no_listen,
+  .shutdown =     sock_no_shutdown,
+  .setsockopt =   sock_no_setsockopt,
+  .getsockopt =   sock_no_getsockopt,
+  .sendmsg =     _hsl_sock_sendmsg,
+  .recvmsg =      _hsl_sock_recvmsg,
+  .mmap =         sock_no_mmap,
+  .sendpage =     sock_no_sendpage,
 };
 
 static struct net_proto_family hsl_family_ops = {

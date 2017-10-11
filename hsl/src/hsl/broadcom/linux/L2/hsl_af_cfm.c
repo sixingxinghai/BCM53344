@@ -42,8 +42,8 @@ static struct hlist_head _cfm_socklist;
 static struct sock *_cfm_socklist = 0;
 #endif /* LINUX_KERNEL_2_6 */
 
-static rwlock_t _cfm_socklist_lock = RW_LOCK_UNLOCKED;
-
+// qcl 20170808 static rwlock_t _cfm_socklist_lock = RW_LOCK_UNLOCKED;
+static DEFINE_RWLOCK(_cfm_socklist_lock); 
 /* Private packet socket structures. */
 
 /* Forward declarations. */
@@ -67,25 +67,26 @@ static int _cfm_sock_recvmsg (struct socket *sock, struct msghdr *msg, int len,
                               int flags, struct scm_cookie *scm);
 #endif /* LINUX_KERNEL_2_6 */
 
-static struct proto_ops SOCKOPS_WRAPPED (cfm_ops) = {
-  family:       AF_CFM,
+//qcl 20170808 static struct proto_ops SOCKOPS_WRAPPED (cfm_ops) = {
+static struct proto_ops cfm_ops = {
+  .family =       AF_CFM,
 
-  release:      _cfm_sock_release,
-  bind:         sock_no_bind,
-  connect:      sock_no_connect,
-  socketpair:   sock_no_socketpair,
-  accept:       sock_no_accept,
-  getname:      sock_no_getname,
-  poll:         datagram_poll,
-  ioctl:        sock_no_ioctl,
-  listen:       sock_no_listen,
-  shutdown:     sock_no_shutdown,
-  setsockopt:   sock_no_setsockopt,
-  getsockopt:   sock_no_getsockopt,
-  sendmsg:      _cfm_sock_sendmsg,
-  recvmsg:      _cfm_sock_recvmsg,
-  mmap:         sock_no_mmap,
-  sendpage:     sock_no_sendpage,
+  .release =      _cfm_sock_release,
+  .bind =         sock_no_bind,
+  .connect =      sock_no_connect,
+  .socketpair =   sock_no_socketpair,
+  .accept =       sock_no_accept,
+  .getname =      sock_no_getname,
+  .poll =         datagram_poll,
+  .ioctl =        sock_no_ioctl,
+  .listen =       sock_no_listen,
+  .shutdown =     sock_no_shutdown,
+  .setsockopt =   sock_no_setsockopt,
+  .getsockopt =   sock_no_getsockopt,
+  .sendmsg =      _cfm_sock_sendmsg,
+  .recvmsg =      _cfm_sock_recvmsg,
+  .mmap =         sock_no_mmap,
+  .sendpage =     sock_no_sendpage,
 };
 
 static struct net_proto_family cfm_family_ops = {

@@ -21,7 +21,7 @@
 #include<time.h>
 #include<limits.h>
 #include<sys/time.h>
-#include<sys/timex.h>
+#include<linux/timex.h>
 #include<sys/socket.h>
 #include<sys/select.h>
 #include<sys/ioctl.h>

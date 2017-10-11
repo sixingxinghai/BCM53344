@@ -152,7 +152,7 @@ ARCH_CFLAGS+= -I$(BLD_BASE)
 ARCH_CFLAGS+= $(EXTRA_CFLAGS)
 #ARCH_CFLAGS+= -ansi
 #ARCH_CFLAGS+= -pedantic
-ARCH_CFLAGS+= -Wall
+#ARCH_CFLAGS+= -Wall
 ARCH_CFLAGS+= -fno-builtin
 ARCH_CFLAGS+= -funsigned-char
 ARCH_CFLAGS+= -fno-signed-char
@@ -168,7 +168,7 @@ ARCH_CFLAGS+= -fno-working-directory
 endif
 
 #ARCH_CFLAGS+= -Wredundant-decls
-ARCH_CFLAGS+= -Wlong-long
+#ARCH_CFLAGS+= -Wlong-long
 ARCH_CFLAGS+= -Wnested-externs
 #ARCH_CFLAGS+= -Wcast-qual
 #ARCH_CFLAGS+= -Wcast-align

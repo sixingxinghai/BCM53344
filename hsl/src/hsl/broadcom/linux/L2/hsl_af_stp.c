@@ -40,8 +40,8 @@ static struct hlist_head _stp_socklist;
 static struct sock *_stp_socklist = 0;
 #endif
 
-static rwlock_t _stp_socklist_lock = RW_LOCK_UNLOCKED;
-
+//qcl 20170808 static rwlock_t _stp_socklist_lock = RW_LOCK_UNLOCKED;
+static DEFINE_RWLOCK(_stp_socklist_lock);
 /* Private packet socket structures. */
 
 /* Forward declarations. */
@@ -61,25 +61,26 @@ static int _stp_sock_recvmsg (struct socket *sock, struct msghdr *msg, int len, 
 #endif
 
 
-static struct proto_ops SOCKOPS_WRAPPED (stp_ops) = {
-  family:       AF_STP,
+//qcl 20170808 static struct proto_ops SOCKOPS_WRAPPED (stp_ops) = {
+static struct proto_ops stp_ops = {
+  .family =       AF_STP,
 
-  release:      _stp_sock_release,
-  bind:         sock_no_bind,
-  connect:      sock_no_connect,
-  socketpair:   sock_no_socketpair,
-  accept:       sock_no_accept,
-  getname:      sock_no_getname,
-  poll:         datagram_poll,
-  ioctl:        sock_no_ioctl,
-  listen:       sock_no_listen,
-  shutdown:     sock_no_shutdown,
-  setsockopt:   sock_no_setsockopt,
-  getsockopt:   sock_no_getsockopt,
-  sendmsg:      _stp_sock_sendmsg,
-  recvmsg:      _stp_sock_recvmsg,
-  mmap:         sock_no_mmap,
-  sendpage:     sock_no_sendpage,
+  .release =       _stp_sock_release,
+  .bind =          sock_no_bind,
+  .connect =       sock_no_connect,
+  .socketpair =    sock_no_socketpair,
+  .accept =        sock_no_accept,
+  .getname =       sock_no_getname,
+  .poll =          datagram_poll,
+  .ioctl =         sock_no_ioctl,
+  .listen =        sock_no_listen,
+  .shutdown =      sock_no_shutdown,
+  .setsockopt =    sock_no_setsockopt,
+  .getsockopt =    sock_no_getsockopt,
+  .sendmsg =       _stp_sock_sendmsg,
+  .recvmsg =       _stp_sock_recvmsg,
+  .mmap =          sock_no_mmap,
+  .sendpage =      sock_no_sendpage,
 };
 
 static struct net_proto_family stp_family_ops = {

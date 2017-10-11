@@ -166,8 +166,8 @@ hsl_bcm_set_in_profile_action_accgrp (struct hsl_bcm_accgrp_filter *qf)
   if (qf->type == HSL_BCM_FEATURE_FILTER)
     {
        ret = bcmx_filter_action_match (qf->u.filter,
-                                       bcmActionDoSwitch,
-                                       0);
+                                       0xf,
+                                       0);//qiucl 20170808 bcmActionDoSwitch
     }
   else if (qf->type == HSL_BCM_FEATURE_FIELD)
     {
@@ -438,7 +438,7 @@ hsl_bcm_access_group_apply (struct hsl_bcm_accgrp_filter *qf,
       if (action == HAL_ACCGRP_FILTER_DENY)
         {
           ret = bcmx_filter_action_match (qf->u.filter,
-                                          bcmActionDoNotSwitch, 0);
+                                          0xf, 0);//qcl 20170708 bcmActionDoNotSwitch
           if (ret < 0)
             goto err_ret;
         }

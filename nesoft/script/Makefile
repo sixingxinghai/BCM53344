@@ -11,7 +11,7 @@
 # PARTICULAR PURPOSE.
 
 
-SHELL = /bin/sh
+SHELL = /bin/bash
 
 srcdir = .
 top_srcdir = .
@@ -40,10 +40,10 @@ pkgincludedir = $(includedir)/pacos
 
 top_builddir = .
 
-ACLOCAL = ${SHELL} /mnt/hgfs/code/nesoft/nesoftv100r001c00/script/missing --run aclocal-1.9
-AUTOCONF = ${SHELL} /mnt/hgfs/code/nesoft/nesoftv100r001c00/script/missing --run autoconf
-AUTOMAKE = ${SHELL} /mnt/hgfs/code/nesoft/nesoftv100r001c00/script/missing --run automake-1.9
-AUTOHEADER = ${SHELL} /mnt/hgfs/code/nesoft/nesoftv100r001c00/script/missing --run autoheader
+ACLOCAL = ${SHELL} /workspace/bcm53344/nesoft/script/missing --run aclocal-1.9
+AUTOCONF = ${SHELL} /workspace/bcm53344/nesoft/script/missing --run autoconf
+AUTOMAKE = ${SHELL} /workspace/bcm53344/nesoft/script/missing --run automake-1.9
+AUTOHEADER = ${SHELL} /workspace/bcm53344/nesoft/script/missing --run autoheader
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL} $(AM_INSTALL_PROGRAM_FLAGS)
@@ -57,13 +57,13 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-host_alias = powerpc-e300c3-linux
-host_triplet = powerpc-e300c3-linux-gnu
+host_alias = arm-broadcom-linux-uclibcgnueabi
+host_triplet = arm-broadcom-linux-uclibcgnueabi
 AIO = 
 AR = ar
 BGPD = 
-CC = /home/iapn8500v100r001/plateform/tools/powerpc-e300c3-linux-gnu/bin/powerpc-e300c3-linux-gnu-gcc
-CPP = /home/iapn8500v100r001/plateform/tools/powerpc-e300c3-linux-gnu/bin/powerpc-e300c3-linux-gnu-gcc -E
+CC = /workspace/bcm53344/iproc/buildroot/host/usr/bin/arm-broadcom-linux-uclibcgnueabi-gcc
+CPP = /workspace/bcm53344/iproc/buildroot/host/usr/bin/arm-broadcom-linux-uclibcgnueabi-gcc -E
 CRLDP = 
 CRLDPINCLUDE = 
 CRLDPLIB = 
@@ -85,7 +85,7 @@ LIBPAM =
 LIB_IPV6 = 
 LIB_MEMMGR = @LIB_MEMMGR@
 LIB_REGEX = 
-MAKEINFO = ${SHELL} /mnt/hgfs/code/nesoft/nesoftv100r001c00/script/missing --run makeinfo
+MAKEINFO = ${SHELL} /workspace/bcm53344/nesoft/script/missing --run makeinfo
 MPLS = 
 MPLS_CLIENT = 
 MPLS_CLIENT_INCLUDE = 

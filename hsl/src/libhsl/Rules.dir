@@ -31,6 +31,7 @@ TOP_DIR=../..
 #
 #MODULE_CFLAGS=
 MODULE_CFLAGS+= -I$(SRC_DIR)/$(DIR_NAME)
+MODULE_CFLAGS+= -I$(TOP_DIR)/platform/linux
 MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl
 MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/common
 MODULE_CFLAGS+=-I$(SRC_DIR)/libhsl/L2
@@ -66,53 +67,23 @@ endif
 #
 ifeq ($(ADD_HARDWARE),yes)
 ifeq ($(BLD_NAME),linux)
+
 ifeq ($(KERNEL_OUT),$(empty))
 KERNEL_OUT=$(KERNEL_SOURCE)
 endif
 
-ifeq ($(ENABLE_USER_HSL),no)
+LINUX_INCLUDE=$(KERNEL_SOURCE)/include
+KERNDIR=$(KERNEL_SOURCE)
+TOOLCHAIN_BASE_DIR ?= /workspace/bcm53344/iproc
+KFLAG_INCLD = $(TOOLCHAIN_BASE_DIR)/buildroot/host/usr/lib/gcc/arm-broadcom-linux-uclibcgnueabi/4.7.2/include
 
-MODULE_CFLAGS += -include $(KERNEL_OUT)/include/linux/version.h -include $(KERNEL_OUT)/include/linux/autoconf.h
+MODULE_CFLAGS += -include $(KERNEL_OUT)/include/linux/version.h -include $(KERNEL_OUT)/include/generated/autoconf.h 
 MODULE_CFLAGS += -I$(KERNEL_OUT)/include
-MODULE_CFLAGS += -I$(KERNEL_SOURCE)/include
-MODULE_CFLAGS += -I$(KERNEL_SOURCE)/arch/powerpc/include
-MODULE_CFLAGS += -I$(KERNEL_SOURCE)/arch/powerpc
-MODULE_CFLAGS += -I$(KERNEL_SOURCE)/include/asm-powerpc
-
-endif
-
-
-ifeq ($(ENABLE_USER_HSL),yes)
- MODULE_CFLAGS += -O2 -fomit-frame-pointer -fno-strict-aliasing -Wall  -pipe -DEXPORT_SYMTAB
-else
-     ifeq ($(KERNEL_VERSION),2_6)
-  MODULE_CFLAGS += -D__KERNEL__ -DLINUX -DMODULE -O2 -fomit-frame-pointer -fno-strict-aliasing  -G 0 -fno-common -fno-pic -Wall  -pipe -DEXPORT_SYMTAB
-  MODPOST = $(KERNEL_OUT)/scripts/mod/modpost
-#       MODPOST_DEFINES += -DKBUILD_BASENAME=$(DIR_NAME)_module -DKBUILD_MODNAME=$(DIR_NAME)_module
-  MODNAME = -D"KBUILD_MODNAME=KBUILD_STR(hsl_module)"
-  MODPOST_DEFINES = -D"KBUILD_STR(s)=\#s" $(MODNAME)
-
- else
-  MODULE_CFLAGS += -D__KERNEL__ -DLINUX -DMODULE -O2 -fomit-frame-pointer -fno-strict-aliasing  -G 0 -fno-pic -Wall  -pipe -DEXPORT_SYMTAB
- endif
-
- MODULE_CFLAGS += -I$(KERNEL_SOURCE)/include
-endif
-
-
-  ifeq ($(findstring e500v2,$(COMPILER_PREFIX)),e500v2)
-    MODULE_CFLAGS+= -fno-strict-aliasing -fno-common -O2 -msoft-float -pipe -ffixed-r2 -mmultiple -mno-altivec -mno-spe -mno-string -Wa,-me500  -fomit-frame-pointer
-  endif
-
-  ifeq ($(COMPILER_PREFIX),ppc_82xx-)
-    MODULE_CFLAGS+= -msoft-float -mlongcall -mcpu=603
-  endif 
-
-  ifeq ($(COMPILER_PREFIX),mips_fp_be-)
-    MODULE_CFLAGS+= -mno-abicalls -mips2 -Wa,--trap -mlong-calls -mtune=r4600  
-  endif 
-
-MODULE_CFLAGS += -I$(dir $(shell $(COMPILER_DIR)/$(COMPILER_PREFIX)gcc -print-libgcc-file-name))include
+MODULE_CFLAGS += -I$(KERNEL_SOURCE)/arch/arm/include
+MODULE_CFLAGS += -I$(KERNEL_SOURCE)/arch/arm
+MODULE_CFLAGS += -I$(KERNEL_SOURCE)/arch/arm/include/asm
+MODULE_CFLAGS += -I$(KERNEL_SOURCE)/arch/arm/include/generated
+MODULE_CFLAGS += -D__LINUX_ARM_ARCH__=7 -D__KERNEL__ -nostdinc  -isystem $(KFLAG_INCLD)  -I$(KERNDIR)/arch/arm/mach-northstar/include -I$(KERNDIR)/arch/arm/plat-iproc/include -Wall -Wstrict-prototypes -Wno-trigraphs -Os -fno-strict-aliasing -fno-common -marm -mabi=aapcs-linux -fno-pic -pipe -msoft-float -ffreestanding -march=armv7-a -mfpu=vfp -mfloat-abi=softfp -fomit-frame-pointer -g -fno-stack-protector -Wdeclaration-after-statement -Wno-pointer-sign -mlong-calls
 
 EXTRA_LDFLAGS += -r
 MAKE_SINGLE_DEPS= $(CC) -M $(MODULE_CFLAGS)
@@ -123,21 +94,6 @@ HSL_OS_NAME=linux
 endif
 endif
 
-# VxWorks-Windnet
-ifeq ($(BLD_NAME),vxworks)
-  HSL_OS_NAME=vxworks
-  ifeq ($(PNE_VERSION),PNE_2_2)
-     MODULE_CFLAGS+=-D_KERNEL
-     MODULE_CFLAGS+=-D_WRS_KERNEL
-     HSL_STACK_NAME=pne_2_2
-  else
-     HSL_STACK_NAME=windnet
-  endif
-endif
-ifeq ($(BLD_NAME),vxworks_ipnet2)
-  HSL_OS_NAME=vxworks
-  HSL_STACK_NAME=ipnet2
-endif
 ifeq ($(BLD_NAME),linux)
   HSL_OS_NAME=linux
   ifeq ($(ENABLE_IPNET),yes)
