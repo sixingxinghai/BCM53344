@@ -1,841 +1,809 @@
 ../../platform/linux/obj/mstpd/mstp_api.o: mstp_api.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../../src/lib/lib.h ../lib/L2/l2_timer.h \
-  ../../src/pal/linux/pal_time.h ../../src/lib/lib.h \
-  ../../src/lib/thread.h ../../src/lib/log.h ../lib/L2/l2_debug.h \
-  ../lib/L2/l2_debug.h ../lib/L2/l2lib.h ../../src/lib/nsm_client.h \
-  mstp_config.h mstp_types.h mstp_bridge.h mstp_bpdu.h mstpd.h mstp_api.h \
-  mstp_cist_proto.h mstp_msti_proto.h mstp_transmit.h mstp_port.h \
-  mstp_rlist.h ../../src/lib/bitmap.h mstp_snmp.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../lib/L2/l2_timer.h \
+ ../../src/pal/linux/pal_time.h ../../src/lib/thread.h \
+ ../lib/L2/l2_debug.h ../lib/L2/l2_debug.h ../lib/L2/l2lib.h \
+ ../../src/lib/nsm_client.h mstp_config.h mstp_types.h mstp_bridge.h \
+ mstp_bpdu.h mstpd.h mstp_api.h mstp_cist_proto.h mstp_msti_proto.h \
+ mstp_transmit.h mstp_port.h mstp_rlist.h ../../src/lib/bitmap.h \
+ mstp_snmp.h
 ../../platform/linux/obj/mstpd/mstp_bpdu.o: mstp_bpdu.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../../src/lib/lib.h ../lib/L2/l2_timer.h \
-  ../../src/pal/linux/pal_time.h ../../src/lib/lib.h \
-  ../../src/lib/thread.h ../../src/lib/log.h ../lib/L2/l2_debug.h \
-  ../lib/L2/l2lib.h ../../src/lib/nsm_client.h mstp_config.h mstpd.h \
-  mstp_types.h mstp_bpdu.h mstp_cist_proto.h mstp_bridge.h \
-  mstp_msti_proto.h mstp_transmit.h mstp_port.h mstp_rpvst.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../lib/L2/l2_timer.h \
+ ../../src/pal/linux/pal_time.h ../../src/lib/thread.h \
+ ../lib/L2/l2_debug.h ../lib/L2/l2lib.h ../../src/lib/nsm_client.h \
+ mstp_config.h mstpd.h mstp_types.h mstp_bpdu.h mstp_cist_proto.h \
+ mstp_bridge.h mstp_msti_proto.h mstp_transmit.h mstp_port.h mstp_rpvst.h
 ../../platform/linux/obj/mstpd/mstp_bridge.o: mstp_bridge.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../../src/lib/lib.h \
-  ../../src/lib/nsm_message.h ../../src/lib/nsm_client.h \
-  ../../src/lib/table.h ../lib/L2/l2_timer.h \
-  ../../src/pal/linux/pal_time.h ../../src/lib/lib.h \
-  ../../src/lib/thread.h ../../src/lib/log.h ../lib/L2/l2_debug.h \
-  ../lib/L2/l2lib.h ../../src/lib/bitmap.h mstp_config.h mstp_types.h \
-  mstp_bpdu.h mstp_port.h mstp_cist_proto.h mstp_bridge.h \
-  mstp_msti_proto.h mstp_transmit.h mstpd.h mstp_rlist.h mstp_api.h \
-  ../../src/lib/auth_md5.h mstp_snmp.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../../src/lib/nsm_message.h \
+ ../../src/lib/nsm_client.h ../../src/lib/table.h ../lib/L2/l2_timer.h \
+ ../../src/pal/linux/pal_time.h ../../src/lib/thread.h \
+ ../lib/L2/l2_debug.h ../lib/L2/l2lib.h ../../src/lib/bitmap.h \
+ mstp_config.h mstp_types.h mstp_bpdu.h mstp_port.h mstp_cist_proto.h \
+ mstp_bridge.h mstp_msti_proto.h mstp_transmit.h mstpd.h mstp_rlist.h \
+ mstp_api.h ../../src/lib/auth_md5.h mstp_snmp.h
 ../../platform/linux/obj/mstpd/mstp_cist_proto.o: mstp_cist_proto.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../lib/L2/l2lib.h ../lib/L2/l2_timer.h \
-  ../../src/pal/linux/pal_time.h ../../src/lib/lib.h \
-  ../../src/lib/thread.h ../../src/lib/log.h ../lib/L2/l2_debug.h \
-  mstp_config.h mstp_types.h mstpd.h ../../src/lib/lib.h mstp_bpdu.h \
-  mstp_cist_proto.h mstp_bridge.h mstp_msti_proto.h mstp_transmit.h \
-  mstp_port.h mstp_api.h ../../src/lib/nsm_message.h \
-  ../../src/lib/nsm_client.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../lib/L2/l2lib.h ../lib/L2/l2_timer.h \
+ ../../src/pal/linux/pal_time.h ../../src/lib/thread.h \
+ ../lib/L2/l2_debug.h mstp_config.h mstp_types.h mstpd.h mstp_bpdu.h \
+ mstp_cist_proto.h mstp_bridge.h mstp_msti_proto.h mstp_transmit.h \
+ mstp_port.h mstp_api.h ../../src/lib/nsm_message.h \
+ ../../src/lib/nsm_client.h
 ../../platform/linux/obj/mstpd/mstp_cli.o: mstp_cli.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../../src/lib/cli.h ../../src/lib/lib.h \
-  ../../src/lib/if.h ../../src/lib/log.h \
-  ../lib/L2/l2_vlan_port_range_parser.h ../lib/L2/l2_debug.h \
-  ../lib/L2/l2_timer.h ../../src/pal/linux/pal_time.h ../../src/lib/lib.h \
-  ../../src/lib/thread.h ../../src/lib/log.h ../lib/L2/l2_debug.h \
-  ../lib/L2/l2lib.h ../lib/L2/l2_llc.h mstp_config.h mstp_types.h mstpd.h \
-  mstp_api.h mstp_bridge.h mstp_bpdu.h mstp_port.h mstp_cli.h \
-  mstp_rlist.h mstp_rpvst.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../../src/lib/cli.h \
+ ../lib/L2/l2_vlan_port_range_parser.h ../lib/L2/l2_debug.h \
+ ../lib/L2/l2_timer.h ../../src/pal/linux/pal_time.h \
+ ../../src/lib/thread.h ../lib/L2/l2_debug.h ../lib/L2/l2lib.h \
+ ../lib/L2/l2_llc.h mstp_config.h mstp_types.h mstpd.h mstp_api.h \
+ mstp_bridge.h mstp_bpdu.h mstp_port.h mstp_cli.h mstp_rlist.h \
+ mstp_rpvst.h
 ../../platform/linux/obj/mstpd/mstp_main.o: mstp_main.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../../src/lib/lib.h \
-  ../../src/lib/thread.h ../../src/lib/log.h ../lib/L2/l2_debug.h \
-  ../lib/L2/l2lib.h mstp_config.h mstp_types.h mstpd.h mstp_sock.h \
-  mstp_cli.h mstp_bridge.h mstp_bpdu.h mstp_port.h mstp_api.h mstp_snmp.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../../src/lib/thread.h \
+ ../lib/L2/l2_debug.h ../lib/L2/l2lib.h mstp_config.h mstp_types.h \
+ mstpd.h mstp_sock.h mstp_cli.h mstp_bridge.h mstp_bpdu.h mstp_port.h \
+ mstp_api.h mstp_snmp.h
 ../../platform/linux/obj/mstpd/mstp_msti_proto.o: mstp_msti_proto.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../lib/L2/l2lib.h mstp_config.h \
-  mstp_types.h mstp_bpdu.h mstpd.h ../../src/lib/lib.h mstp_msti_proto.h \
-  ../lib/L2/l2_timer.h ../../src/pal/linux/pal_time.h ../../src/lib/lib.h \
-  ../../src/lib/thread.h ../../src/lib/log.h ../lib/L2/l2_debug.h \
-  mstp_bridge.h mstp_transmit.h mstp_port.h mstp_api.h \
-  ../../src/lib/nsm_message.h ../../src/lib/nsm_client.h mstp_rpvst.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../lib/L2/l2lib.h mstp_config.h \
+ mstp_types.h mstp_bpdu.h mstpd.h mstp_msti_proto.h ../lib/L2/l2_timer.h \
+ ../../src/pal/linux/pal_time.h ../../src/lib/thread.h \
+ ../lib/L2/l2_debug.h mstp_bridge.h mstp_transmit.h mstp_port.h \
+ mstp_api.h ../../src/lib/nsm_message.h ../../src/lib/nsm_client.h \
+ mstp_rpvst.h
 ../../platform/linux/obj/mstpd/mstp_nsm.o: mstp_nsm.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../../src/lib/lib.h \
-  ../../src/lib/thread.h ../../src/lib/log.h ../../src/lib/table.h \
-  ../../src/lib/nsm_client.h ../lib/L2/l2lib.h mstp_config.h mstp_types.h \
-  mstpd.h mstp_bridge.h mstp_bpdu.h mstp_port.h mstp_api.h \
-  ../lib/L2/l2_debug.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../../src/lib/thread.h \
+ ../../src/lib/table.h ../../src/lib/nsm_client.h ../lib/L2/l2lib.h \
+ mstp_config.h mstp_types.h mstpd.h mstp_bridge.h mstp_bpdu.h mstp_port.h \
+ mstp_api.h ../lib/L2/l2_debug.h
 ../../platform/linux/obj/mstpd/mstp_port.o: mstp_port.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../../src/lib/lib.h \
-  ../../src/lib/thread.h ../lib/L2/l2lib.h mstpd.h mstp_config.h \
-  mstp_types.h mstp_bpdu.h mstp_port.h ../lib/L2/l2_timer.h \
-  ../../src/pal/linux/pal_time.h ../../src/lib/lib.h \
-  ../../src/lib/thread.h ../../src/lib/log.h ../lib/L2/l2_debug.h \
-  mstp_transmit.h mstp_cist_proto.h mstp_bridge.h mstp_msti_proto.h \
-  mstp_api.h ../../src/lib/nsm_message.h ../../src/lib/nsm_client.h \
-  mstp_snmp.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../../src/lib/thread.h ../lib/L2/l2lib.h \
+ mstpd.h mstp_config.h mstp_types.h mstp_bpdu.h mstp_port.h \
+ ../lib/L2/l2_timer.h ../../src/pal/linux/pal_time.h ../lib/L2/l2_debug.h \
+ mstp_transmit.h mstp_cist_proto.h mstp_bridge.h mstp_msti_proto.h \
+ mstp_api.h ../../src/lib/nsm_message.h ../../src/lib/nsm_client.h \
+ mstp_snmp.h
 ../../platform/linux/obj/mstpd/mstp_rlist.o: mstp_rlist.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../../src/lib/lib.h ../lib/L2/l2lib.h \
-  mstp_config.h mstp_types.h mstp_bridge.h mstp_bpdu.h mstpd.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../lib/L2/l2lib.h mstp_config.h \
+ mstp_types.h mstp_bridge.h mstp_bpdu.h mstpd.h
 ../../platform/linux/obj/mstpd/mstp_rpvst.o: mstp_rpvst.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../../src/lib/log.h ../lib/L2/l2lib.h \
-  ../lib/L2/l2_debug.h ../lib/L2/l2_timer.h \
-  ../../src/pal/linux/pal_time.h ../../src/lib/lib.h \
-  ../../src/lib/thread.h ../../src/lib/log.h ../lib/L2/l2_debug.h \
-  ../lib/L2/l2_llc.h mstpd.h ../../src/lib/lib.h mstp_config.h \
-  mstp_types.h mstp_main.h mstp_transmit.h mstp_bpdu.h mstp_cist_proto.h \
-  mstp_bridge.h mstp_msti_proto.h mstp_sock.h mstp_port.h mstp_api.h \
-  mstp_rpvst.h ../../src/lib/table.h mstp_rlist.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../lib/L2/l2lib.h ../lib/L2/l2_debug.h \
+ ../lib/L2/l2_timer.h ../../src/pal/linux/pal_time.h \
+ ../../src/lib/thread.h ../lib/L2/l2_debug.h ../lib/L2/l2_llc.h mstpd.h \
+ mstp_config.h mstp_types.h mstp_main.h mstp_transmit.h mstp_bpdu.h \
+ mstp_cist_proto.h mstp_bridge.h mstp_msti_proto.h mstp_sock.h \
+ mstp_port.h mstp_api.h mstp_rpvst.h ../../src/lib/table.h mstp_rlist.h
 ../../platform/linux/obj/mstpd/mstp_snmp.o: mstp_snmp.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../../src/lib/lib.h ../../src/lib/asn1.h \
-  ../../src/lib/if.h ../../src/lib/log.h ../../src/lib/prefix.h \
-  ../../src/lib/table.h ../../src/lib/snmp.h ../lib/L2/l2lib.h \
-  ../../src/pal/linux/pal_math.h ../lib/L2/l2_snmp.h ../../src/lib/lib.h \
-  ../lib/L2/l2lib.h ../lib/L2/l2_timer.h ../../src/pal/linux/pal_time.h \
-  ../../src/lib/thread.h ../../src/lib/log.h ../lib/L2/l2_debug.h \
-  mstp_config.h mstpd.h mstp_types.h mstp_bridge.h mstp_bpdu.h mstp_api.h \
-  mstp_port.h mstp_snmp.h mstp_transmit.h mstp_snmp_sstp.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../../src/lib/asn1.h \
+ ../../src/lib/prefix.h ../../src/lib/table.h ../../src/lib/snmp.h \
+ ../lib/L2/l2lib.h ../../src/pal/linux/pal_math.h ../lib/L2/l2_snmp.h \
+ ../lib/L2/l2lib.h ../lib/L2/l2_timer.h ../../src/pal/linux/pal_time.h \
+ ../../src/lib/thread.h ../lib/L2/l2_debug.h mstp_config.h mstpd.h \
+ mstp_types.h mstp_bridge.h mstp_bpdu.h mstp_api.h mstp_port.h \
+ mstp_snmp.h mstp_transmit.h mstp_snmp_sstp.h
 ../../platform/linux/obj/mstpd/mstp_snmp_sstp.o: mstp_snmp_sstp.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../../src/lib/lib.h ../../src/lib/asn1.h \
-  ../../src/lib/if.h ../../src/lib/log.h ../../src/lib/prefix.h \
-  ../../src/lib/table.h ../../src/lib/snmp.h ../lib/L2/l2lib.h \
-  ../../src/pal/linux/pal_math.h ../lib/L2/l2_snmp.h ../../src/lib/lib.h \
-  ../lib/L2/l2lib.h ../lib/L2/l2_timer.h ../../src/pal/linux/pal_time.h \
-  ../../src/lib/thread.h ../../src/lib/log.h ../lib/L2/l2_debug.h \
-  ../../src/lib/bitmap.h mstp_config.h mstpd.h mstp_types.h mstp_bridge.h \
-  mstp_bpdu.h mstp_api.h mstp_port.h mstp_snmp.h mstp_transmit.h \
-  mstp_snmp_sstp.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../../src/lib/asn1.h \
+ ../../src/lib/prefix.h ../../src/lib/table.h ../../src/lib/snmp.h \
+ ../lib/L2/l2lib.h ../../src/pal/linux/pal_math.h ../lib/L2/l2_snmp.h \
+ ../lib/L2/l2lib.h ../lib/L2/l2_timer.h ../../src/pal/linux/pal_time.h \
+ ../../src/lib/thread.h ../lib/L2/l2_debug.h ../../src/lib/bitmap.h \
+ mstp_config.h mstpd.h mstp_types.h mstp_bridge.h mstp_bpdu.h mstp_api.h \
+ mstp_port.h mstp_snmp.h mstp_transmit.h mstp_snmp_sstp.h
 ../../platform/linux/obj/mstpd/mstp_sock.o: mstp_sock.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../../src/lib/lib.h \
-  ../../src/lib/thread.h ../lib/L2/l2lib.h mstpd.h mstp_config.h \
-  mstp_types.h mstp_bridge.h mstp_bpdu.h ../lib/L2/l2_llc.h \
-  ../lib/L2/l2_debug.h mstp_sock.h ../../src/lib/message.h \
-  ../../src/lib/network.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../../src/lib/thread.h ../lib/L2/l2lib.h \
+ mstpd.h mstp_config.h mstp_types.h mstp_bridge.h mstp_bpdu.h \
+ ../lib/L2/l2_llc.h ../lib/L2/l2_debug.h mstp_sock.h \
+ ../../src/lib/message.h ../../src/lib/network.h
 ../../platform/linux/obj/mstpd/mstp_timer.o: mstp_timer.c ../../src/lib/thread.h \
-  ../../src/pal/linux/pal.h ../../platform/linux/config.h \
-  ../../src/pal/linux/plat_incl.h ../../src/pal/linux/pal_types.h \
-  ../../src/pal/api/pal_types.def ../../src/pal/api/pal_md5.def \
-  ../../src/pal/api/pal_modules.def ../../src/pal/linux/pal_if_types.h \
-  ../../src/pal/api/pal_if_types.def ../../src/pal/linux/pal_if_stats.h \
-  ../../src/pal/api/pal_if_stats.def ../../src/pal/linux/pal_if_default.h \
-  ../../src/pal/linux/pal_posix.h ../../src/pal/api/pal_posix.def \
-  ../../src/pal/linux/pal_assert.h ../../src/pal/api/pal_assert.def \
-  ../../src/pal/linux/pal_memory.h ../../src/pal/linux/pal.h \
-  ../../src/lib/memory.h ../../src/lib/modbmap.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../../src/lib/log.h ../lib/L2/l2lib.h \
-  mstpd.h ../../src/lib/lib.h mstp_config.h mstp_types.h \
-  ../lib/L2/l2_timer.h ../../src/pal/linux/pal_time.h ../../src/lib/lib.h \
-  ../../src/lib/thread.h ../../src/lib/log.h ../lib/L2/l2_debug.h \
-  mstp_transmit.h mstp_bpdu.h mstp_cist_proto.h mstp_bridge.h \
-  mstp_msti_proto.h mstp_port.h ../lib/L2/l2_debug.h mstp_snmp.h
+ ../../src/pal/linux/pal.h ../../platform/linux/config.h \
+ ../../src/pal/linux/plat_incl.h ../../src/pal/linux/pal_types.h \
+ ../../src/pal/api/pal_types.def ../../src/pal/api/pal_md5.def \
+ ../../src/pal/api/pal_modules.def ../../src/pal/linux/pal_if_types.h \
+ ../../src/pal/api/pal_if_types.def ../../src/pal/linux/pal_if_stats.h \
+ ../../src/pal/api/pal_if_stats.def ../../src/pal/linux/pal_if_default.h \
+ ../../src/pal/linux/pal_posix.h ../../src/pal/api/pal_posix.def \
+ ../../src/pal/linux/pal_assert.h ../../src/pal/api/pal_assert.def \
+ ../../src/pal/linux/pal_memory.h ../../src/pal/linux/pal.h \
+ ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../lib/L2/l2lib.h mstpd.h mstp_config.h \
+ mstp_types.h ../lib/L2/l2_timer.h ../../src/pal/linux/pal_time.h \
+ ../lib/L2/l2_debug.h mstp_transmit.h mstp_bpdu.h mstp_cist_proto.h \
+ mstp_bridge.h mstp_msti_proto.h mstp_port.h ../lib/L2/l2_debug.h \
+ mstp_snmp.h
 ../../platform/linux/obj/mstpd/mstp_transmit.o: mstp_transmit.c ../../src/pal/linux/pal.h \
-  ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
-  ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
-  ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
-  ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
-  ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
-  ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
-  ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
-  ../../src/pal/linux/pal.h ../../src/lib/memory.h \
-  ../../src/lib/modbmap.h ../../src/pal/linux/pal.h \
-  ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
-  ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
-  ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
-  ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
-  ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
-  ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
-  ../../src/lib/cfg_util.h ../../src/lib/vector.h \
-  ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
-  ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
-  ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
-  ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
-  ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
-  ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
-  ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
-  ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
-  ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
-  ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
-  ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
-  ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
-  ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
-  ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
-  ../../src/lib/vty.h ../../src/pal/linux/pal.h ../../src/lib/cli.h \
-  ../../src/lib/cli_mode_types.h ../../src/lib/cfg_data_types.h \
-  ../../src/lib/host.h ../../src/lib/auth_md5.h ../../src/lib/if.h \
-  ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
-  ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
-  ../../src/lib/routemap.h ../../src/lib/entity.h \
-  ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
-  ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
-  ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
-  ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
-  ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
-  ../../src/lib/mod_stop.h ../../src/lib/if.h \
-  ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
-  ../../src/pal/api/pal_arp.def ../../src/lib/log.h ../lib/L2/l2lib.h \
-  ../lib/L2/l2_debug.h ../lib/L2/l2_timer.h \
-  ../../src/pal/linux/pal_time.h ../../src/lib/lib.h \
-  ../../src/lib/thread.h ../../src/lib/log.h ../lib/L2/l2_debug.h \
-  ../lib/L2/l2_llc.h mstpd.h ../../src/lib/lib.h mstp_config.h \
-  mstp_types.h mstp_main.h mstp_transmit.h mstp_bpdu.h mstp_cist_proto.h \
-  mstp_bridge.h mstp_sock.h mstp_port.h mstp_rpvst.h
+ ../../platform/linux/config.h ../../src/pal/linux/plat_incl.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/api/pal_types.def \
+ ../../src/pal/api/pal_md5.def ../../src/pal/api/pal_modules.def \
+ ../../src/pal/linux/pal_if_types.h ../../src/pal/api/pal_if_types.def \
+ ../../src/pal/linux/pal_if_stats.h ../../src/pal/api/pal_if_stats.def \
+ ../../src/pal/linux/pal_if_default.h ../../src/pal/linux/pal_posix.h \
+ ../../src/pal/api/pal_posix.def ../../src/pal/linux/pal_assert.h \
+ ../../src/pal/api/pal_assert.def ../../src/pal/linux/pal_memory.h \
+ ../../src/pal/linux/pal.h ../../src/lib/memory.h ../../src/lib/modbmap.h \
+ ../../src/pal/api/pal_memory.def ../../src/pal/linux/pal_file.h \
+ ../../src/pal/linux/pal_daemon.h ../../src/pal/api/pal_daemon.def \
+ ../../src/pal/linux/pal_debug.h ../../src/pal/api/pal_debug.def \
+ ../../src/pal/linux/pal_stdlib.h ../../src/pal/api/pal_stdlib.def \
+ ../../src/pal/linux/pal_string.h ../../src/pal/api/pal_string.def \
+ ../../src/pal/linux/pal_log.h ../../src/lib/log.h \
+ ../../src/lib/cfg_util.h ../../src/lib/vector.h \
+ ../../src/pal/api/pal_log.def ../../src/pal/linux/pal_time.h \
+ ../../src/pal/api/pal_time.def ../../src/pal/linux/pal_math.h \
+ ../../src/pal/api/pal_math.def ../../src/pal/linux/pal_regex.h \
+ ../../src/pal/api/pal_regex.def ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/api/pal_socket.def ../../src/pal/linux/pal_sock_raw.h \
+ ../../src/pal/api/pal_sock_raw.def ../../src/pal/linux/pal_sock_ll.h \
+ ../../src/pal/api/pal_sock_ll.def ../../src/pal/linux/pal_sock_udp.h \
+ ../../src/pal/api/pal_sock_udp.def ../../src/pal/linux/pal_inet.h \
+ ../../src/pal/api/pal_inet.def ../../src/pal/linux/pal_np.h \
+ ../../src/pal/linux/pal_pipe.h ../../src/pal/linux/pal_term.h \
+ ../../src/pal/api/pal_term.def ../../src/pal/linux/pal_signal.h \
+ ../../src/pal/linux/pal_kernel.h ../../src/lib/lib.h \
+ ../../src/pal/linux/pal_types.h ../../src/pal/linux/pal_socket.h \
+ ../../src/pal/linux/pal_log.h ../../src/pal/linux/pal_memory.h \
+ ../../src/lib/memory.h ../../src/lib/fifo.h ../../src/lib/prefix.h \
+ ../../src/lib/vty.h ../../src/lib/cli.h ../../src/lib/cli_mode_types.h \
+ ../../src/lib/cfg_data_types.h ../../src/lib/host.h \
+ ../../src/lib/auth_md5.h ../../src/lib/if.h \
+ ../../src/pal/linux/pal_if_stats.h ../../src/lib/linklist.h \
+ ../../src/lib/filter.h ../../src/lib/if_rmap.h ../../src/lib/plist.h \
+ ../../src/lib/routemap.h ../../src/lib/entity.h \
+ ../../src/lib/distribute.h ../../src/lib/hash.h ../../src/lib/snmp.h \
+ ../../src/lib/asn1.h ../../src/lib/lib.h ../../src/lib/smux.h \
+ ../../src/lib/snmp_misc.h ../../src/lib/api.h ../../src/lib/message.h \
+ ../../src/lib/nsm_message.h ../../src/lib/commsg.h \
+ ../../src/lib/fm/lib_fm_api.h ../../src/lib/fm/lib_fm_gid.h \
+ ../../src/lib/mod_stop.h ../../src/lib/if.h \
+ ../../src/pal/api/pal_kernel.def ../../src/pal/linux/pal_arp.h \
+ ../../src/pal/api/pal_arp.def ../lib/L2/l2lib.h ../lib/L2/l2_debug.h \
+ ../lib/L2/l2_timer.h ../../src/pal/linux/pal_time.h \
+ ../../src/lib/thread.h ../lib/L2/l2_debug.h ../lib/L2/l2_llc.h mstpd.h \
+ mstp_config.h mstp_types.h mstp_main.h mstp_transmit.h mstp_bpdu.h \
+ mstp_cist_proto.h mstp_bridge.h mstp_sock.h mstp_port.h mstp_rpvst.h

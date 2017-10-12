@@ -4041,18 +4041,18 @@ IMI_ALI (NULL,
      "The List of the VLAN IDs that will be removed from the Layer2 interface");
 
 IMI_ALI (NULL,
-    no_tun_id_cmd_imi,
-    "no tun <1-2000>",
-    "Negate a command or set its defaults",
-    "delete a tunnel's configuration",
-    "tunnel id, range 1-2000");
-
-IMI_ALI (NULL,
     lm_proactive_detect_cmd_imi,
     "lm proactive {enable |disable}",
     "lm proactive detect:enable or disable ",
     "lm proactive dection configure"
 );
+
+IMI_ALI (NULL,
+    no_tun_id_cmd_imi,
+    "no tun <1-2000>",
+    "Negate a command or set its defaults",
+    "delete a tunnel's configuration",
+    "tunnel id, range 1-2000");
 
 IMI_ALI (NULL,
      no_qos_cmap_match_traffic_type_cmd1_imi,
@@ -7118,8 +7118,8 @@ imi_extracted_cmd_init (struct cli_tree *ctree)
   cli_install_imi (ctree, 4, PM_NSM,  1,  0, &fpga_write_cmd_imi);
   cli_install_imi (ctree, 5, PM_NSM,  (15),  0, &no_debug_hal_cmd_imi);
   cli_install_imi (ctree, 84, modbmap_vor (2, &PM_NSM, &PM_NSM), PRIVILEGE_NORMAL, 0, &no_qos_pmapc_policing_meter_cmd_imi);
-  cli_install_imi (ctree, 5, PM_NSM, PRIVILEGE_NORMAL, 0, &no_ac_id_cmd_imi);
   cli_install_imi (ctree, 146, PM_NSM, PRIVILEGE_NORMAL, 0, &p2p_meanpath_delay_config_cmd_imi);
+  cli_install_imi (ctree, 5, PM_NSM, PRIVILEGE_NORMAL, 0, &no_ac_id_cmd_imi);
   cli_install_imi (ctree, 16, modbmap_vor (2, &PM_NSM, &PM_NSM), PRIVILEGE_NORMAL, 0, &no_wrr_queue_min_reserve_cmd_imi);
   cli_install_imi (ctree, 5, PM_MSTP, PRIVILEGE_NORMAL, 0, &no_mstp_bridge_max_age_cmd_imi);
   cli_install_imi (ctree, 5, modbmap_vor (2, &PM_NSM, &PM_NSM), PRIVILEGE_NORMAL, 0, &no_ip_access_list_extended_any_any_cmd_imi);
@@ -7403,8 +7403,8 @@ imi_extracted_cmd_init (struct cli_tree *ctree)
   cli_install_imi (ctree, 140, PM_NSM, PRIVILEGE_NORMAL, 0, &lt_detect_size_cmd_imi);
   cli_install_imi (ctree, 136, PM_NSM, PRIVILEGE_NORMAL, 0, &vpn_rmv_vport_cmd_imi);
   cli_install_imi (ctree, 5, PM_NSM, PRIVILEGE_NORMAL, 0, &bridge_acquire_cmd_imi);
-  cli_install_imi (ctree, 5, PM_NSM, PRIVILEGE_NORMAL, 0, &show_lspgrp_status_cmd_imi);
   cli_install_imi (ctree, 146, PM_NSM, PRIVILEGE_NORMAL, 0, &p2p_request_interval_config_cmd_imi);
+  cli_install_imi (ctree, 5, PM_NSM, PRIVILEGE_NORMAL, 0, &show_lspgrp_status_cmd_imi);
   cli_install_imi (ctree, 5, PM_MSTP, PRIVILEGE_NORMAL, 0, &mstp_span_portfast_bpduguard_cmd_imi);
   cli_install_imi (ctree, 16, PM_MSTP, PRIVILEGE_NORMAL, 0, &no_mstp_spanning_tree_vlan_restricted_role_cmd_imi);
   cli_install_imi (ctree, 143, PM_NSM, PRIVILEGE_NORMAL, 0, &lsp_cfg_up_cmd_imi);

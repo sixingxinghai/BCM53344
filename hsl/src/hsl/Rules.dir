@@ -42,9 +42,7 @@ TOP_DIR=../..
 
 ADD_HARDWARE=yes
 HARDWARE_NAME=broadcom
-
 ENABLE_BROADCOM=yes
-BROADCOM_SDK := /workspace/bcm53344/sdk-all-6.5.5
 
 BLD_NAME ?= linux
 DIR_MODE=out

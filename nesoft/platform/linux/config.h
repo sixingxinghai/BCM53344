@@ -5,7 +5,7 @@
 /* #undef BSDI_NRL */
 
 /* Build Number */
-#define BUILDDATE "10/14/15 15:20:00"
+#define BUILDDATE "10/11/17 16:01:47"
 
 /* Define to one of `_getb67', `GETB67', `getb67' for Cray-2 and Cray-YMP
    systems. This function is required for `alloca.c' support on those systems.
@@ -764,7 +764,7 @@
 /* #undef HAVE_STRNCASECMP */
 
 /* Define to 1 if you have the <stropts.h> header file. */
-#define HAVE_STROPTS_H 1
+/* #undef HAVE_STROPTS_H */
 
 /* Define to 1 if you have the `strstr' function. */
 /* #undef HAVE_STRSTR */
@@ -829,7 +829,7 @@
 /* #undef HAVE_SYS_WAIT_H */
 
 /* TCP MD5SIG */
-/* #undef HAVE_TCP_MD5SIG */
+#define HAVE_TCP_MD5SIG /**/
 
 /* Use TCP for daemons communication */
 /* #undef HAVE_TCP_MESSAGE */
@@ -913,7 +913,7 @@
 /* #undef HAVE_PACOS_DEBUG */
 
 /* Host name */
-#define HOST_NAME "powerpc-e300c3-linux-gnu"
+#define HOST_NAME "arm-broadcom-linux-uclibcgnueabi"
 
 /* Interface Bandwidth Information */
 /* #undef IF_BANDWIDTH_INFO */
@@ -1095,10 +1095,10 @@
 #define VERSION "1.0"
 
 /* bigendian */
-#define WORDS_BIGENDIAN 1
+/* #undef WORDS_BIGENDIAN */
 
 /* littleendian */
-/* #undef WORDS_LITTLEENDIAN */
+#define WORDS_LITTLEENDIAN 1
 
 /* Curr Release */
 /* #undef PACOS_CURR_RELEASE */
