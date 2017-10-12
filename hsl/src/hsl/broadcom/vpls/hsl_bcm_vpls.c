@@ -956,13 +956,6 @@ int hsl_bcm_mulitcast_group_create(hsl_bcm_vpn_mcast_grp_cfg *pMcastGrpCfg)
         return -1;
      }
 
-      //ptListNode = linkListLookup(g_hsl_vpn_list, (void *)&stVpnInfo);
-      //if(ptListNode == NULL)
-      //{
-           //return rc;  /*不存在，直接返回成功*/
-      //}
-
-     //ptVpnInfo = (hsl_bcm_vpn_info *)ptListNode->data;	
      HSL_CHECK_RESULT(rc, bcm_multicast_create(BCM_UNIT, BCM_MULTICAST_TYPE_VPLS, &bcast_group));
 	  
 	 HSL_LOG (HSL_LOG_PLATFORM, HSL_LEVEL_INFO, "hsl_bcm_mulitcast_group_create: bcast_group = %d\n",bcast_group);//test @zlh
@@ -970,7 +963,7 @@ int hsl_bcm_mulitcast_group_create(hsl_bcm_vpn_mcast_grp_cfg *pMcastGrpCfg)
      bcm_l2_addr_t_init(&l2_addr, pMcastGrpCfg->mc_mac, ptVpnInfo->bcm_vpn_id);
 
      l2_addr.flags = BCM_L2_STATIC | BCM_L2_MCAST;
-     l2_addr.l2mc_index = bcast_group;
+     l2_addr.l2mc_group = bcast_group;
 
     HSL_CHECK_RESULT(rc, bcm_l2_addr_add(BCM_UNIT, &l2_addr));
 	
@@ -1308,7 +1301,7 @@ int hsl_bcm_mpls_tunnel_add(hsl_bcm_mpls_tunnel_switch_cfg_1307 *label_switch_in
 		return DRV_E_LSP_EXIST;
 	}
 				
-	bcm_label_info.inner_label = 0;
+	bcm_label_info.second_label = 0;
 	bcm_label_info.exp_map = 0;
 	bcm_label_info.int_pri = 0;
 	bcm_label_info.vpn = 0;
@@ -1434,7 +1427,7 @@ int hsl_bcm_mpls_tunnel_add(hsl_bcm_mpls_tunnel_switch_cfg_1307 *label_switch_in
     }
    
    
-    bcm_label_info.inner_label = 0;
+    bcm_label_info.second_label = 0;
     bcm_label_info.exp_map = 0;
     bcm_label_info.int_pri = 0;
     bcm_label_info.vpn = 0;

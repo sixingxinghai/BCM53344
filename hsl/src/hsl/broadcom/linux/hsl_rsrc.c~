@@ -8,7 +8,7 @@
 #include "hsl_types.h"
 #include "hsl_oss.h"
 
-#include "hsl_rsrc.h"
+#include "hsl_Rsrc.h"
 
 
 //创建资源池

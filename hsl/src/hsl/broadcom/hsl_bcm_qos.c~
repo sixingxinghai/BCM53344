@@ -30,7 +30,7 @@
 #include "hal_qos.h"
 #include "hsl_bcm_qos.h"
 
-#include "hsl_rsrc.h"//zlh@150108 
+#include "hsl_Rsrc.h"//zlh@150108 
 
 
 static int hsl_bcm_qos_initialized = HSL_FALSE;
